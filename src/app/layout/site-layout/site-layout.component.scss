@@ -1,0 +1,131 @@
+.container{
+  max-width: 95% !important;
+}
+
+.calendar-layout{
+  margin-top: 10px;
+}
+
+.no-side-padding{
+  padding: 0 1px 0 1px !important;
+}
+
+.calendar-container{
+  background: #243447;
+  height: 600px;
+  border-radius: 0.3em 0em 0em 0.3em ;
+  color: white
+}
+
+.summary-container{
+  //background: ghostwhite;
+  height: 600px;
+  //border-color: #243447;
+  //border-top: 2px solid;
+  //border-right: 2px solid;
+  //border-bottom: 2px solid;
+  border-radius: 0em 0.3em 0.3em 0 ;
+}
+
+.summary-card-container{
+  //todo make with vertical align
+  //margin-top: 100px;
+  margin-left: 2px;
+}
+.summary-card{
+  height: 600px;
+}
+
+.calendar-header{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-family: Avenir;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.calendar-numbers{
+  font-weight: bold;
+  font-family: Avenir;
+}
+
+.calendar-day{
+  border: 5px black;
+  padding: 1em .1em 1em .1em;
+  font-size: 19px ;
+}
+
+.calendar-day.clicked{
+  background: dodgerblue;
+  opacity: 80%;
+  color: white;
+}
+
+.active-day{
+  color: deeppink;
+}
+
+.calendar-day.day-has-expense{
+  background: orange;
+  color: white;
+  opacity: 80%;
+}
+
+.calendar-day:hover{
+  cursor: pointer;
+}
+
+//.day-padding{
+//  background: purple;
+//  margin: 0 3em 0 3em !important;
+//}
+
+//
+//.container{
+//  max-width: 95% !important;
+//}
+//.calendar-page-header{
+//  margin: 1em 0 .3em 0;
+//}
+//.calendar-container{
+//  margin-top: 1em;
+//}
+//
+//.col-no-padding{
+//  padding: 0 1px 0 1px !important;
+//}
+//
+//.calendar-row-header{
+//  background: #fafafa;
+//}
+//
+//.calendar-card{
+//  height: 170px;
+//}
+//
+//.calendar-card:hover{
+//}
+//
+//.calendar-action-icon:hover{
+//  cursor: pointer;
+//}
+//
+//.add-icon{
+//  color: forestgreen !important;
+//}
+//
+//.info-icon{
+//  color: dodgerblue !important;
+//}
+//
+//.active-card{
+//  //background: dodgerblue;
+//  //color: white !important;
+//}
+//
+//.custom-calendar-card-header{
+//  padding-top: 0.5em !important;
+//  padding-bottom: 0em !important;
+//  border-top: 0 !important;
+//}

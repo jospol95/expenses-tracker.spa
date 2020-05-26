@@ -1,0 +1,203 @@
+<div>
+  <app-top-navbar>
+  </app-top-navbar>
+
+  <div class="container">
+    <div class="calendar-layout">
+      <div class="row">
+        <div class="col col-8 no-side-padding calendar-container">
+          <div class="row calendar-header">
+            <div class="col col-4">
+              month picker
+            </div>
+            <div class="col col-4 text-center">
+              MAY, 2020
+            </div>
+            <div class="col col-4 text-right">
+              year picker
+            </div>
+          </div>
+          <div class="row calendar-numbers">
+            <div class="col text-center">
+              MON
+            </div>
+            <div class="col text-center">
+              TUE
+            </div>
+            <div class="col text-center">
+              WED
+            </div>
+            <div class="col text-center">
+              THU
+            </div>
+            <div class="col text-center">
+              FRI
+            </div>
+            <div class="col text-center active-day">
+              SAT
+            </div>
+            <div class="col text-center">
+              SUN
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <div class="calendar-day rounded-circle">
+                1
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day clicked rounded-circle">
+                2
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day rounded-circle">
+                3
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day rounded-circle">
+                4
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day rounded-circle">
+                5
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day active-day rounded-circle">
+                6
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="calendar-day day-has-expense rounded-circle">
+                7
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-4 no-side-padding summary-container">
+          <div class="row">
+            <div class="col summary-card-container">
+              <div class="card text-center summary-card">
+                <div class="card-body">
+                  <h5 class="card-title">Expenses ($325)</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--          <div class="row calendar-header">-->
+          <!--            <div class="col text-center">-->
+          <!--              Expenses ($860)-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="row">-->
+          <!--            <div class="list-container">-->
+          <!--              <div class="col">-->
+          <!--                Amazon credit card: remember to pay on next-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="container">-->
+  <!--    <div class="calendar-page-header">-->
+  <!--      <div class="row">-->
+  <!--        <div class="col-md-4 col-no-padding">-->
+  <!--          <h3>May 2020</h3>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="calendar-container">-->
+  <!--      <div class="row calendar-row-header" >-->
+  <!--        <div class="col-2 col-md-2 col-no-padding">-->
+  <!--          Monday-->
+  <!--        </div>-->
+  <!--        <div class="col-2 col-md-2 col-no-padding">-->
+  <!--          Tuesday-->
+  <!--        </div>-->
+  <!--        <div class="col-2 col-md-2 col-no-padding">-->
+  <!--          Wednesday-->
+  <!--        </div>-->
+  <!--        <div class="col-2 col-md-2 col-no-padding">-->
+  <!--          Thursday-->
+  <!--        </div>-->
+  <!--        <div class="col-2 col-md-2 col-no-padding">-->
+  <!--          Friday-->
+  <!--        </div>-->
+  <!--        <div class="col col-2 col-md-2 col-no-padding">-->
+  <!--          Saturday / Sunday-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row">-->
+  <!--        <div *ngFor="let a of [1,2,3,4,5]" class="col col-md-2 col-no-padding">-->
+  <!--          <div class="card calendar-card">-->
+  <!--            <div class="card-body">-->
+  <!--              <h5 class="card-title">{{a}}</h5>-->
+  <!--              <h6 class="card-subtitle mb-2 text-muted">Chase credit card</h6>-->
+  <!--              &lt;!&ndash;                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&ndash;&gt;-->
+  <!--              <a href="#" class="card-link">See full summary</a>-->
+  <!--              &lt;!&ndash;                <a href="#" class="card-link">Another link</a>&ndash;&gt;-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+
+  <!--        <div class="col col-md-2 col-no-padding">-->
+  <!--          <div class="card calendar-card active-card">-->
+  <!--&lt;!&ndash;            <div class="card-header custom-calendar-card-header">&ndash;&gt;-->
+  <!--&lt;!&ndash;              <div class="row">&ndash;&gt;-->
+  <!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+  <!--&lt;!&ndash;                  <h5>6/7</h5>&ndash;&gt;-->
+  <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+  <!--&lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
+  <!--&lt;!&ndash;                  <span class="badge badge-pill badge-primary text-right">1</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+  <!--&lt;!&ndash;              </div>&ndash;&gt;-->
+  <!--&lt;!&ndash;            </div>&ndash;&gt;-->
+  <!--            <div class="card-body">-->
+  <!--              <h4 class="card-title">6/7 </h4>-->
+  <!--              <h6 class="card-subtitle mb-2 text-muted">No expenses</h6>-->
+  <!--            </div>-->
+  <!--            <div class="card-footer">-->
+  <!--              &lt;!&ndash;todo if not expenses, then show add &ndash;&gt;-->
+  <!--&lt;!&ndash;              <a href="#" class="card-link">Add expense reminder</a>&ndash;&gt;-->
+  <!--              <div class="row">-->
+  <!--                <div class="col-sm-4">-->
+  <!--                  <mat-icon-->
+  <!--                    class="calendar-action-icon add-icon"-->
+  <!--                    aria-hidden="false" aria-label="Example home icon">monetization_on</mat-icon>-->
+  <!--                </div>-->
+  <!--                <div class="col-sm-4">-->
+  <!--                  <mat-icon-->
+  <!--                    class="calendar-action-icon info-icon"-->
+  <!--                    aria-hidden="false" aria-label="Example home icon">list_alt</mat-icon>-->
+  <!--                </div>-->
+  <!--                <div class="col-sm-4">-->
+  <!--                  <mat-icon-->
+  <!--                    color="primary"-->
+  <!--                    class="calendar-action-icon"-->
+  <!--                    aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon>-->
+  <!--                </div>-->
+  <!--              </div>-->
+
+  <!--&lt;!&ndash;              <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>&ndash;&gt;-->
+  <!--&lt;!&ndash;              <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>&ndash;&gt;-->
+  <!--&lt;!&ndash;              <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>&ndash;&gt;-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>

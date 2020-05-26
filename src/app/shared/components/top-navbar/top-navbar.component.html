@@ -1,0 +1,33 @@
+<!--todo install jquery-->
+<div class="top-menu">
+  <button mat-button >
+    <mat-icon class="md-30" aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
+  </button>
+
+
+  <button mat-button [matMenuTriggerFor]="belowMenu">
+    <mat-icon class="md-30" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
+  </button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="afterMenu">
+    <mat-icon class="md-30" aria-hidden="false" aria-label="Example home icon">announcement</mat-icon>
+  </button>
+  <mat-menu #afterMenu="matMenu" xPosition="after">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="beforeMenu">
+    <mat-icon class="md-30" aria-hidden="false" aria-label="Example home icon">list</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+
+</div>
+
