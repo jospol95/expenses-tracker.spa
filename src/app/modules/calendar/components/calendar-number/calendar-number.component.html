@@ -1,0 +1,5 @@
+<div  (click)='onClicked()'
+      [ngClass]="{'calendar-day':model.value < 10, 'calendar-day-2':model.value >= 10,
+     'clicked': model.clicked, 'day-has-expense': model.hasExpenses, 'active-day': model.isToday}">
+  <span>{{model.value}}</span>
+</div>

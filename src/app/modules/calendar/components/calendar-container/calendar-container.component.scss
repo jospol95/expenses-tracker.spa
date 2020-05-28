@@ -1,0 +1,125 @@
+.calendar-layout {
+  margin-top: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.no-side-padding {
+  padding: 0 1px 0 1px !important;
+}
+
+.summary-container {
+  height: 600px;
+  border-radius: 0em 0.3em 0.3em 0;
+}
+
+.summary-card-container {
+  //todo make with vertical align
+  margin-top: 50px;
+  margin-left: 2px;
+}
+
+.dark-grey-bg {
+  background: #243447;
+}
+
+.summary-card {
+  height: 500px;
+}
+
+.calendar-header {
+  padding-top: 20px;
+  //margin-top: 0px;
+  margin-bottom: 25px;
+  margin-left: -.5px;
+  margin-right: -.5px;
+  border-radius: .3em .3em 0 0em;
+  font-size: 24px;
+  background: dodgerblue;
+  color: whitesmoke;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  div.date-picker {
+    font-size: 15px;
+  }
+}
+
+.calendar-numbers {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  //font-weight: bold;
+  //font-family: Avenir;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.calendar-day {
+  //padding: 1em .1em 1em .1em;
+  font-size: 19px;
+  span {
+    border-radius: 50%;
+    padding: .5em 1em .5em 1em;
+  }
+}
+
+.calendar-day.clicked {
+  span {
+    background: dodgerblue;
+    font-weight: bold;
+    //color: white;
+  }
+}
+
+
+.calendar-day-2{
+  font-size: 19px;
+  > span {
+    border-radius: 50%;
+    //background: orangered;
+    padding: .55em .8em .55em .8em;
+  }
+}
+.calendar-day-2:hover{
+  cursor: pointer;
+}
+
+.calendar-day-2.clicked {
+  span {
+    background: dodgerblue;
+    font-weight: bold;
+    //color: white;
+  }
+}
+.calendar-day-2.day-has-expense {
+  span {
+    border: 2px solid dodgerblue;
+    //font-weight: bold;
+  }
+}
+
+.calendar-day.day-has-expense {
+  span {
+    border: 2px solid dodgerblue;
+    //font-weight: bold;
+  }
+}
+
+
+.calendar-day:hover {
+  cursor: pointer;
+}
+
+.expense-item {
+  font-size: 16px;
+}
+
+.expense-tr {
+  font-size: 16px;
+  transition: .3s;
+}
+
+
+.active-icon{
+  color:deeppink;
+}
+
+

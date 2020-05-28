@@ -3,16 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SiteLayoutComponent } from './layout/site-layout/site-layout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TopNavbarComponent } from './shared/components/top-navbar/top-navbar.component';
-import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSelectModule
+} from '@angular/material';
+import {SiteLayoutComponent} from './layout/site-layout/site-layout.component';
+import {SiteLayoutModule} from './layout/site-layout/site-layout.module';
+import { CalendarContainerComponent } from './modules/calendar/components/calendar-container/calendar-container.component';
+import { CalendarDayExpenseComponent } from './modules/calendar/components/calendar-day-expense/calendar-day-expense.component';
+import { CalendarNumberComponent } from './modules/calendar/components/calendar-number/calendar-number.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SiteLayoutComponent,
-    TopNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +30,13 @@ import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    SiteLayoutModule
   ],
   exports: [
-    SiteLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
