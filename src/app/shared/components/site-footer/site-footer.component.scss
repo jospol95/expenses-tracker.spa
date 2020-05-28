@@ -1,0 +1,37 @@
+
+.app-footer{
+  background: #243447;
+  //padding-top: .3em;
+  //padding-bottom: .3em;
+  width: 100%;
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.app-footer-container{
+  height: 4em;
+  vertical-align: middle;
+  //background: red;
+  line-height: 60px;
+}
+
+.clicked{
+  color: dodgerblue;
+  border-bottom: 1px solid dodgerblue;
+}
+
+.col-footer-left{
+  margin-left: 2.5%;
+}
+
+.col-footer-right{
+  margin-right: 2.5%;
+}
+
+
+
+//.material-icons.md-30{
+//  font-size: 30px;
+//}

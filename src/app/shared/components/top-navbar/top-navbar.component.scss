@@ -1,6 +1,7 @@
 
 .top-menu{
-  background: #121212;
+  //background: #121212;
+  background: whitesmoke;
   padding-top: .3em;
   padding-bottom: .3em;
   width: 100%;
@@ -8,11 +9,19 @@
   display: block;
   color: white;
   text-align: center;
+  //-webkit-box-shadow:0px 1px 1px darkslategrey;
+  //-moz-box-shadow:0px 1px 1px darkslategrey;
+  //box-shadow:0px 1px 1px darkslategrey;
+  //border-bottom: 1px solid darkslategrey;
 }
 
 .clicked{
   color: dodgerblue;
   border-bottom: 1px solid dodgerblue;
+}
+
+.material-icons.color-dark{
+  color: darkslategrey;
 }
 
 //.material-icons.md-30{
