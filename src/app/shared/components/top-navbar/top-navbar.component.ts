@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SiteLayoutRoutingModule} from '../../../layout/site-layout/site-layout.routing.module';
+import {SiteLayoutRoutes} from '../../../layout/site-layout/site-layout.routes';
 
 @Component({
   selector: 'app-top-navbar',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-navbar.component.scss']
 })
 export class TopNavbarComponent implements OnInit {
-
-  constructor() { }
+  public siteRoutes = SiteLayoutRoutes.routes;
+  public optionsMenu: any[];
+  constructor() {
+  }
 
   ngOnInit() {
+
   }
 
 }

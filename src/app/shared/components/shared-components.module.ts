@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {TopNavbarComponent} from './top-navbar/top-navbar.component';
 import { SiteFooterComponent } from './site-footer/site-footer.component';
 import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -11,12 +12,13 @@ import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
     TopNavbarComponent,
     SiteFooterComponent
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
+        RouterModule
+    ],
   exports: [
     TopNavbarComponent,
     SiteFooterComponent

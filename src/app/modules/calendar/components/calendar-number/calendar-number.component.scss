@@ -1,7 +1,7 @@
 
 .calendar-day {
   //padding: 1em .1em 1em .1em;
-  font-size: 19px;
+  font-size: 16px;
 
   span {
     border-radius: 50%;
@@ -21,6 +21,7 @@
 
 .active-day {
   color: deeppink;
+  font-weight: bold;
 }
 
 .calendar-day.active-day {

@@ -16,8 +16,10 @@
 }
 
 .clicked{
-  color: dodgerblue;
   border-bottom: 1px solid dodgerblue;
+  .material-icons.color-dark{
+    color: dodgerblue;
+  }
 }
 
 .material-icons.color-dark{
