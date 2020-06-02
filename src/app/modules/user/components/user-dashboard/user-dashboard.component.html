@@ -1,43 +1,6 @@
 <div class="row">
   <div class="col col-sm-12 col-md-4 align-with-center-column">
-    <div class="card">
-      <div class="card-header card-header-success">
-        <h4 class="card-title">Month summary</h4>
-        <p class="card-category">Take a quick view at your monthly budget</p>
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead>
-          <tr>
-            <th class="font-weight-bold text-left">Month</th>
-            <th class="text-right">Income</th>
-            <th class="text-right">Expenses</th>
-            <th class="text-right">Outcome</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left font-weight-bold">January</td>
-              <td class="text-right text-success">&euro;122.65</td>
-              <td class="text-right text-danger">&euro;129</td>
-              <td class="text-right">&euro;225</td>
-            </tr>
-            <tr>
-              <td class="text-left font-weight-bold">February</td>
-              <td class="text-right text-success">&euro;22.65</td>
-              <td class="text-right text-danger">&euro;89</td>
-              <td class="text-right">&euro;223</td>
-            </tr>
-            <tr>
-              <td class="text-left font-weight-bold">March</td>
-              <td class="text-right text-success">&euro;452.65</td>
-              <td class="text-right text-danger">&euro;75</td>
-              <td class="text-right">&euro;90</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <app-user-month-summary></app-user-month-summary>
   </div>
   <div class="col col-sm-12 col-md-4">
     <div class="card">
@@ -90,13 +53,8 @@
     </div>
   </div>
   <div class="col col-sm-12 col-md-4 align-with-center-column">
-    <div class="card">
-      <div class="card-header  card-header-danger">
-        <h4 class="card-title">My categories</h4>
-        <p class="card-category">Add or remove categories</p>
-      </div>
-    </div>
+    <app-user-categories>
+
+    </app-user-categories>
   </div>
-
-
 </div>

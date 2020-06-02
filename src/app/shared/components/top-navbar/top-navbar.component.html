@@ -1,5 +1,11 @@
 <!--todo install jquery-->
 <div class="top-menu">
+  <button mat-button
+          routerLinkActive="clicked"
+          [routerLink]="['/home']">
+    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  </button>
+
   <button
     [routerLink]="['/calendar']"
     routerLinkActive="clicked"
@@ -7,8 +13,9 @@
     <mat-icon class="md-30 color-dark " aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
   </button>
 
-
-  <button mat-button [matMenuTriggerFor]="belowMenu">
+  <button
+    routerLinkActive="clicked"
+    mat-button [routerLink]="['/login']">
     <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
   </button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
@@ -19,14 +26,10 @@
   </mat-menu>
 
   <button
-    [routerLink]="['/login']"
+    routerLinkActive="clicked"
+    [routerLink]="['/reports']"
     mat-button>
-    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">announcement</mat-icon>
-  </button>
-
-  <button mat-button
-  [routerLink]="['/login']">
-    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">list</mat-icon>
+    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">pie_chart</mat-icon>
   </button>
 
 </div>

@@ -1,0 +1,110 @@
+<!--  <div class="chart">-->
+<!--    <igx-doughnut-chart height="40%" width="40%" >-->
+<!--      <igx-ring-series [dataSource] = "data" valueMemberPath="Value" labelMemberPath="Label">-->
+<!--      </igx-ring-series>-->
+<!--    </igx-doughnut-chart>-->
+<!--  </div>-->
+<div id="reports-page">
+  <div class="row">
+    <div class="col-8 left-side-section">
+      <div class="card dark-card">
+        <div class="card-header card-header-primary text-center">
+          <h4 class="card-title">MAY</h4>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <igx-doughnut-chart
+              [allowSliceExplosion]="true" height="100%" width="100%" >
+              <igx-ring-series
+                [dataSource] = "data" valueMemberPath="Value" labelMemberPath="Label">
+              </igx-ring-series>
+            </igx-doughnut-chart>
+          </div>
+
+          <table id="report-table" class="table">
+            <thead>
+            <tr class="">
+              <th class="font-weight-bold text-white text-left">Legend</th>
+              <th class="text-right text-white ">Income</th>
+              <th class="text-right text-white ">Expenses</th>
+              <th class="text-right text-white ">Total entries</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="text-left font-weight-bold">Food</td>
+              <td class="text-right text-success">&euro;122.65</td>
+              <td class="text-right text-danger"></td>
+              <td class="text-right">5</td>
+            </tr>
+            <tr>
+              <td class="text-left font-weight-bold">Transportation</td>
+              <td class="text-right text-success"></td>
+              <td class="text-right text-danger">&euro;89</td>
+              <td class="text-right">4</td>
+            </tr>
+            <tr>
+              <td class="text-left font-weight-bold">Bills</td>
+              <td class="text-right text-success"></td>
+              <td class="text-right text-danger">&euro;75</td>
+              <td class="text-right">1</td>
+            </tr>
+            <hr class="w-50">
+            <tr class="total-row">
+              <td class="text-left font-weight-bold">Total</td>
+              <td class="text-right text-success">&euro;5625.65</td>
+              <td class="text-right text-danger">&euro;2046</td>
+              <td class="text-right text-success">&euro;3625.65</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 side-section">
+
+      <div class="col-12">
+        <div class="card dark-card">
+          <div class="card-header card-header-success text-center">
+            <h4 class="card-title">APRIL</h4>
+          </div>
+          <div class="card-body">
+            <div class="legend">
+              <igx-item-legend #legend height="100px" width="100px">
+              </igx-item-legend>
+            </div>
+            <div class="mini-chart">
+              <igx-doughnut-chart height="100%" width="100%" >
+                <igx-ring-series [dataSource] = "data"
+                                 [legend]="legend"
+                                 valueMemberPath="Value"
+                                 labelMemberPath="Label">
+                </igx-ring-series>
+              </igx-doughnut-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card dark-card">
+          <div class="card-header card-header-danger text-center">
+            <h4 class="card-title">JUNE</h4>
+          </div>
+          <div class="card-body">
+            <div class="mini-chart">
+              <igx-doughnut-chart height="100%" width="100%" >
+                <igx-ring-series [dataSource] = "data" valueMemberPath="Value" labelMemberPath="Label">
+                </igx-ring-series>
+              </igx-doughnut-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

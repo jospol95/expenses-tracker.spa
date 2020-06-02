@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
     "bootstrap-material-design": "^4.1.1",
+    "igniteui-angular-charts": "^9.0.1",
+    "igniteui-angular-core": "^9.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

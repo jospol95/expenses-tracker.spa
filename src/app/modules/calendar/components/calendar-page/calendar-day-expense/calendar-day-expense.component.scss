@@ -1,0 +1,45 @@
+
+.summary-card-container {
+  //todo make with vertical align
+  margin-top: 20px;
+  margin-left: 2px;
+}
+
+.dark-grey-bg {
+  background: #243447;
+}
+
+.summary-card {
+  height: 500px;
+}
+
+
+.expense-item {
+
+  font-size: 16px;
+}
+
+.expense-tr {
+  font-size: 16px;
+  transition: .3s;
+}
+
+
+.active-icon{
+  color:deeppink;
+}
+
+.expense-tr.clicked {
+  color: white;
+  background: #243447;
+}
+
+.last-td {
+  border-radius: 0 .7em .7em 0;
+}
+
+.expense-tr:hover {
+  background: #243447;
+  cursor: pointer;
+  color: white;
+}

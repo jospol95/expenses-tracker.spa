@@ -6,7 +6,8 @@ import {SiteLayoutComponent} from './layout/site-layout/site-layout.component';
 const routes: Routes = [
   {path: '',
     component: SiteLayoutComponent,
-    loadChildren: () =>  import('./layout/site-layout/site-layout.module').then(m => m.SiteLayoutModule)
+    loadChildren: () =>  import('./layout/site-layout/site-layout.module')
+      .then(m => m.SiteLayoutModule)
   }
 ];
 
