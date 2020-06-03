@@ -1,1 +1,23 @@
-<p>calendar-new-page works!</p>
+<div class="container-fluid container">
+  <mat-tab-group mat-align-tabs="center">
+    <div class="row">
+      <mat-tab class="mat-label" label="Income">
+        <div class="col col-md-6 centered-column">
+          <app-add-income>
+
+          </app-add-income>
+        </div>
+      </mat-tab>
+    </div>
+    <div class="row">
+      <mat-tab label="Expense">
+        <div class="col col-6 centered-column">
+          <app-add-expense>
+
+          </app-add-expense>
+        </div>
+      </mat-tab>
+    </div>
+  </mat-tab-group>
+
+</div>

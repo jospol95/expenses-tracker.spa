@@ -8,7 +8,7 @@ import {CalendarContainerComponent} from './calendar-page/calendar-container/cal
 import {CalendarDayExpenseComponent} from './calendar-page/calendar-day-expense/calendar-day-expense.component';
 import {CalendarNumberComponent} from './calendar-page/calendar-number/calendar-number.component';
 import {CalendarLayoutComponent} from './calendar-layout/calendar-layout.component';
-import {MatFormFieldModule, MatIconModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatIconModule, MatSelectModule, MatTabsModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
 
@@ -28,7 +28,8 @@ import {RouterModule} from '@angular/router';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatTabsModule
   ]
 })
 export class CalendarComponentsModule { }
