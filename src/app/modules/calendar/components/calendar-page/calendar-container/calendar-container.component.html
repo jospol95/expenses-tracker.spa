@@ -2,8 +2,11 @@
   <div class="col col-4 date-picker card-primary">
     <mat-form-field>
       <mat-label>Month</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of months" [value]="food.value">
+      <mat-select [(value)]="monthSelected"
+                  (selectionChange)="handleDateSelection()"
+      >
+        <mat-option *ngFor="let food of months"
+                    [value]="food.value">
           {{food.viewValue}}
         </mat-option>
       </mat-select>
@@ -15,35 +18,65 @@
   <div class="col col-4 text-right date-picker">
     <mat-form-field>
       <mat-label>Year</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of years" [value]="food.value">
-          {{food.viewValue}}
+      <mat-select [(value)]="yearSelected"
+                  (selectionChange)="handleDateSelection()"
+      >
+        <mat-option *ngFor="let year of years"
+                    [value]="year.value">
+          {{year.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 </div>
+
 <div class="row calendar-numbers">
   <div *ngFor="let dayHeader of dayHeaders" class="col text-center " [ngClass]="{'active-day': dayHeader.isActive}">
     {{dayHeader.name}}
   </div>
 </div>
 <br>
-<div *ngFor="let rowDay of rowsDays; index as rowIndex" class="row">
-  <div *ngFor="let day of rowDay; index as arrayIndex" class="col text-center">
-    <app-calendar-number
-      [model]="day"
-      [rowIndex]="rowIndex"
-      [arrayIndex]="arrayIndex"
-      (dayClicked)="onDayClickedHandler($event)"
-    ></app-calendar-number>
-<!--    <div [ngClass]="{'calendar-day':day.value < 10, 'calendar-day-2':day.value >= 10,-->
-<!--     'clicked': day.clicked, 'day-has-expense': day.hasExpenses, 'active-day': day.isToday}">-->
-<!--      <span>{{day.value}}</span>-->
+
+
+<!--doesnt work-->
+<!--<div *ngIf="model.calendar.length > 0">-->
+<!--  <div *ngFor="let row of model.rowArray" class="row">-->
+<!--    <div *ngFor="let col of model.columnArray" class="col text-center">-->
+<!--      <app-calendar-number *ngFor="let day of model.calendar; i as index;"-->
+<!--          [model]="day"-->
+<!--          [arrayIndex]="index"-->
+<!--        >-->
+<!--      </app-calendar-number>-->
 <!--    </div>-->
+<!--      <br>  <br>   <br>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div *ngFor="let row of model; index as rowIndex" class="row">
+  <div *ngFor="let column of row; index as columnIndex" class="col text-center">
+        <app-calendar-number
+          [model]="column"
+          [rowIndex]="rowIndex"
+          [columnIndex]="columnIndex"
+          (dayClicked)="onDayClickedHandler($event)"
+        ></app-calendar-number>
   </div>
-  <br>  <br>   <br>
+    <br>  <br>   <br>
+
 </div>
+
+
+<!--<div *ngFor="let rowDay of rowsDays; index as rowIndex" class="row">-->
+<!--  <div *ngFor="let day of rowDay; index as arrayIndex" class="col text-center">-->
+<!--    <app-calendar-number-->
+<!--      [model]="day"-->
+<!--      [rowIndex]="rowIndex"-->
+<!--      [arrayIndex]="arrayIndex"-->
+<!--      (dayClicked)="onDayClickedHandler($event)"-->
+<!--    ></app-calendar-number>-->
+<!--  </div>-->
+<!--  <br>  <br>   <br>-->
+<!--</div>-->
 <!--<div class="row">-->
 <!--  <div class="col text-center">-->
 <!--    <div class="calendar-day rounded-circle">-->

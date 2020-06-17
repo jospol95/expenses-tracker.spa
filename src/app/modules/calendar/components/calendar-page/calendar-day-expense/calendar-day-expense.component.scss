@@ -14,12 +14,16 @@
 }
 
 
-.expense-item {
+//.expense-item {
+//  font-size: 16px;
+//}
+//
+//.income-item{
+//
+//}
 
-  font-size: 16px;
-}
 
-.expense-tr {
+.budget-day-tr {
   font-size: 16px;
   transition: .3s;
 }
@@ -29,7 +33,7 @@
   color:deeppink;
 }
 
-.expense-tr.clicked {
+.budget-day.clicked {
   color: white;
   background: #243447;
 }
@@ -38,8 +42,10 @@
   border-radius: 0 .7em .7em 0;
 }
 
-.expense-tr:hover {
+.budget-day-tr:hover {
   background: #243447;
   cursor: pointer;
   color: white;
 }
+
+

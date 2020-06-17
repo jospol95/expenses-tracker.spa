@@ -11,6 +11,8 @@ import { CalendarLayoutComponent } from './components/calendar-layout/calendar-l
 import {CalendarRoutingModule} from './calendar-routing.module';
 import {CalendarComponentsModule} from './components/calendar-components.module';
 import {SiteLayoutComponent} from '../../layout/site-layout/site-layout.component';
+import {CalendarService} from './calendar.service';
+import {CalendarResolver} from './calendar.resolver';
 
 
 
@@ -22,6 +24,10 @@ import {SiteLayoutComponent} from '../../layout/site-layout/site-layout.componen
     CalendarRoutingModule,
     CommonModule,
     CalendarComponentsModule
+  ],
+  providers: [
+    CalendarResolver,
+    CalendarService,
   ]
 })
 export class CalendarModule { }

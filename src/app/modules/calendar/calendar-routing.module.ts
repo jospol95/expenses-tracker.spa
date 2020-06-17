@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CalendarPageComponent} from './components/calendar-page/calendar-page.component';
 import {CalendarNewPageComponent} from './components/calendar-new-page/calendar-new-page.component';
 import {CalendarComponentsModule} from './components/calendar-components.module';
+import {CalendarResolver} from './calendar.resolver';
 
 const routes: Routes = [
   // {path: '',
@@ -12,6 +13,7 @@ const routes: Routes = [
   // },
   {path: 'calendar',
     component: CalendarPageComponent,
+    resolve: {data: CalendarResolver}
   },
   {path: 'calendar/new',
     component: CalendarNewPageComponent,

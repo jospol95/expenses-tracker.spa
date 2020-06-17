@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {CalendarExpenseModel} from '../../../models/calendar-expense.model';
 
 @Component({
   selector: 'app-add-expense',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddExpenseComponent implements OnInit {
 
+  @Output() public saveEvent = new EventEmitter<CalendarExpenseModel>();
+  @Output() public cancelEvent = new EventEmitter();
+
+  public model: CalendarExpenseModel;
   constructor() { }
 
   ngOnInit() {
+    this.model = new CalendarExpenseModel();
+  }
+
+  public cancel(){
+
+  }
+
+  public save(){
+    this.saveEvent.emit(this.model);
   }
 
 }

@@ -1,5 +1,13 @@
+<!--<div  (click)='onClicked()'-->
+<!--      [ngClass]="{'calendar-day':model.value < 10, 'calendar-day-2':model.value >= 10,-->
+<!--     'clicked': model.clicked, 'day-has-expense': model.hasExpenses, 'active-day': model.isToday}">-->
+<!--  <span>{{model.value}}</span>-->
+<!--</div>-->
+
+<!--'calendar-day':model.dayNumber < 10, 'calendar-day-2':model.dayNumber >= 10,-->
+
 <div  (click)='onClicked()'
-      [ngClass]="{'calendar-day':model.value < 10, 'calendar-day-2':model.value >= 10,
-     'clicked': model.clicked, 'day-has-expense': model.hasExpenses, 'active-day': model.isToday}">
-  <span>{{model.value}}</span>
+      [ngClass]="{'calendar-day':model.dayNumber < 10, 'calendar-day-2':model.dayNumber >= 10,
+     'clicked': model.clicked, 'day-has-expense': hasExpensesOrIncomes, 'active-day': model.isToday}">
+  <span *ngIf="model.dayNumber">{{model.dayNumber}}</span>
 </div>

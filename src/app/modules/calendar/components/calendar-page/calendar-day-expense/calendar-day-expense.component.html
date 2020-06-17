@@ -2,52 +2,67 @@
   <div class="col summary-card-container">
     <div class="card text-center summary-card">
       <div class="card-body text-left">
-        <h5 class="card-title">Total ($325)</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Showing history for Tuesday, May 2020</h6>
+<!--        <h5 class="card-title">Total ($325)</h5>-->
+        <h6 class="card-subtitle mb-2 text-muted">Showing history for {{budgetDay.day}}, {{budgetDay.month}} {{budgetDay.year}}</h6>
+        <h5 *ngIf="!hasIncomesOrExpenses" >No entries for this day.</h5>
+        <h5 *ngIf="hasIncomesOrExpenses" class="card-title font-weight-bold">
+          Entries total:  <span [ngClass]="{'text-success': budgetDayTotal > 0, 'text-danger': budgetDayTotal < 0}"
+                      class="font-weight-bold"
+                       > ${{getTotalAbs()}} </span>
+        </h5>
         <br/>
-        <!--                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
-        <!--                    card's content.</p>-->
-        <!--                  <p class="card-text expense-item">T MOBILE: Monthly T-Mobile ... $185 <a href="#" class="card-link">See details</a></p>-->
-        <!--                  <p class="card-text expense-item">T MOBILE: Monthly T-Mobile ... $185 <a href="#" class="card-link">See details</a></p>-->
-        <table class="table">
+          <table *ngIf="budgetDay" class="table">
           <tbody>
-          <tr class="expense-tr clicked">
-            <td class="font-weight-bold">T MOBILE</td>
-            <td>Telephone</td>
-            <td class="text-danger font-weight-bold">$325.00</td>
+          <tr *ngFor="let income of budgetDay.incomes" class="budget-day-tr">
+            <td class="text-uppercase font-weight-bold">{{income.title}}</td>
+            <td>CATEGORY</td>
+            <td class="text-success font-weight-bold">${{income.amount}}</td>
             <td class="text-right last-td">
               <mat-icon aria-hidden="false" class="active-icon" aria-label="Example home icon">launch</mat-icon>
             </td>
           </tr>
-          <tr class="expense-tr strikeout">
-            <td class="font-weight-bold">CHASE</td>
-            <td>Bank account</td>
-            <td class="text-success font-weight-bold">$125.00</td>
-            <td class="text-right">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>
+
+          <tr *ngFor="let expense of budgetDay.expenses" class="budget-day-tr">
+            <td class="text-uppercase font-weight-bold">{{expense.title}}</td>
+            <td>CATEGORY</td>
+            <td class="text-danger font-weight-bold">${{expense.amount}}</td>
+            <td class="text-right last-td">
+              <mat-icon aria-hidden="false" class="active-icon" aria-label="Example home icon">launch</mat-icon>
             </td>
           </tr>
-          <tr class="expense-tr">
-            <td class="font-weight-bold">ALTICE ONE</td>
-            <td>Utility bill</td>
-            <td class="text-danger font-weight-bold">$825.00</td>
-            <td class="text-right">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>
-            </td>
-          </tr>
+
+<!--          <tr class="expense-tr clicked">-->
+<!--            <td class="font-weight-bold">T MOBILE</td>-->
+<!--            <td>Telephone</td>-->
+<!--            <td class="text-danger font-weight-bold">$325.00</td>-->
+<!--            <td class="text-right last-td">-->
+<!--              <mat-icon aria-hidden="false" class="active-icon" aria-label="Example home icon">launch</mat-icon>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr class="expense-tr ">-->
+<!--            <td class="font-weight-bold">CHASE</td>-->
+<!--            <td>Bank account</td>-->
+<!--            <td class="text-success font-weight-bold">$125.00</td>-->
+<!--            <td class="text-right">-->
+<!--              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr class="expense-tr">-->
+<!--            <td class="font-weight-bold">ALTICE ONE</td>-->
+<!--            <td>Utility bill</td>-->
+<!--            <td class="text-danger font-weight-bold">$825.00</td>-->
+<!--            <td class="text-right">-->
+<!--              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>-->
+<!--            </td>-->
+<!--          </tr>-->
           </tbody>
         </table>
+
       </div>
 
       <div class="card-footer">
           <div class="col col-md-12 text-center">
-            <button class="btn btn-primary btn-block font-weight-bold">Add new</button>
-
-<!--          <div class="col pull-sm-right">-->
-<!--            <button class="btn btn-block btn-danger font-weight-bold">-->
-<!--              Delete-->
-<!--            </button>-->
-<!--          </div>-->
+            <button (click)="addNew()" class="btn btn-primary btn-block font-weight-bold">Add new</button>
         </div>
       </div>
     </div>

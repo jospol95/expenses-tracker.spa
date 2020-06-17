@@ -21,6 +21,7 @@ import { CalendarNumberComponent } from './modules/calendar/components/calendar-
 import { CalendarNewPageComponent } from './modules/calendar/components/calendar-new-page/calendar-new-page.component';
 import { AddExpenseComponent } from './modules/calendar/components/calendar-new-page/add-expense/add-expense.component';
 import { AddIncomeComponent } from './modules/calendar/components/calendar-new-page/add-income/add-income.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,14 @@ import { AddIncomeComponent } from './modules/calendar/components/calendar-new-p
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
-    SiteLayoutModule
+    SiteLayoutModule,
+    HttpClientModule
   ],
   exports: [
   ],
-  providers: [],
+  providers: [
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

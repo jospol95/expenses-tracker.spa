@@ -4,13 +4,15 @@ import {TopNavbarComponent} from './top-navbar/top-navbar.component';
 import { SiteFooterComponent } from './site-footer/site-footer.component';
 import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import { BasePageComponent } from './base-page/base-page.component';
 
 
 
 @NgModule({
   declarations: [
     TopNavbarComponent,
-    SiteFooterComponent
+    SiteFooterComponent,
+    BasePageComponent
   ],
     imports: [
         CommonModule,
@@ -21,7 +23,8 @@ import {RouterModule} from '@angular/router';
     ],
   exports: [
     TopNavbarComponent,
-    SiteFooterComponent
+    SiteFooterComponent,
+    BasePageComponent
   ]
 })
 export class SharedComponentsModule { }
