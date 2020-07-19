@@ -1,0 +1,20 @@
+.container {
+  overflow-y: auto;
+  height: 90vh;
+  //todo use height:100% and overflow in parent (layout)
+}
+
+.custom-table{
+  font-size: 13px;
+}
+
+.btn-excel{
+  background-color: #009900;
+}
+
+#reports-header{
+  margin-top: 1em;
+  background: dodgerblue;
+  padding-top: 2em;
+  border-radius: 0.3em;
+}

@@ -1,47 +1,135 @@
-<div id="days-container">
-  <div class="row" *ngFor="let day of daysArray">
-    <div class="col col-2"></div>
-    <div *ngIf="day.hasRegister" class="card col col-8">
-      <div class="card-header card-header-text card-header-primary">
-        <div class="card-text">
-          <h4 class="card-title">July {{day.day}}th, 2020</h4>
-        </div>
-      </div>
-      <table class="table">
-        <tbody>
-        <!--        <tr>-->
-        <!--          <td class="font-weight-bold">{{day.register}}</td>-->
-        <!--          <td *ngIf="day.income" class="text-success">${{day.money}}</td>-->
-        <!--          <td *ngIf="!day.income" class="text-danger">${{day.money}}</td>-->
-        <!--          <td>{{day.category}}</td>-->
-        <!--          <td>{{day.account}}</td>-->
-        <!--        </tr>-->
-        <tr>
-          <td class="font-weight-bold">Gas fillup</td>
-          <td class="text-danger">$36.06</td>
-          <td>TRANSPORTATION</td>
-          <td>CHASE DEBIT</td>
-        </tr>
-        <tr>
-          <td class="font-weight-bold">Headphones XM3</td>
-          <td class="text-danger">$36.09</td>
-          <td>ENTERTAINMENT</td>
-          <td>CHASE FREEDOM</td>
-        </tr>
-        <tr>
-          <td class="font-weight-bold">Paycheck</td>
-          <td class="text-success">$2506.06</td>
-          <td></td>
-          <td>CHASE DEBIT</td>
-        </tr>
-        <tr>
-          <td class="font-weight-bold">Swatch Watch</td>
-          <td class="text-danger">$156.09</td>
-          <td>ENTERTAINMENT</td>
-          <td>CHASE FREEDOM</td>
-        </tr>
-        </tbody>
-      </table>
+<div id="home-page">
+  <div class="row">
+    <div class="col col-12 text-center">
+        <h4>Dashboard page</h4>
     </div>
   </div>
+  <div class="row">
+    <div id="days-container" class="col col-7">
+      <div *ngFor="let day of budgetDays" class="row">
+        <div *ngIf="hasDayIncomeOrExpense(day)" class="card col col-12">
+          <div class="card-header card-header-primary">
+            <div class="row">
+              <div class="col">
+                <div class="card-text">
+                  <h4 class="card-title">July {{day.day}}, {{day.year}}</h4>
+                </div>
+              </div>
+              <div class="col ">
+                <div class="float-right">
+                  <button class="btn btn-info custom-btn">
+                    <mat-icon>launch</mat-icon>
+                  </button>
+                  &nbsp;
+                  <button class="btn btn-success custom-btn">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class="table">
+            <tbody>
+            <tr *ngFor="let income of day.incomes">
+              <td class="font-weight-bold">{{income.title}}</td>
+              <td class="text-success font-weight-bold">${{income.amount}}</td>
+              <td></td>
+              <td>{{getAccountNameUpper(income.accountId)}}</td>
+            </tr>
+            <tr *ngFor="let expense of day.expenses">
+              <td class="font-weight-bold">{{expense.title}}</td>
+              <td class="text-danger font-weight-bold">${{expense.amount}}</td>
+              <td>{{getCategoryNameUpper(expense.categoryId)}}</td>
+              <td>{{getAccountNameUpper(expense.accountId)}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <div id="cards-container" class="col col-5">
+      <div class="card">
+        <div class="card-header card-header-warning">
+          Budget
+        </div>
+        <div class="card-body">
+<!--          <igx-circular-bar-->
+<!--            [animate]="false"-->
+<!--            [indeterminate]="true"-->
+<!--            [textVisibility]="false"-->
+<!--          ></igx-circular-bar>-->
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-success">
+          Incomes
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">$ 3,134.65 this month</h4>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          Expenses
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">$ 1,534.00 this month</h4>
+          <br>
+          <div class="row">
+            <div class="col col-12">
+              <h5>Top 3 expenses</h5>
+              <hr>
+            </div>
+            <table class="table card-table">
+              <tr>
+                <td>Expense 1</td>
+                <td>$567.233</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td>Expense 2</td>
+                <td>$467.233</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td>Expense 3</td>
+                <td>123.233</td>
+                <td>Date</td>
+              </tr>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <h5>Top 3 categories</h5>
+              <hr>
+
+            </div>
+            <table class="table card-table">
+              <tr>
+                <td>Expense 1</td>
+                <td>$567.233</td>
+              </tr>
+              <tr>
+                <td>Expense 2</td>
+                <td>$467.233</td>
+              </tr>
+              <tr>
+                <td>Expense 3</td>
+                <td>123.233</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
 </div>
+

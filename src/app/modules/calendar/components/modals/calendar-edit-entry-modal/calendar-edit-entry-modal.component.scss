@@ -6,11 +6,11 @@ input, select{
   color: white;
 }
 
-input:focus, select:focus{
+input:focus{
   color: white;
 }
 
-input:disabled, select:disabled{
+input:disabled{
   background: none;
 }
 
@@ -25,6 +25,3 @@ input:disabled, select:disabled{
 .btn-dialog{
   box-shadow: none !important;
 }
-
-
-

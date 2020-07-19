@@ -8,17 +8,16 @@ import {CalendarContainerComponent} from './calendar-page/calendar-container/cal
 import {CalendarDayExpenseComponent} from './calendar-page/calendar-day-expense/calendar-day-expense.component';
 import {CalendarNumberComponent} from './calendar-page/calendar-number/calendar-number.component';
 import {CalendarLayoutComponent} from './calendar-layout/calendar-layout.component';
-import {
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule, MatInputModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatTabsModule
-} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {SharedComponentsModule} from '../../../shared/components/shared-components.module';
+import { CalendarEditEntryModalComponent } from './modals/calendar-edit-entry-modal/calendar-edit-entry-modal.component';
+import { CalendarEditExpenseModalComponent } from './modals/calendar-edit-expense-modal/calendar-edit-expense-modal.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -30,19 +29,26 @@ import {SharedComponentsModule} from '../../../shared/components/shared-componen
     CalendarContainerComponent,
     CalendarDayExpenseComponent,
     CalendarNumberComponent,
+    CalendarEditEntryModalComponent,
+    CalendarEditExpenseModalComponent,
+  ],
+  entryComponents: [
+    CalendarEditEntryModalComponent,
+    CalendarEditExpenseModalComponent
   ],
   imports: [
     CommonModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule,
     RouterModule,
     MatTabsModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
     SharedComponentsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatIconModule,
   ]
 })
 export class CalendarComponentsModule {

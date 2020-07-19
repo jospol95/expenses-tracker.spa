@@ -9,13 +9,13 @@
       <mat-tab class="mat-label" label="Income">
         <div class="col col-md-6 centered-column">
           <app-add-income
-            (saveEvent)="saveIncomeEventHandler($event)"
-          >
+            [accounts]="pageData.accounts"
+            (saveEvent)="saveIncomeEventHandler($event)">
             You're adding a new entry for
             <select
               name="day"
               [(ngModel)]="this.day"
-              class="btn btn-mini">
+              class=" btn-select btn-mini btn-success">
               <option *ngFor="let opt of getDayArrayForDate()"
                       [selected]="opt.isSelected"
                       [value]="opt.value">
@@ -23,14 +23,7 @@
               </option>
             </select>
             <span class="caret"></span>
-<!--            <select class="btn btn-mini">-->
-<!--              <option>1</option>-->
-<!--              <option>2</option>-->
-<!--              <option>3</option>-->
-<!--              <option>14</option>-->
-<!--            </select>-->
-<!--            <span class="caret"></span>-->
-            &nbsp;June of
+            &nbsp;{{this.monthName}} of
             {{this.year}}
           </app-add-income>
         </div>
@@ -40,9 +33,23 @@
       <mat-tab label="Expense">
         <div class="col col-6 centered-column">
           <app-add-expense
-            (saveEvent)="saveExpenseEventHandler($event)"
-          >
-            You're adding a new entry for {{this.month}}/{{this.day}}/{{this.year}}
+            [categories]="pageData.categories"
+            [accounts]="pageData.accounts"
+            (saveEvent)="saveExpenseEventHandler($event)" >
+            You're adding a new entry for
+            <select
+              name="day"
+              [(ngModel)]="this.day"
+              class=" btn-select btn-mini btn-danger">
+              <option *ngFor="let opt of getDayArrayForDate()"
+                      [selected]="opt.isSelected"
+                      [value]="opt.value">
+                {{opt.title}}
+              </option>
+            </select>
+            <span class="caret"></span>
+            &nbsp;{{this.monthName}} of
+            {{this.year}}
           </app-add-expense>
         </div>
       </mat-tab>

@@ -8,15 +8,18 @@ import {UserComponentsModule} from '../../modules/user/components/user-component
 import {UserPageComponent} from '../../modules/user/components/user-page/user-page.component';
 import {ReportsPageComponent} from '../../modules/reports/components/reports-page/reports-page.component';
 import {ReportsComponentsModule} from '../../modules/reports/components/reports-components.module';
-import {LandingPageComponent} from '../../modules/landing/components/landing-page/landing-page.component';
-import {LandingComponentsModule} from '../../modules/landing/components/landing-components.module';
+import {LandingPageComponent} from '../../modules/home/components/landing-page/landing-page.component';
 import {CalendarLayoutComponent} from '../../modules/calendar/components/calendar-layout/calendar-layout.component';
 import {CalendarModule} from '../../modules/calendar/calendar.module';
 import {CalendarComponentsModule} from '../../modules/calendar/components/calendar-components.module';
+import {ChartsPageComponent} from '../../modules/investments/charts-page/charts-page.component';
+import {ChartsComponentModule} from '../../modules/investments/charts-components.module';
+import {HomeModule} from '../../modules/home/home.module';
+import {HomePageResolver} from '../../modules/home/resolvers/home-page.resolver';
 
 const routes: Routes = [
   {path: '',
-    redirectTo: 'calendar',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   // {path: 'calendar',
@@ -37,7 +40,12 @@ const routes: Routes = [
     component: ReportsPageComponent
   },
   {path: 'home',
-    component: LandingPageComponent
+    component: LandingPageComponent,
+    resolve: { data: HomePageResolver}
+  },
+  {
+    path: 'charts',
+    component: ChartsPageComponent
   }
 ];
 @NgModule({
@@ -45,8 +53,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     UserComponentsModule,
     ReportsComponentsModule,
-    LandingComponentsModule,
+    HomeModule,
     CalendarModule,
+    ChartsComponentModule
   ],
   exports: [RouterModule]
 })

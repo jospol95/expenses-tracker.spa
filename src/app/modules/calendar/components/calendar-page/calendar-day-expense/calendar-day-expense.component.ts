@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {BudgetDayModel} from '../../../models/budget-day.model';
+import {FacadeModel} from '../../../../../shared/facade.model';
 
 @Component({
   selector: 'app-calendar-day-expense',
@@ -10,12 +11,20 @@ import {BudgetDayModel} from '../../../models/budget-day.model';
 })
 export class CalendarDayExpenseComponent implements OnInit {
   @Input() public budgetDay: BudgetDayModel;
+  @Input() public categories = new Array<FacadeModel>();
+  @Input() public accounts = new Array<FacadeModel>();
+
   @Output() public addNewClickedEvent = new EventEmitter<null>();
+  @Output() public incomeDetailClickedEvent = new EventEmitter<string>();
+  @Output() public incomeDeletedClickedEvent = new EventEmitter<string>();
+  @Output() public expenseDetailClickedEvent = new EventEmitter<string>();
+  @Output() public expenseDeletedClickedEvent = new EventEmitter<string>();
 
   public _labeledMonth: string;
   public _labeledDay: string;
   public _budgetDayTotal = 0;
   public _hasIncomesOrExpenses: boolean;
+  public _categoryTitle: string;
 
   // todo rename component
   constructor(private readonly router: Router) { }
@@ -47,7 +56,7 @@ export class CalendarDayExpenseComponent implements OnInit {
     return +Math.round( num * 100 + Number.EPSILON ) / 100;
   }
 
-  private getTotalAbs() {
+  public getTotalAbs() {
     return Math.abs(this.budgetDayTotal);
   }
 
@@ -58,4 +67,20 @@ export class CalendarDayExpenseComponent implements OnInit {
       )
       .then((r) => noop());
   }
+
+  public incomeDetailClicked(id: string) {
+    this.incomeDetailClickedEvent.emit(id);
+  }
+
+  public getCategoryName(categoryId): string {
+    return categoryId ? this.categories.find((c) => c.id === categoryId).name.toUpperCase()
+      : 'UNCATEGORIZED';
+  }
+
+  public getAccountName(accountId): string {
+    return accountId ? this.accounts.find((a) => a.id === accountId).name.toUpperCase()
+      : '';
+  }
+
+
 }

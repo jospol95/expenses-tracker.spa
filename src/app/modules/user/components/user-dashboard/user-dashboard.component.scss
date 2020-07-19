@@ -1,3 +1,8 @@
+.layout{
+  margin-top: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .align-with-center-column{
   margin-top: 60px;
 }
@@ -8,3 +13,26 @@
   margin-top: .5em !important;
   margin-bottom: .5em !important;
 }
+
+.nav-pills .nav-item{
+  padding: 0.5px;
+  font-size: 13.5px;
+  //padding-top: 1em;
+  a.nav-link{
+    padding: 15px;
+  }
+}
+
+.nav-pills .nav-item a.nav-link.active{
+  background: #a72abd !important;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.dogder-bg{
+  background: dodgerblue !important;
+}
+

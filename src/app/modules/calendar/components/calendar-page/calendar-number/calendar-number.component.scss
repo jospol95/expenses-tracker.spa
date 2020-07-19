@@ -11,11 +11,8 @@
 
 .calendar-day.clicked {
   span {
-    box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black;
-    background: dodgerblue;
-    color: white;
-    font-weight: bold;
-    //color: white;
+    background: #a72abd !important;
+    box-shadow: 0 1px 3px #a72abd, 0 1px 2px #a72abd !important;
   }
 }
 
@@ -33,10 +30,12 @@
 }
 
 .calendar-day.day-has-expense {
-  span {
-    border: 2px solid dodgerblue;
+
+  span{
+    box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black;
+    background: dodgerblue;
     color: white;
-    //font-weight: bold;
+    font-weight: bold;
   }
 }
 .calendar-day-2{
@@ -52,16 +51,16 @@
 }
 .calendar-day-2.clicked {
   span {
-    box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black;
-    background: dodgerblue;
-    font-weight: bold;
-    //color: white;
+    background: #a72abd !important;
+    box-shadow: 0 1px 3px #a72abd, 0 1px 2px #a72abd !important;
   }
 }
 .calendar-day-2.day-has-expense {
-  span {
-    border: 2px solid dodgerblue;
-    //font-weight: bold;
+  span{
+    box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black;
+    background: dodgerblue;
+    color: white;
+    font-weight: bold;
   }
 }
 .calendar-day:hover {

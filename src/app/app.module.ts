@@ -4,15 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatListModule,
-  MatMenuModule,
-  MatSelectModule
-} from '@angular/material';
+
 import {SiteLayoutComponent} from './layout/site-layout/site-layout.component';
 import {SiteLayoutModule} from './layout/site-layout/site-layout.module';
 import { CalendarContainerComponent } from './modules/calendar/components/calendar-page/calendar-container/calendar-container.component';
@@ -31,13 +23,6 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
     SiteLayoutModule,
     HttpClientModule
   ],

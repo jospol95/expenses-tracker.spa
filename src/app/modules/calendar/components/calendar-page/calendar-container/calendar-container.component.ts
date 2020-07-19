@@ -1,11 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CalendarDay} from '../../../models/calendar-day.model';
 import {CalendarModel} from '../../../models/calendar.model';
 import {CalendarMonth} from '../../../enums/calendar-month.enum';
 import {CalendarArrayModel} from '../../../models/calendar-array.model';
-import {debug} from 'util';
-import {MatOptionSelectionChange} from '@angular/material';
-import {Router} from '@angular/router';
 import {BudgetDayModel} from '../../../models/budget-day.model';
 
 @Component({
@@ -14,24 +10,36 @@ import {BudgetDayModel} from '../../../models/budget-day.model';
   styleUrls: ['./calendar-container.component.scss']
 })
 export class CalendarContainerComponent implements OnInit {
-  @Input() budgetDays: Array<BudgetDayModel>;
+  @Input() _budgetDays: Array<BudgetDayModel>;
+  @Input() public daySelected: number;
 
   @Output() clickedDateEvent = new EventEmitter<number>();
   @Output() selectedDateChangedEvent = new EventEmitter<[CalendarMonth, number, number]>();
 
   public calendarLineal = new CalendarModel();
   public months: any;
-  public model: Array<Array<CalendarArrayModel>>;
   public years: any;
   public dayHeaders: any;
-
   public monthSelected: CalendarMonth;
   public yearSelected: number;
-  public daySelected: number;
+  public model: Array<Array<CalendarArrayModel>>;
 
   private _selectedDateNumberArray: [CalendarMonth, number, number];
 
-  constructor() { }
+  @Input() set budgetDays(value: Array<BudgetDayModel>) {
+    this._budgetDays = [...value];
+    // Convert calendar to inner model when budgetDay changes
+    if (this.budgetDays && this.monthSelected && this.yearSelected) {
+      this.calculateCalendar(this.monthSelected, this.yearSelected);
+    }
+  }
+
+  get budgetDays() {
+    return this._budgetDays;
+  }
+
+  constructor() {
+  }
 
   private static getCurrentMonthAndDate(): [CalendarMonth, number] {
     const currentDate = new Date();
@@ -74,52 +82,20 @@ export class CalendarContainerComponent implements OnInit {
       {name: 'FRI', isActive: false},
       {name: 'SAT', isActive: true},
     ];
-    // this.rowsDays = [
-    //   [
-    //     {value: 1, isToday: true, hasExpenses: true, clicked: true},
-    //     {value: 2, isToday: true, hasExpenses: false, clicked: false},
-    //     {value: 3, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 4, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 5, isToday: false, hasExpenses: true, clicked: false},
-    //     {value: 6, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 7, isToday: false, hasExpenses: false, clicked: false},
-    //   ],
-    //   [
-    //     {value: 8, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 9, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 10, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 11, isToday: false, hasExpenses: true, clicked: false},
-    //     {value: 12, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 13, isToday: false, hasExpenses: false, clicked: false},
-    //     {value: 14, isToday: false, hasExpenses: false, clicked: false},
-    //   ]
-    // ];
-    // this.days = [
-    //   {value: 1, isToday: true, hasExpenses: true, clicked: false},
-    //   {value: 2, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 3, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 4, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 5, isToday: false, hasExpenses: true, clicked: false},
-    //   {value: 6, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 7, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 8, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 9, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 10, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 11, isToday: false, hasExpenses: true, clicked: false},
-    //   {value: 12, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 13, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 14, isToday: false, hasExpenses: false, clicked: false},
-    //   {value: 15, isToday: false, hasExpenses: false, clicked: false},
-    // ];
     const currentDate: [CalendarMonth, number] = CalendarContainerComponent.getCurrentMonthAndDate();
     this.monthSelected = currentDate[0];
     this.yearSelected = currentDate[1];
+    // console.log(this.model);
+    // console.log(this.model[0]);
     // calculate inner array for linear calendar
-    this.calculateCalendar( this.monthSelected, this.yearSelected);
+    console.log('init');
+    this.calculateCalendar(this.monthSelected, this.yearSelected);
+
     // sets todays date (if theres) to clicked
     this.setClickedToToday();
     // pops up selectedDateChanged
-    this.selectedDateChangedEvent.emit(this.selectedDateNumberArray);
+    // TODO get rid of, this is calling the upper component onInit
+    // this.selectedDateChangedEvent.emit(this.selectedDateNumberArray);
   }
 
   public onDayClickedHandler($event: [number, number]) {
@@ -140,11 +116,11 @@ export class CalendarContainerComponent implements OnInit {
   }
 
   public handleDateSelection() {
-    this.calculateCalendar(this.monthSelected, this.yearSelected);
+    // this.calculateCalendar(this.monthSelected, this.yearSelected);
     this.selectedDateChangedEvent.emit(this.selectedDateNumberArray);
   }
 
-  private  mapBudgetDaysToCalendar() {
+  private mapBudgetDaysToCalendar() {
     if (this.budgetDays != null) {
       this.budgetDays.forEach((budgetDay) => {
         const dayNumber = budgetDay.day;
@@ -182,22 +158,25 @@ export class CalendarContainerComponent implements OnInit {
   }
 
   private calendarToBidimensional() {
-      const rows = 6;
-      const columns = 7;
-      const calendar = new Array<Array<CalendarArrayModel>>();
-      let arrayCount = 0;
+    const rows = 6;
+    const columns = 7;
+    const calendar = new Array<Array<CalendarArrayModel>>();
+    let arrayCount = 0;
 
-      for (let i = 0; i < rows; i++) {
-        const row = new Array<any>();
-        for (let j = 0; j < columns; j++) {
-          // row[i][j] = this.model.calendar[arrayCount];
-          row.push(this.calendarLineal.calendar[arrayCount]);
-          arrayCount++;
-        }
-        calendar.push(row);
+    for (let i = 0; i < rows; i++) {
+      const row = new Array<any>();
+      for (let j = 0; j < columns; j++) {
+        // row[i][j] = this.model.calendar[arrayCount];
+        row.push(this.calendarLineal.calendar[arrayCount]);
+        arrayCount++;
       }
-      this.model = calendar;
+      calendar.push(row);
+    }
+    this.model = calendar;
   }
 
 
+  ConvertToJSON(prop: any) {
+    return JSON.parse(prop);
+  }
 }

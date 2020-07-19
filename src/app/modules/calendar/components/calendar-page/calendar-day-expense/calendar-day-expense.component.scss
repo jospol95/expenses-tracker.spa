@@ -12,7 +12,19 @@
 .summary-card {
   height: 500px;
 }
+.inner-padding{
+  padding-left: 10px !important;
+}
+.no-padding-inner{
+  padding-left: 5px !important;
+  padding-right: 0px !important;
+}
 
+.btn-dodger{
+  background: dodgerblue;
+  font-weight: bold;
+  font-size: 14px;
+}
 
 //.expense-item {
 //  font-size: 16px;
@@ -24,13 +36,17 @@
 
 
 .budget-day-tr {
-  font-size: 16px;
+  font-size: 15px;
   transition: .3s;
 }
 
 
-.active-icon{
-  color:deeppink;
+.delete-icon{
+  color: red;
+}
+
+.info-icon{
+  color: dodgerblue;
 }
 
 .budget-day.clicked {
@@ -44,8 +60,14 @@
 
 .budget-day-tr:hover {
   background: #243447;
-  cursor: pointer;
   color: white;
 }
 
+.action-icon{
+  font-size: 19px;
+}
+
+.action-icon:hover{
+  cursor: pointer;
+}
 

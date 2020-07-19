@@ -1,5 +1,23 @@
+#home-page{
+  width: 100%;
+}
 #days-container{
   overflow-y: auto;
   height: 90vh;
   //todo use height:100% and overflow in parent (layout)
+}
+
+#cards-container{
+  overflow-y: auto;
+  height: 90vh;
+}
+
+.custom-btn {
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-bottom: 0.4em;
+}
+
+.card-table{
+  font-size: 13px;
 }

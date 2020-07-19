@@ -5,4 +5,5 @@ export class CalendarIncomeModel {
   public description: string;
   public amount: number;
   public userId: string;
+  public accountId?: number;
 }

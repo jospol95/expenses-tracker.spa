@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CalendarIncomeModel} from '../../models/calendar-income.model';
 import {CalendarExpenseModel} from '../../models/calendar-expense.model';
 import {CalendarService} from '../../calendar.service';
 import {BasePageComponent} from '../../../../shared/components/base-page/base-page.component';
 import swal from 'sweetalert2/dist/sweetalert2.js';
-
+import {CalendarNewPageViewModel} from '../../view-models/calendar-new-page-view.model';
 
 
 @Component({
@@ -18,11 +18,61 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
   public month: number;
   public year: number;
 
+  private _monthName: string;
+
+  public pageData: CalendarNewPageViewModel = new CalendarNewPageViewModel();
+
   constructor(private readonly __route: ActivatedRoute, private readonly __router: Router, private readonly __service: CalendarService) {
     super();
   }
 
-  ngOnInit() {
+  get monthName(): string {
+    switch (this.month) {
+      case 0:
+        this._monthName = 'January';
+        break;
+      case 1:
+        this._monthName = 'February';
+        break;
+      case 2:
+        this._monthName = 'March';
+        break;
+      case 3:
+        this._monthName = 'April';
+        break;
+      case 4:
+        this._monthName = 'May';
+        break;
+      case 5:
+        this._monthName = 'June';
+        break;
+      case 6:
+        this._monthName = 'July';
+        break;
+      case 7:
+        this._monthName = 'August';
+        break;
+      case 8:
+        this._monthName = 'September';
+        break;
+      case 9:
+        this._monthName = 'October';
+        break;
+      case 10:
+        this._monthName = 'November';
+        break;
+      case 11:
+        this._monthName = 'December';
+        break;
+      default:
+        this._monthName = '';
+        break;
+    }
+
+    return this._monthName;
+  }
+
+  public ngOnInit() {
     this.__route.queryParams.subscribe((params) => {
       if (params) {
         if (params.day && params.month && params.year) {
@@ -30,6 +80,11 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
           this.day = parseInt(params.day, 10);
           this.month = parseInt(params.month, 10);
           this.year = parseInt(params.year, 10);
+
+          this.__route.data.subscribe((pageData) => {
+            console.log(pageData);
+            this.pageData = pageData.data;
+          });
         }
       } else {
         // else redirect to 404
@@ -39,17 +94,17 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
     });
   }
 
-  saveIncomeEventHandler($event: CalendarIncomeModel) {
+  public saveIncomeEventHandler($event: CalendarIncomeModel) {
     // this.handleBadResponse();
     const income = $event;
     income.date = new Date(this.year, this.month, this.day);
     income.userId = '123';
     this.__service.addIncome(income).subscribe((id) => {
-      if (id) {
-        this.handleGoodResponse();
-      }
-    }, (error) => {
-      this.handleBadResponse();
+        if (id) {
+          this.handleGoodResponse();
+        }
+      }, (error) => {
+        this.handleBadResponse();
       }
     );
   }
@@ -60,10 +115,10 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
     expense.userId = '123';
 
     this.__service.addExpense(expense).subscribe((id) => {
-      if (id) {
-        this.handleGoodResponse();
-      }
-    }, (error) => {
+        if (id) {
+          this.handleGoodResponse();
+        }
+      }, (error) => {
         this.handleBadResponse();
       }
     );
@@ -82,6 +137,7 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
       title: 'Added',
       text: 'Would you like to add another record?',
       icon: 'success',
+      reverseButtons: true,
       showCancelButton: true,
       cancelButtonText: 'Not now',
       confirmButtonColor: '#3085d6',
@@ -104,7 +160,7 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
 
   }
 
-  private getDayArrayForDate() {
+  public getDayArrayForDate() {
     // date: 0 means the last day for previous month
     const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
     const optionDayArray = [];

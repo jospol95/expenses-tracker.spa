@@ -16,6 +16,8 @@
 }
 
 .clicked{
+  border: 0;
+  //background: darkslategrey;
   border-bottom: 1px solid dodgerblue;
   .material-icons.color-dark{
     color: dodgerblue;
@@ -24,6 +26,15 @@
 
 .material-icons.color-dark{
   color: darkslategrey;
+}
+
+button:focus,button:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.inline-element{
+  display: block;
 }
 
 //.material-icons.md-30{

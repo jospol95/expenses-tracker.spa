@@ -3,7 +3,10 @@
     <div class="col col-8 no-side-padding calendar-container">
       <app-calendar-container
         [budgetDays]="budgetDays"
+
+        [daySelected]="calendarDaySelected"
         (selectedDateChangedEvent)="selectedDateChangeEventHandler($event)"
+
         (clickedDateEvent)="clickedDayEventHandler($event)"
       >
 
@@ -11,9 +14,15 @@
     </div>
 
     <div class="col col-4 no-side-padding summary-container">
-      <app-calendar-day-expense
+      <app-calendar-day-expense *ngIf="pageData != null"
         [budgetDay]="budgetDaySelected"
+        [categories]="pageData.categories"
+        [accounts]="pageData.accounts"
         (addNewClickedEvent)="addNewEventHandler($event)"
+        (incomeDetailClickedEvent)="incomeDetailClickedEventHandler($event)"
+        (incomeDeletedClickedEvent)="deleteIncomeClickedEventHandler($event)"
+        (expenseDetailClickedEvent)="expenseDetailClickedEventHandler($event)"
+        (expenseDeletedClickedEvent)="deleteExpenseClickedEventHandler($event)"
       >
 
       </app-calendar-day-expense>

@@ -12,7 +12,8 @@ import {CalendarRoutingModule} from './calendar-routing.module';
 import {CalendarComponentsModule} from './components/calendar-components.module';
 import {SiteLayoutComponent} from '../../layout/site-layout/site-layout.component';
 import {CalendarService} from './calendar.service';
-import {CalendarResolver} from './calendar.resolver';
+import {CalendarResolver} from './resolvers/calendar.resolver';
+import {CalendarNewPageResolver} from './resolvers/calendar-new-page.resolver';
 
 
 
@@ -27,6 +28,7 @@ import {CalendarResolver} from './calendar.resolver';
   ],
   providers: [
     CalendarResolver,
+    CalendarNewPageResolver,
     CalendarService,
   ]
 })

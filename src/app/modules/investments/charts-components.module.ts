@@ -1,13 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ChartsPageComponent } from './charts-page/charts-page.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ChartsPageComponent} from './charts-page/charts-page.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
   declarations: [ChartsPageComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatDatepickerModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule
   ]
 })
-export class ChartsComponentModule { }
+export class ChartsComponentModule {
+}

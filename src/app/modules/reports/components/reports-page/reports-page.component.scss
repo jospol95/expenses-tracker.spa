@@ -47,3 +47,16 @@
     font-size: 18px;
   }
 }
+
+.font-12{
+  font-size: 12px;
+}
+
+.card-custom-header{
+  background: dodgerblue;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  //font-size: x-large;
+  color: black;
+}

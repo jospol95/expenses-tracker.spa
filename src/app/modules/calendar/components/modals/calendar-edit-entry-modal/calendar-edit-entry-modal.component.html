@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Expense details</h1>
+<h1 mat-dialog-title>Income details</h1>
 <div mat-dialog-content>
   <div class="form-row margin-10">
     <div class="col col-7">
@@ -22,20 +22,17 @@
   </div>
   <br>
   <div class="form-row margin-10">
-    <div class="col-6">
-      <label>Category</label>
-      <select
-        name="category"
-        [disabled]="!editMode"
-        [(ngModel)]="model.categoryId"
-        class="form-control selectpicker" data-style="btn btn-link">
-        <option *ngFor="let category of data.categories"
-                [ngValue]="category.id"
-        >
-          {{category.name}}
-        </option>
-      </select>
+    <div class="col-10">
+      <label>Description</label>
+      <input type="text"
+             name="description"
+             autocomplete="off"
+             [(ngModel)]="model.description"
+             [disabled]="!editMode"
+             class="form-control" placeholder="Description">
     </div>
+  </div>
+  <div class="form-row margin-10">
     <div class="col-6">
       <label>Account</label>
       <select
@@ -52,19 +49,6 @@
     </div>
   </div>
   <br>
-  <div class="form-row margin-10">
-    <div class="col-10">
-      <label>Description</label>
-      <input type="text"
-             name="description"
-             autocomplete="off"
-             [(ngModel)]="model.description"
-             [disabled]="!editMode"
-             class="form-control" placeholder="Description">
-    </div>
-  </div>
-
-  <br>
 
   <div class="form-row" *ngIf="editMode">
     <div class="col col-6">
@@ -75,7 +59,7 @@
     </div>
     <div class="col col-6">
       <button
-        (click)="updateExpense()"
+        (click)="updateIncome()"
         class="btn btn-raised btn-dialog btn-success btn-block">SAVE CHANGES
       </button>
     </div>
@@ -95,20 +79,6 @@
       </button>
     </div>
 
-
-<!--    <div class="col col-12">-->
-
-<!--      <button-->
-<!--        (click)="this.dialogRef.close()"-->
-<!--        class="btn col-6 btn-default btn-dialog">DONE-->
-<!--      </button>-->
-<!--      <button-->
-<!--        (click)="editMode = true"-->
-<!--        class="btn col-6 btn-dodger btn-dialog ">EDIT-->
-<!--      </button>-->
-<!--    </div>-->
-<!--    -->
-  </div>
 </div>
 
 
