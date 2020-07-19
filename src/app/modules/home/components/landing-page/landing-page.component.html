@@ -1,0 +1,47 @@
+<div id="days-container">
+  <div class="row" *ngFor="let day of daysArray">
+    <div class="col col-2"></div>
+    <div *ngIf="day.hasRegister" class="card col col-8">
+      <div class="card-header card-header-text card-header-primary">
+        <div class="card-text">
+          <h4 class="card-title">July {{day.day}}th, 2020</h4>
+        </div>
+      </div>
+      <table class="table">
+        <tbody>
+        <!--        <tr>-->
+        <!--          <td class="font-weight-bold">{{day.register}}</td>-->
+        <!--          <td *ngIf="day.income" class="text-success">${{day.money}}</td>-->
+        <!--          <td *ngIf="!day.income" class="text-danger">${{day.money}}</td>-->
+        <!--          <td>{{day.category}}</td>-->
+        <!--          <td>{{day.account}}</td>-->
+        <!--        </tr>-->
+        <tr>
+          <td class="font-weight-bold">Gas fillup</td>
+          <td class="text-danger">$36.06</td>
+          <td>TRANSPORTATION</td>
+          <td>CHASE DEBIT</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">Headphones XM3</td>
+          <td class="text-danger">$36.09</td>
+          <td>ENTERTAINMENT</td>
+          <td>CHASE FREEDOM</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">Paycheck</td>
+          <td class="text-success">$2506.06</td>
+          <td></td>
+          <td>CHASE DEBIT</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">Swatch Watch</td>
+          <td class="text-danger">$156.09</td>
+          <td>ENTERTAINMENT</td>
+          <td>CHASE FREEDOM</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
