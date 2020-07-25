@@ -1,3 +1,7 @@
+#charts-page{
+  width: 100%;
+  font-family: 'Roboto Condensed', serif;
+}
 .container {
   overflow-y: auto;
   height: 90vh;
@@ -5,16 +9,87 @@
 }
 
 .custom-table{
-  font-size: 13px;
+  font-size: 12px;
 }
-
-.btn-excel{
-  background-color: #009900;
+.table-header{
+  font-size: 12.5px;
+  font-weight: bold;
+}
+.text-white{
+  color: white;
 }
 
 #reports-header{
   margin-top: 1em;
-  background: dodgerblue;
+  background: #243447;
   padding-top: 2em;
   border-radius: 0.3em;
+  font-size: 13px;
 }
+
+.fab-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 5px;
+
+    button {
+      margin-bottom: 17px;
+    }
+  }
+}
+
+.fab-secondary{
+  color:white;
+}
+
+.pdf-fab{
+  background-color: #ff0000;
+}
+
+.excel-fab{
+  background-color: #009900;
+}
+
+.fab-toggler {
+  float: right;
+  z-index: 100;
+}
+
+#report-card{
+  background: white;
+  border-radius: 0.3em;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 0.3em;
+}
+
+#faded-container{
+  margin-top: 0px;
+  background: #243447;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  color: white;
+  //border-radius: 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+.font-weight-bold {
+  font-weight: bold !important;
+}
+//::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+//::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+//
+//::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//  transform: translateY(-1.1em) scale(.75);
+//  width: 133.33333%;
+//}

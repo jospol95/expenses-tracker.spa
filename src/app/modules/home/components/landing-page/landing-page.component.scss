@@ -1,5 +1,7 @@
 #home-page{
   width: 100%;
+  font-family: 'Roboto Condensed', serif;
+
 }
 #days-container{
   overflow-y: auto;
@@ -20,4 +22,27 @@
 
 .card-table{
   font-size: 13px;
+}
+
+#circular-budget{
+  width: 150px;
+  height: 150px;
+}
+
+#faded-container{
+  margin-top: 0px;
+  background: #243447;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  color: white;
+  //border-radius: 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+.font-weight-bold {
+  font-weight: bold !important;
+}
+
+.amount-container{
+  font-size: 26px;
 }

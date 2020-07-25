@@ -1,9 +1,11 @@
 #user-page{
   //vertical-align: middle;
   //margin-top: 25%;
+  width: 100%;
+  font-family: 'Roboto Condensed', serif;
 }
 
-#user-page div.col {
+.user-page-container {
   margin-top: 5%;
 
   //vertical-align: middle;
@@ -16,3 +18,14 @@
   float: none;
   margin: 0 auto;
 }
+
+#faded-container {
+  margin-top: 0px;
+  background: #243447;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  color: white;
+  //border-radius: 3px;
+  border-radius: 0 0 3px 3px;
+}
+

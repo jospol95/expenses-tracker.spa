@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { CalendarNewPageComponent } from './modules/calendar/components/calendar
 import { AddExpenseComponent } from './modules/calendar/components/calendar-new-page/add-expense/add-expense.component';
 import { AddIncomeComponent } from './modules/calendar/components/calendar-new-page/add-income/add-income.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {CurrencyPipe, DecimalPipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
   exports: [
   ],
   providers: [
-    HttpClient
+    HttpClient,
+    CurrencyPipe,
+    DecimalPipe
   ],
   bootstrap: [AppComponent]
 })

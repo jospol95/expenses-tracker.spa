@@ -1,11 +1,11 @@
 
 .top-menu{
   //background: #121212;
-  background: whitesmoke;
+  background: #243447;
   padding-top: .3em;
   padding-bottom: .3em;
   width: 100%;
-  height: 3em;
+  height: 3.5em;
   display: block;
   color: white;
   text-align: center;
@@ -18,14 +18,14 @@
 .clicked{
   border: 0;
   //background: darkslategrey;
-  border-bottom: 1px solid dodgerblue;
+  //border-bottom: 1px solid dodgerblue;
   .material-icons.color-dark{
     color: dodgerblue;
   }
 }
 
 .material-icons.color-dark{
-  color: darkslategrey;
+  color: white;
 }
 
 button:focus,button:active {
@@ -37,6 +37,16 @@ button:focus,button:active {
   display: block;
 }
 
+.mat-btn-menu{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+::ng-deep .mat-icon{
+  height:30px !important;
+  width:30px !important;
+  font-size:30px !important;
+}
 //.material-icons.md-30{
 //  font-size: 30px;
 //}

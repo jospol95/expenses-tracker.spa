@@ -1,43 +1,47 @@
 <!--todo install jquery-->
 <div class="top-menu">
   <button mat-button
-          class="text-center"
+          class="mat-btn-menu"
           routerLinkActive="clicked"
           [routerLink]="['/home']">
-<!--    <mat-icon class="md-30 color-dark inline-element" aria-hidden="false" aria-label="Example home icon">home</mat-icon>-->
-    <small class="inline-element text-muted">Home</small>
+    <mat-icon class="md-50 color-dark" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+<!--    <small class="inline-element">HOME</small>-->
   </button>
 
   <button
     [routerLink]="['/calendar']"
+    class="mat-btn-menu"
     routerLinkActive="clicked"
     mat-button >
-<!--    <mat-icon class="md-30 color-dark " aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>-->
-    <small class="inline-element text-muted">Calendar</small>
+    <mat-icon class="md-30 color-dark " aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
+<!--    <small class="inline-element text-muted">CALENDAR</small>-->
   </button>
 
 
   <button
     routerLinkActive="clicked"
+    class="mat-btn-menu"
     [routerLink]="['/reports']"
     mat-button>
-<!--    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">pie_chart</mat-icon>-->
-    <small class="inline-element text-muted">Charts</small>
+    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">pie_chart</mat-icon>
+<!--    <small class="inline-element text-muted">CHARTS</small>-->
   </button>
 
   <button
     routerLinkActive="clicked"
+    class="mat-btn-menu"
     [routerLink]="['/charts']"
     mat-button>
-    <!--    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">pie_chart</mat-icon>-->
-    <small class="inline-element text-muted">Reports</small>
+        <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">description</mat-icon>
+<!--    <small class="inline-element text-muted">REPORTS</small>-->
   </button>
 
   <button
     routerLinkActive="clicked"
+    class="mat-btn-menu"
     mat-button [routerLink]="['/login']">
-    <!--    <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>-->
-    <small class="inline-element text-muted">Account</small>
+        <mat-icon class="md-30 color-dark" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
+<!--    <small class="inline-element text-muted">ACCOUNT</small>-->
   </button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button

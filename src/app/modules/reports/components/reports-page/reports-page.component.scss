@@ -1,4 +1,9 @@
-.container{
+#reports-page {
+  width: 100%;
+  font-family: 'Roboto Condensed', serif;
+}
+
+.container {
   display: flex;
   flex-flow: column;
   height: 100%;
@@ -6,57 +11,69 @@
 }
 
 .chart {
-  margin:0;
+  margin: 0;
   padding: 0;
   height: 500px;
   //min-width: 500px;
 }
 
-.legend{
+.legend {
   color: white;
 }
 
-.mini-chart{
+.mini-chart {
   height: 200px;
 }
 
-.dark-card{
+.dark-card {
   background: #243447;
 }
 
-.left-side-section{
+.left-side-section {
   overflow-y: auto;
   height: 90vh;
   //todo use height:100% and overflow in parent (layout)
 }
-.side-section{
+
+.side-section {
   //float:left;
   //width:1000px;
   overflow-y: auto;
   height: 90vh;
 }
 
-#report-table{
+#report-table {
   border-radius: 0.3em;
   //background: whitesmoke;
   color: white;
 
-  tbody tr.total-row{
+  tbody tr.total-row {
     //background: darkcyan;
     //border-radius: 0 0 0.3em 0.3em;
     font-size: 18px;
   }
 }
 
-.font-12{
+.font-12 {
   font-size: 12px;
 }
 
-.card-custom-header{
+.card-custom-header {
   background: dodgerblue;
 }
 
 ::ng-deep .mat-tab-label .mat-tab-label-content {
   //font-size: x-large;
   color: black;
+}
+
+#faded-container {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 0px;
+  background: #243447;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  color: white;
+  //border-radius: 3px;
+  border-radius: 0 0 3px 3px;
 }

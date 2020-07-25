@@ -1,20 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {HomePageViewModel} from '../../view-models/home-page-view.model';
 import {BudgetDayModel} from '../../../calendar/models/budget-day.model';
 import {ActivatedRoute} from '@angular/router';
 import {FacadeModel} from '../../../../shared/facade.model';
+import {CurrencyPipe, DecimalPipe} from '@angular/common';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
+  providers: [DecimalPipe]
 })
+
 export class LandingPageComponent implements OnInit {
 
   public data: HomePageViewModel;
   public __budgetDays: BudgetDayModel[];
   public __categories: FacadeModel[];
   public __accounts: FacadeModel[];
+
+  public totalIncome = 0;
+  public totalExp = 0;
+
 
   public daysArray = [
     {day: 1, hasRegister: true, register: 'Gas station', money: 43, category: 'Transportation', account: 'Chase Debit', income: false},
@@ -45,6 +52,13 @@ export class LandingPageComponent implements OnInit {
   // public set budgetDays(value) {
   //
   // }
+  public towns = [
+    "New York", "Washington, D.C.", "London", "Berlin", "Sofia", "Rome", "Kiev",
+    "Copenhagen", "Paris", "Barcelona", "Vienna", "Athens", "Dublin", "Yerevan",
+    "Oslo", "Helsinki", "Stockholm", "Prague", "Istanbul", "El Paso", "Florence", "Moscow",
+    "Jambol", "Talin", "Zlatna Panega", "Queenstown", "Gabrovo", "Ugurchin", "Xanthi"];
+  public townSelected: any;
+
 
   constructor(private readonly _route: ActivatedRoute) {
   }
@@ -53,6 +67,7 @@ export class LandingPageComponent implements OnInit {
     this._route.data.subscribe((data) => {
       this.data = data.data;
       console.log(this.data);
+      this.calculateAmounts();
     });
   }
 
@@ -70,5 +85,17 @@ export class LandingPageComponent implements OnInit {
     return this.categories.find((c) => c.id === categoryId).name.toUpperCase();
 
   }
+
+  public roundNumber(x: number): number{
+    return Math.round(x);
+  }
+
+  private calculateAmounts(){
+    this.budgetDays.forEach((d) => {
+      d.incomes.forEach((i) => this.totalIncome += i.amount);
+      d.expenses.forEach((e) => this.totalExp += e.amount);
+    });
+  }
+
 
 }
