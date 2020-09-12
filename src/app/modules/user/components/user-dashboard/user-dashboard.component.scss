@@ -20,11 +20,13 @@
   //padding-top: 1em;
   a.nav-link{
     padding: 15px;
+    color: #243447;
   }
 }
 
 .nav-pills .nav-item a.nav-link.active{
-  background: #a72abd !important;
+  background: #243447 !important;
+  color: white;
 }
 
 .col-centered{
@@ -36,3 +38,8 @@
   background: dodgerblue !important;
 }
 
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif;;
+  padding: 0 !important;
+  margin: 5px !important;
+}

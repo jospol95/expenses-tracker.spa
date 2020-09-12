@@ -1,0 +1,144 @@
+<div class="row">
+  <div class="col-8 left-side-section">
+    <div class="card dark-card">
+      <div class="card-header row card-header-primary text-center">
+        <!--          <h4 class="card-title">MAY</h4>-->
+        <div class="col col-4 text-center">
+          <mat-form-field>
+            <mat-label>Month</mat-label>
+            <mat-select [(value)]="monthSelected"
+                        (selectionChange)="handleDateSelection()"
+            >
+              <mat-option *ngFor="let month of months"
+                          [value]="month.value">
+                {{month.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col col-4 text-center">
+        </div>
+        <div class="col col-4 text-center">
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select [(value)]="yearSelected"
+                        (selectionChange)="handleDateSelection()"
+            >
+              <mat-option *ngFor="let year of years"
+                          [value]="year.value">
+                {{year.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart">
+          <igx-pie-chart [dataSource]="chartData"
+                         height="100%" width="100%"
+                         labelMemberPath="Label"
+                         othersCategoryText="Remaining"
+                         valueMemberPath="Value">
+
+          </igx-pie-chart>
+<!--          <igx-doughnut-chart-->
+<!--            [allowSliceExplosion]="true" height="100%" width="100%"-->
+<!--          >-->
+<!--            <igx-ring-series-->
+<!--              [dataSource]="chartData" valueMemberPath="Value" labelMemberPath="Label"-->
+<!--              othersCategoryText="Remaining"-->
+<!--            >-->
+<!--              &lt;!&ndash;                othersCategoryThreshold="0.1"&ndash;&gt;-->
+
+<!--            </igx-ring-series>-->
+<!--          </igx-doughnut-chart>-->
+        </div>
+        <p class="text-muted font-12">
+          Some accounts in the chart contains really small values in order to be displayded.
+          We will group everything into one "Remaning" category.
+          <br>
+          You can still see the full disclosure of the categories in the table on the right side of the page.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4 side-section">
+    <div class="card dark-card">
+      <div class="card-header card-header-primary text-center">
+        ACCOUNT BREAKTHROUGH
+      </div>
+      <div class="card-body">
+        <table id="report-table" class="table">
+          <thead>
+          <tr class="">
+            <th class="font-weight-bold text-left">Account</th>
+<!--            <th class="text-right">Income</th>-->
+            <th class="text-right ">Expenses</th>
+          </tr>
+          </thead>
+          <tbody>
+<!--          <tr>-->
+<!--            <td class="text-left font-weight-bold">{{income.name}}</td>-->
+<!--            <td class="text-right text-success">${{income.total}}</td>-->
+<!--            <td class="text-right text-danger"></td>-->
+<!--          </tr>-->
+          <tr *ngFor="let account of _reportData">
+            <td class="text-left font-weight-bold">{{account.name}}</td>
+<!--            <td class="text-right text-success">{{account.total}}</td>-->
+            <td class="text-right text-danger">${{account.total}}</td>
+          </tr>
+          <!--            <tr>-->
+          <!--              <td class="text-left font-weight-bold">Income</td>-->
+          <!--              <td class="text-right text-success">&euro;122.65</td>-->
+          <!--              <td class="text-right text-danger"></td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td class="text-left font-weight-bold">Transportation</td>-->
+          <!--              <td class="text-right text-success"></td>-->
+          <!--              <td class="text-right text-danger">&euro;89</td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td class="text-left font-weight-bold">Bills</td>-->
+          <!--              <td class="text-right text-success"></td>-->
+          <!--              <td class="text-right text-danger">&euro;75</td>-->
+          <!--            </tr>-->
+          <tr class="total-row">
+            <td class="text-left font-weight-bold">Total</td>
+<!--            <td class="text-right text-success">$ {{1243.13}}</td>-->
+            <!--              <td class="text-right text-danger">$ {{totalAmountCategories}}</td>-->
+            <td class="text-right text-danger">$ {{totalAmountAccounts | number}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+<!--    <div class="card dark-card">-->
+<!--      <div class="card-header card-header-primary text-center">-->
+<!--        MONTH SUMMARY-->
+<!--      </div>-->
+<!--      <table id="report-table" class="table">-->
+<!--        <thead>-->
+<!--        <tr class="">-->
+<!--          <th class="text-right text-white ">Account Income</th>-->
+<!--          <th class="text-right text-white ">Account Expenses</th>-->
+<!--          <th class="text-right text-white ">Total</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr class="total-row">-->
+<!--          <td class="text-right text-success">$ {{income.total}}</td>-->
+<!--          &lt;!&ndash;            <td class="text-right text-danger">$ {{totalAmountCategories}}</td>&ndash;&gt;-->
+<!--          <td class="text-right text-danger">$ {{1243.13}}</td>-->
+<!--          <td class="text-right text-primary">$ {{income.total - totalAmountCategories}}</td>-->
+
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+
+  </div>
+</div>

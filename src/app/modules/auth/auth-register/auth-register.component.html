@@ -1,0 +1,128 @@
+<div class="card text-center">
+  <div class="card-header card-header-primary">
+    <h5 class="card-title">Create your account</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-6">
+
+        <div class="info">
+          <h5 class="info-title">Track your budget</h5>
+          <p>Have total control over your expenses.</p>
+        </div>
+        <div class="info">
+          <h5 class="info-title">Charts</h5>
+          <p>See charts per category or account, to have a better breakdown of your budget.</p>
+        </div>
+        <div class="info">
+          <h5 class="info-title">Personalized reports</h5>
+          <p>You'll be able to download and print Excel/PDF reports by month, week or any selected period.</p>
+        </div>
+
+      </div>
+
+      <div class="col-6">
+
+        <div class="row">
+          <div class="col col-12">
+            <app-facebook-btn
+              [label]="'Continue with Facebook'"
+            >
+            </app-facebook-btn>
+          </div>
+          <div class="col col-12">
+            <app-google-btn
+              [label]="'Continue with Google'"
+            >
+
+            </app-google-btn>
+          </div>
+          <!--                    <div class="col col-12">-->
+          <!--                      <button class="btn btn-default btn-block btn-round">-->
+          <!--                        Apple-->
+          <!--                      </button>-->
+          <!--                    </div>-->
+        </div>
+        <br>
+        <hr>
+        <br>
+        <form>
+          <div class="row custom-row">
+            <div class="col col-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="material-icons">alternate_email</i>
+                              </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Email address">
+              </div>
+              <!--              <input type="text" class="form-control light-color" placeholder="Email">-->
+            </div>
+            <br>
+            <br>
+            <div class="col col-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="material-icons">face</i>
+                              </span>
+                </div>
+                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+              <!--              <input type="text" class="form-control light-color" placeholder="Email">-->
+            </div>
+            <br>
+            <br>
+            <!--                      <div class="col col-12">-->
+            <!--                        <div class="input-group">-->
+            <!--                          <div class="input-group-prepend">-->
+            <!--                              <span class="input-group-text">-->
+            <!--                                  <i class="material-icons">group</i>-->
+            <!--                              </span>-->
+            <!--                          </div>-->
+            <!--                          <input type="text" class="form-control" placeholder="Last name">-->
+            <!--                        </div>-->
+            <!--                        &lt;!&ndash;              <input type="text" class="form-control light-color" placeholder="Email">&ndash;&gt;-->
+            <!--                      </div>-->
+            <!--                      <div class="col col-12">-->
+            <!--                        <input type="text" class="form-control light-color" placeholder="First name">-->
+
+            <!--                      </div>-->
+            <!--                      <div class="col col-12">-->
+            <!--                        <input type="text" class="form-control light-color" placeholder="Last name">-->
+            <!--                      </div>-->
+            <div class="col col-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="material-icons">lock</i>
+                              </span>
+                </div>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                       placeholder="Password">
+                <small class="form-text muted-text">
+                  Please choose between 6 to 20 characters. Including letters and special characters.</small>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-12 n">
+              <button class="btn btn-block pull-md-right btn-primary btn-round">
+                REGISTER
+              </button>
+
+              <!--              <button class="btn btn-danger pull-md-right disabled">-->
+              <!--                Cancel-->
+              <!--              </button>-->
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

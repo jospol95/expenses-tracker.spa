@@ -1,80 +1,120 @@
-<div class="card">
+<div class="card categories-card">
   <div class="card-header  card-header-danger">
-    <h4 class="card-title">Categories</h4>
-    <p class="card-category">Add, edit or remove categories</p>
+    <h6 class="card-title">Categories</h6>
+    <p class="card-category">Add, edit or remove categories
+      <button
+        (click)="addNewCategory()"
+        class="btn btn-danger">
+        ADD NEW
+      </button>
+    </p>
+
   </div>
 
-  <div class="card-body">
+  <div class="card-body scrollable-body">
     <table class="table">
       <thead>
-      <tr>
-        <th class="font-weight-bold">Name</th>
-        <th class="">Description</th>
-        <th class="text-right">Actions</th>
-        <!--        <th class="text-right">Outcome</th>-->
-      </tr>
+        <tr>
+          <th  class="font-weight-bold">Name</th>
+          <th class="">Description</th>
+          <th class="">Budget assigned</th>
+          <th class="text-right">Actions</th>
+          <!--        <th class="text-right">Outcome</th>-->
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td class="font-weight-bold">Food</td>
-        <td class=""></td>
-        <td class="text-right last-td">
-          <mat-icon
-            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">create
-          </mat-icon>
-          <mat-icon
-            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete
-          </mat-icon>
-        </td>
-        <!--        <td class="text-right">&euro;225</td>-->
-      </tr>
-      <tr>
-        <td class="font-weight-bold">Bills</td>
-        <td class="">TMobile, Optimum etc. </td>
-        <td class="text-right last-td">
-          <mat-icon
-            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">create
-          </mat-icon>
-          <mat-icon
-            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete
-          </mat-icon>
-        </td>
-        <!--        <td class="text-right">&euro;223</td>-->
-      </tr>
-      <tr>
-        <td class="font-weight-bold">Loans</td>
-        <td class="">Car and iPhone loan</td>
-        <td class="text-right last-td">
-          <mat-icon
-            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">edit
-          </mat-icon>
-          <mat-icon
-            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete
-          </mat-icon>
-        </td>
-        <!--        <td class="text-right">&euro;90</td>-->
-      </tr>
-      <tr>
-        <td class="font-weight-bold">Entertainment</td>
-        <td class=""></td>
-        <td class="text-right last-td">
-          <mat-icon
-            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">edit
-          </mat-icon>
-          <mat-icon
-            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete
-          </mat-icon>
-        </td>
-        <!--        <td class="text-right">&euro;90</td>-->
-      </tr>
+        <tr app-user-categories-list-item
+            *ngFor="let category of categories; index as index"
+            [model]="category"
+            [index]="index"
+            (createEvent)=createCategory($event)
+            (updateEvent)="updateCategory($event)"
+            (deleteEvent)="deleteCategory($event)"
+        >
+
+        </tr>
+<!--        <tr  *ngFor="let category of model; index as index">-->
+<!--          <app-user-categories-list-item-->
+<!--            [model]="category"-->
+<!--          >-->
+<!--          </app-user-categories-list-item>-->
+<!--        </tr>-->
       </tbody>
     </table>
-    <div class="row">
-      <div class="col-12">
-        <button class="btn btn-danger btn-block">
-          ADD NEW
-        </button>
-      </div>
-    </div>
+<!--    <table class="table">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th class="font-weight-bold">Name</th>-->
+<!--        <th class="">Description</th>-->
+<!--        <th class="text-right">Actions</th>-->
+<!--        &lt;!&ndash;        <th class="text-right">Outcome</th>&ndash;&gt;-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td class="font-weight-bold">Food</td>-->
+<!--        <td class=""></td>-->
+<!--        <td class="text-right last-td">-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">create-->
+<!--          </mat-icon>-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete-->
+<!--          </mat-icon>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td class="text-right">&euro;225</td>&ndash;&gt;-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td class="font-weight-bold">Bills</td>-->
+<!--        <td class="">TMobile, Optimum etc.</td>-->
+<!--        <td class="text-right last-td">-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">create-->
+<!--          </mat-icon>-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete-->
+<!--          </mat-icon>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td class="text-right">&euro;223</td>&ndash;&gt;-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td class="font-weight-bold">Loans</td>-->
+<!--        <td class="">Car and iPhone loan</td>-->
+<!--        <td class="text-right last-td">-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">edit-->
+<!--          </mat-icon>-->
+
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete-->
+<!--          </mat-icon>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td class="text-right">&euro;90</td>&ndash;&gt;-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td class="font-weight-bold">Entertainment</td>-->
+<!--        <td class=""></td>-->
+<!--        <td class="text-right last-td">-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">edit-->
+<!--          </mat-icon>-->
+<!--          <mat-icon-->
+<!--            aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete-->
+<!--          </mat-icon>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td class="text-right">&euro;90</td>&ndash;&gt;-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+<!--    <div class="row">-->
+<!--      <div class="col-12">-->
+<!--        <button-->
+<!--          (click)="addNewCategory()"-->
+<!--          class="btn btn-danger btn-block">-->
+<!--          ADD NEW-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>

@@ -6,19 +6,22 @@
   </div>
   <mat-tab-group mat-align-tabs="center">
     <div class="row">
+      <br>
       <mat-tab class="mat-label" label="Income">
-        <div class="col col-md-6 centered-column">
+        <div class="col col-md-6 col-lg-7 centered-column">
           <app-add-income
             [accounts]="pageData.accounts"
+            [model]="newIncome"
             (saveEvent)="saveIncomeEventHandler($event)">
             You're adding a new entry for
             <select
-              name="day"
+              name="day-selected"
+              (ngModelChange)="updateSelectedDay($event)"
               [(ngModel)]="this.day"
               class=" btn-select btn-mini btn-success">
               <option *ngFor="let opt of getDayArrayForDate()"
                       [selected]="opt.isSelected"
-                      [value]="opt.value">
+                      [ngValue]="opt.value">
                 {{opt.title}}
               </option>
             </select>
@@ -31,19 +34,21 @@
     </div>
     <div class="row">
       <mat-tab label="Expense">
-        <div class="col col-6 centered-column">
+        <div class="col col-6 col-lg-7 centered-column">
           <app-add-expense
             [categories]="pageData.categories"
             [accounts]="pageData.accounts"
+            [model]="newExpense"
             (saveEvent)="saveExpenseEventHandler($event)" >
             You're adding a new entry for
             <select
               name="day"
+              (ngModelChange)="updateSelectedDay($event)"
               [(ngModel)]="this.day"
               class=" btn-select btn-mini btn-danger">
               <option *ngFor="let opt of getDayArrayForDate()"
                       [selected]="opt.isSelected"
-                      [value]="opt.value">
+                      [ngValue]="opt.value">
                 {{opt.title}}
               </option>
             </select>

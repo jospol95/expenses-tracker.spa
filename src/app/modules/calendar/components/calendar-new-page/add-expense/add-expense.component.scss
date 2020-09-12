@@ -13,3 +13,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif !important;
+  padding: 0 !important;
+  margin: 5px !important;
+}
+

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {BudgetDayModel} from '../../../models/budget-day.model';
-import {FacadeModel} from '../../../../../shared/facade.model';
+import {FacadeModel} from '../../../../../shared/models/facade.model';
 
 @Component({
   selector: 'app-calendar-day-expense',

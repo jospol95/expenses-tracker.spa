@@ -1,0 +1,182 @@
+<!--  <div class="chart">-->
+<!--    <igx-doughnut-chart height="40%" width="40%" >-->
+<!--      <igx-ring-series [dataSource] = "data" valueMemberPath="Value" labelMemberPath="Label">-->
+<!--      </igx-ring-series>-->
+<!--    </igx-doughnut-chart>-->
+<!--  </div>-->
+<div id="reports-page">
+  <div id="faded-container" class="row">
+    <div class="col col-12 text-center">
+        CHARTS - Have an overall look of your budget
+    </div>
+  </div>
+  <mat-tab-group mat-align-tabs="center">
+    <div class="row">
+      <mat-tab class="mat-label" label="Categories">
+        <div class="col col-12">
+          <div class="row">
+            <div class="col-8 left-side-section">
+              <div class="card dark-card">
+                <div class="card-header row card-header-primary text-center">
+                  <!--          <h4 class="card-title">MAY</h4>-->
+                  <div class="col col-4 text-center">
+                    <mat-form-field>
+                      <mat-label>Month</mat-label>
+                      <mat-select [(value)]="monthSelected"
+                                  (selectionChange)="handleDateSelection()"
+                      >
+                        <mat-option *ngFor="let month of months"
+                                    [value]="month.value">
+                          {{month.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col col-4 text-center">
+                  </div>
+                  <div class="col col-4 text-center">
+                    <mat-form-field>
+                      <mat-label>Year</mat-label>
+                      <mat-select [(value)]="yearSelected"
+                                  (selectionChange)="handleDateSelection()"
+                      >
+                        <mat-option *ngFor="let year of years"
+                                    [value]="year.value">
+                          {{year.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <igx-pie-chart [dataSource]="data"
+                                   height="100%" width="100%"
+                                   labelMemberPath="Label"
+                                   othersCategoryText="Remaining"
+                                   valueMemberPath="Value">
+
+                    </igx-pie-chart>
+<!--                    <igx-doughnut-chart-->
+<!--                      [allowSliceExplosion]="true" height="100%" width="100%"-->
+<!--                    >-->
+<!--                      <igx-ring-series-->
+<!--                        [dataSource]="data" valueMemberPath="Value" labelMemberPath="Label"-->
+<!--                        othersCategoryText="Remaining"-->
+<!--                      >-->
+<!--                        &lt;!&ndash;                othersCategoryThreshold="0.1"&ndash;&gt;-->
+
+<!--                      </igx-ring-series>-->
+<!--                    </igx-doughnut-chart>-->
+                  </div>
+                  <p class="text-muted font-12">
+                    Some categories in the chart contains really small values in order to be displayded.
+                    We will group everything into one "Remaning" category.
+                    <br>
+                    You can still see the full disclosure of the categories in the table on the right side of the page.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4 side-section">
+              <div class="card dark-card">
+                <div class="card-header card-header-primary text-center">
+                  BREAKTHROUGH
+                </div>
+                <div class="card-body">
+                  <table id="report-table" class="table">
+                    <thead>
+                    <tr class="">
+                      <th class="font-weight-bold text-white text-left">Name</th>
+                      <th class="text-right text-white ">Income</th>
+                      <th class="text-right text-white ">Outcome</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td class="text-left font-weight-bold">{{income.name}}</td>
+                      <td class="text-right text-success">${{income.total}}</td>
+                      <td class="text-right text-danger"></td>
+                    </tr>
+                    <tr *ngFor="let category of categories">
+                      <td class="text-left font-weight-bold">{{category.name}}</td>
+                      <td class="text-right text-success"></td>
+                      <td class="text-right text-danger">${{category.total}}</td>
+                    </tr>
+                    <!--            <tr>-->
+                    <!--              <td class="text-left font-weight-bold">Income</td>-->
+                    <!--              <td class="text-right text-success">&euro;122.65</td>-->
+                    <!--              <td class="text-right text-danger"></td>-->
+                    <!--            </tr>-->
+                    <!--            <tr>-->
+                    <!--              <td class="text-left font-weight-bold">Transportation</td>-->
+                    <!--              <td class="text-right text-success"></td>-->
+                    <!--              <td class="text-right text-danger">&euro;89</td>-->
+                    <!--            </tr>-->
+                    <!--            <tr>-->
+                    <!--              <td class="text-left font-weight-bold">Bills</td>-->
+                    <!--              <td class="text-right text-success"></td>-->
+                    <!--              <td class="text-right text-danger">&euro;75</td>-->
+                    <!--            </tr>-->
+                    <hr class="w-50">
+                    <tr class="total-row">
+                      <td class="text-left font-weight-bold">Total</td>
+                      <td class="text-right text-success">$ {{income.total}}</td>
+                      <!--              <td class="text-right text-danger">$ {{totalAmountCategories}}</td>-->
+                      <td class="text-right text-danger">$ {{totalAmountCategories | number}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+              <div class="card dark-card">
+                <div class="card-header card-header-primary text-center">
+                  MONTH SUMMARY
+                </div>
+                <table id="report-table" class="table">
+                  <thead>
+                  <tr class="">
+                    <th class="text-right text-white ">Total Income</th>
+                    <th class="text-right text-white ">Total Expenses</th>
+                    <th class="text-right text-white ">Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr class="total-row">
+                    <td class="text-right text-success">$ {{income.total | number}}</td>
+                    <!--            <td class="text-right text-danger">$ {{totalAmountCategories}}</td>-->
+                    <td class="text-right text-danger">$ {{totalAmountCategories | number}}</td>
+                    <td class="text-right text-primary">$ {{income.total - totalAmountCategories | number}}</td>
+
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </div>
+    <div class="row">
+      <mat-tab label="Accounts">
+        <div class="col-12">
+          <app-account-report
+            [reportData]="accountsData"
+            [monthSelected]="monthSelected"
+            [yearSelected]="yearSelected"
+          >
+
+          </app-account-report>
+        </div>
+      </mat-tab>
+    </div>
+  </mat-tab-group>
+
+
+</div>

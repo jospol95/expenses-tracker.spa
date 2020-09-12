@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {CustomPipesModule} from '../../shared/pipes/custom-pipes.module';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    SharedComponentsModule
-  ]
+    SharedComponentsModule,
+    CustomPipesModule
+  ],
+  exports: [CustomPipesModule, SharedComponentsModule]
 })
 export class SiteLayoutModule { }

@@ -1,5 +1,5 @@
 import {CalendarExpenseModel} from '../models/calendar-expense.model';
-import {FacadeModel} from '../../../shared/facade.model';
+import {FacadeModel} from '../../../shared/models/facade.model';
 
 export interface EditExpenseDialogData {
   id: string;

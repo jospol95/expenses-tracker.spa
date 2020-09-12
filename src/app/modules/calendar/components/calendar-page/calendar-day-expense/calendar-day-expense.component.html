@@ -1,20 +1,17 @@
 <div class="row">
   <div class="col summary-card-container">
     <div class="card text-center summary-card">
-      <div class="card-body no-padding-inner text-left">
-        <!--        <h5 class="card-title">Total ($325)</h5>-->
-        <div class="inner-padding">
-          <h6 class="card-subtitle mb-2 text-muted">Showing history for
-            {{budgetDay.day}}/{{budgetDay.month}}/{{budgetDay.year}}</h6>
-          <h5 *ngIf="!hasIncomesOrExpenses">No entries for this day.</h5>
-          <h5 *ngIf="hasIncomesOrExpenses" class="card-title font-weight-bold">
-            Entries total: <span [ngClass]="{'text-success': budgetDayTotal > 0, 'text-danger': budgetDayTotal < 0}"
-                                 class="font-weight-bold">
-          ${{getTotalAbs()}} </span>
-          </h5>
-        </div>
-
-        <br/>
+      <div class="card-header card-header-primary custom-card-header">
+        <!--        <h6>User profile</h6>-->
+        <span *ngIf="!hasIncomesOrExpenses">  No entries for this day. </span>
+        <span *ngIf="hasIncomesOrExpenses">Total for the day: </span>
+        <span *ngIf="hasIncomesOrExpenses"
+              [ngClass]="{'text-success': budgetDayTotal > 0, 'text-danger': budgetDayTotal < 0}"
+              class="font-weight-bold">
+          ${{getTotalAbs()}}
+        </span>
+      </div>
+      <div class="card-body no-padding-inner text-left scrollable-body">
         <table *ngIf="budgetDay" class="table">
           <tbody>
           <tr *ngFor="let income of budgetDay.incomes"
@@ -49,31 +46,6 @@
               </mat-icon>
             </td>
           </tr>
-
-          <!--          <tr class="expense-tr clicked">-->
-          <!--            <td class="font-weight-bold">T MOBILE</td>-->
-          <!--            <td>Telephone</td>-->
-          <!--            <td class="text-danger font-weight-bold">$325.00</td>-->
-          <!--            <td class="text-right last-td">-->
-          <!--              <mat-icon aria-hidden="false" class="active-icon" aria-label="Example home icon">launch</mat-icon>-->
-          <!--            </td>-->
-          <!--          </tr>-->
-          <!--          <tr class="expense-tr ">-->
-          <!--            <td class="font-weight-bold">CHASE</td>-->
-          <!--            <td>Bank account</td>-->
-          <!--            <td class="text-success font-weight-bold">$125.00</td>-->
-          <!--            <td class="text-right">-->
-          <!--              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>-->
-          <!--            </td>-->
-          <!--          </tr>-->
-          <!--          <tr class="expense-tr">-->
-          <!--            <td class="font-weight-bold">ALTICE ONE</td>-->
-          <!--            <td>Utility bill</td>-->
-          <!--            <td class="text-danger font-weight-bold">$825.00</td>-->
-          <!--            <td class="text-right">-->
-          <!--              <mat-icon aria-hidden="false" aria-label="Example home icon">launch</mat-icon>-->
-          <!--            </td>-->
-          <!--          </tr>-->
           </tbody>
         </table>
 

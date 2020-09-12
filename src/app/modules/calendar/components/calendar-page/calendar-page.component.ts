@@ -38,13 +38,14 @@ export class CalendarPageComponent implements OnInit {
               private readonly router: Router,
               private readonly service: CalendarService) {
   }
+
 // TODO: SET CLICKED DEFAULT TO TODAYS DATE, CHECK LOWER COMPO
   ngOnInit() {
     this.route.data.subscribe((pageData) => {
       // console.log(pageData);
       this.pageData = pageData.data;
       this.budgetDays = [...this.pageData.budgetDays];
-
+      this.setClickedToToday();
     });
 
     const currentMonthAndYear: [CalendarMonth, number] = this.getCurrentMonthAndDate();
@@ -53,9 +54,6 @@ export class CalendarPageComponent implements OnInit {
     // this.calculateCalendar(this.dateModel.month, this.dateModel.year);
     // this.setClickedToToday();
 
-    const currentDate = new Date();
-    const index = this.budgetDays.findIndex((d) => d.day === currentDate.getDate());
-    this.budgetDaySelected = this.budgetDays[index];
     // this.budgetDaySelected = this.budgetDays[index];
     // this.getBudgetDays();
   }
@@ -250,6 +248,7 @@ export class CalendarPageComponent implements OnInit {
     const currentYear: number = currentDate.getFullYear();
     return [currentMonth, currentYear];
   }
+
   //
   // private mapBudgetDaysToCalendar() {
   //   if (this.budgetDays != null) {
@@ -290,21 +289,39 @@ export class CalendarPageComponent implements OnInit {
   // }
 
   private setClickedToToday() {
-    let row = 0;
-    let column = 0;
-    // const active = this.model[1]
-    //   .find((day) => day.isToday === false);
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 7; j++) {
-        // row[i][j] = this.model.calendar[arrayCount];
-        if (this.calendar[i][j].isToday === true) {
-          row = i;
-          column = j;
-        }
-      }
+    // let row = 0;
+    // let column = 0;
+    // // const active = this.model[1]
+    // //   .find((day) => day.isToday === false);
+    // for (let i = 0; i < 6; i++) {
+    //   for (let j = 0; j < 7; j++) {
+    //     // row[i][j] = this.model.calendar[arrayCount];
+    //     if (this.calendar[i][j].isToday === true) {
+    //       row = i;
+    //       column = j;
+    //     }
+    //   }
+    // }
+    // this.calendar[row][column].clicked = true;
+    // this.dateModel.day =  this.calendar[row][column].dayNumber;
+    // this.calendarDaySelected = this.calendar[row][column].dayNumber;
+
+    const currentDate = new Date();
+    const budgetYear = this.budgetDays[0].year;
+    const budgetMonth = this.budgetDays[0].month - 1;
+    console.log(budgetYear, budgetMonth);
+    if (currentDate.getFullYear() === budgetYear && currentDate.getMonth() === budgetMonth) {
+      // set clicked to currentDay
+      const index = this.budgetDays.findIndex((d) => d.day === currentDate.getDate());
+      this.budgetDaySelected = {...this.budgetDays[index]};
+      this.dateModel.day = currentDate.getDate();
+      this.calendarDaySelected = currentDate.getDate();
+    } else {
+      // set clicked to 1st date of selected month
+      // TODO: fix CSS for clicked
+      this.budgetDaySelected = {...this.budgetDays[0]};;
+      this.dateModel.day = 1;
+      this.calendarDaySelected = 1;
     }
-    this.calendar[row][column].clicked = true;
-    this.dateModel.day =  this.calendar[row][column].dayNumber;
-    this.calendarDaySelected = this.calendar[row][column].dayNumber;
   }
 }

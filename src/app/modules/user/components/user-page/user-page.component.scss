@@ -1,13 +1,14 @@
 #user-page{
   //vertical-align: middle;
   //margin-top: 25%;
+  //width: 100%;
   width: 100%;
+  min-height: 100vh;
   font-family: 'Roboto Condensed', serif;
 }
 
 .user-page-container {
-  margin-top: 5%;
-
+  margin-top: 0;
   //vertical-align: middle;
   //line-height: 50%;
   //top: 150px;

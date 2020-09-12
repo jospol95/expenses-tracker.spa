@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CalendarExpenseModel} from '../../../models/calendar-expense.model';
 import {CalendarIncomeModel} from '../../../models/calendar-income.model';
-import {FacadeModel} from '../../../../../shared/facade.model';
+import {FacadeModel} from '../../../../../shared/models/facade.model';
 
 @Component({
   selector: 'app-add-income',
@@ -10,16 +10,20 @@ import {FacadeModel} from '../../../../../shared/facade.model';
 })
 export class AddIncomeComponent implements OnInit {
   @Input() public accounts: Array<FacadeModel>;
+  @Input() public model: CalendarIncomeModel;
 
   @Output() public saveEvent = new EventEmitter<CalendarIncomeModel>();
   @Output() public cancelEvent = new EventEmitter();
 
 
-  public model: CalendarIncomeModel;
-  constructor() { }
+  // public model: CalendarIncomeModel;
+
+  constructor() {
+    // this.model = new CalendarIncomeModel();
+  }
 
   ngOnInit() {
-    this.model = new CalendarIncomeModel();
+    // this.model = new CalendarIncomeModel();
   }
 
   public cancel() {

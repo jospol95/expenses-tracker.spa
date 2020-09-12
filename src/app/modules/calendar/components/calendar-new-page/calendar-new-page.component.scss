@@ -5,11 +5,20 @@
 
 .container {
   margin-top: 10px;
+  min-height: 90vh;
 }
 
 .centered-column {
   float: none;
   margin: 0 auto;
+  margin-top: 7vh;
+  //center vertically
+  //  display: flex;
+  //  flex-direction: column;
+  //  justify-content: center;
+  //  align-items: center;
+  //
+
 }
 
 select.btn-mini {
@@ -42,4 +51,10 @@ select.btn-mini + .caret {
 
 .is-expense{
   background: red;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif !important;
+  padding: 0 !important;
+  margin: 5px !important;
 }

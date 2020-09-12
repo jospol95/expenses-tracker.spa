@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CalendarExpenseModel} from '../../../models/calendar-expense.model';
-import {FacadeModel} from '../../../../../shared/facade.model';
+import {FacadeModel} from '../../../../../shared/models/facade.model';
 
 @Component({
   selector: 'app-add-expense',
@@ -10,22 +10,26 @@ import {FacadeModel} from '../../../../../shared/facade.model';
 export class AddExpenseComponent implements OnInit {
   @Input() public categories: Array<FacadeModel>;
   @Input() public accounts: Array<FacadeModel>;
+  @Input() public model: CalendarExpenseModel;
 
   @Output() public saveEvent = new EventEmitter<CalendarExpenseModel>();
   @Output() public cancelEvent = new EventEmitter();
 
-  public model: CalendarExpenseModel;
-  constructor() { }
+  // public model: CalendarExpenseModel;
+
+  constructor() {
+    // this.model = new CalendarExpenseModel();
+  }
 
   ngOnInit() {
-    this.model = new CalendarExpenseModel();
+    // this.model = new CalendarExpenseModel();
   }
 
-  public cancel(){
+  public cancel() {
 
   }
 
-  public save(){
+  public save() {
     this.saveEvent.emit(this.model);
   }
 

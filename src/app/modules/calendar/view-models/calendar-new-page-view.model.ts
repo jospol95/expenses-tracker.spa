@@ -1,4 +1,4 @@
-import {FacadeModel} from '../../../shared/facade.model';
+import {FacadeModel} from '../../../shared/models/facade.model';
 
 export class CalendarNewPageViewModel {
   public categories: Array<FacadeModel>;

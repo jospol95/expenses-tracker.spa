@@ -5,7 +5,8 @@ import {BudgetDayModel} from './models/budget-day.model';
 import {CalendarExpenseModel} from './models/calendar-expense.model';
 import {CalendarIncomeModel} from './models/calendar-income.model';
 import {Observable} from 'rxjs';
-import {FacadeModel} from '../../shared/facade.model';
+import {FacadeModel} from '../../shared/models/facade.model';
+import {CategoryModel} from '../../shared/models/category.model';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +54,7 @@ export class CalendarService {
   }
 
   public getExpense(id: string): Observable<CalendarExpenseModel> {
-    return this.http.get<CalendarIncomeModel>(this.genericExpenseUrl + id);
+    return this.http.get<CalendarExpenseModel>(this.genericExpenseUrl + id);
   }
 
   public updateExpense(expense: CalendarExpenseModel): Observable<any> {
@@ -64,8 +65,8 @@ export class CalendarService {
     return this.http.delete(this.genericExpenseUrl + id);
   }
 
-  public getCategories(userId: string): Observable<Array<FacadeModel>> {
-    return this.http.get<Array<FacadeModel>>(this.genericCategoryUrl + userId);
+  public getCategories(userId: string): Observable<Array<CategoryModel>> {
+    return this.http.get<Array<CategoryModel>>(this.genericCategoryUrl + userId);
   }
 
   public getAccounts(userId: string): Observable<Array<FacadeModel>> {

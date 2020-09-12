@@ -1,0 +1,191 @@
+<div id="charts-page">
+  <div id="faded-container" class="row">
+    <div class="col col-12 text-center">
+      REPORTS
+    </div>
+  </div>
+
+  <div class="fab-container">
+    <button mat-fab class="fab-toggler" color="primary"
+            (click)="onToggleFab()">
+      <i class="material-icons">edit</i>
+    </button>
+    <div>
+      <button *ngFor="let btn of buttons"
+              mat-mini-fab
+              [ngClass]="btn.class"
+              class="fab-secondary">
+        <i class="material-icons">{{btn.icon}}</i>
+      </button>
+    </div>
+  </div>
+
+  <div id="reports-header" class="row">
+    <!--    <div class="col col-4">-->
+    <!--      <mat-checkbox class="example-margin">Check me!</mat-checkbox>-->
+    <!--    </div>-->
+    <div class="col">
+      <mat-form-field class="text-white" appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input [(ngModel)]="startDateReport"
+                 matStartDate placeholder="Start date">
+          <input [(ngModel)]="endDateReport"
+                 matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Select categories</mat-label>
+        <mat-select [(value)]="reportRequest.selectedCategories" multiple>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Select accounts</mat-label>
+        <mat-select [(value)]="reportRequest.selectedAccounts" multiple>
+          <mat-option *ngFor="let account of accounts" [value]="account.id">
+            {{account.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col col-3 text-right">
+      <button
+        (click)="performReportSearch()"
+        class="btn btn-success">
+        Search
+      </button>
+    </div>
+    <!--    <div class="col col-2">Break by Accounts</div>-->
+    <!--    <div class="col col-4"></div>-->
+    <!--    <div class="col col-2">-->
+    <!--      <div class="btn btn-excel btn-block">-->
+    <!--        Export to Excel-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+
+  <hr class="w-100">
+
+  <div class="row" id="report-card-container">
+    <div class="col col-md-12">
+      <div id="report-card">
+        <table class="table custom-table">
+          <thead>
+          <tr>
+            <th class="table-header">DATE</th>
+            <th class="table-header">DESCRIPTION</th>
+            <th class="table-header">AMOUNT</th>
+            <th class="table-header">CATEGORY</th>
+            <th class="table-header">ACCOUNT</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let day of reportData">
+            <td class="font-weight-bold">{{day.date | date}}</td>
+            <td class="font-weight-bold">{{day.description}}</td>
+            <td class="font-weight-bold"
+                [ngClass]="{'text-success': isIncome(day), 'text-danger': isExpense(day)}">
+              {{day.amount | currency }}</td>
+            <td >{{getCategoryName(day.categoryId) }}</td>
+            <td class="">{{getAccountName(day.accountId)}}</td>
+          </tr>
+          <!--            <tr *ngIf="day.hasRegister">-->
+          <!--              <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+          <!--              <td class="font-weight-bold">Paycheck</td>-->
+          <!--              <td class="text-success">$2365.06</td>-->
+          <!--              <td></td>-->
+          <!--              <td>CHASE DEBIT</td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+          <!--              <td class="font-weight-bold">Headphones</td>-->
+          <!--              <td class="text-danger">$36.06</td>-->
+          <!--              <td>FOOD AND HEALTH</td>-->
+          <!--              <td>CHASE DEBIT</td>-->
+          <!--            </tr>-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--  <div class="row">-->
+  <!--show all -->
+  <!--    <table class="table custom-table">-->
+  <!--      <thead>-->
+  <!--      <tr>-->
+  <!--        <th class="table-header">DATE</th>-->
+  <!--        <th class="table-header">DESCRIPTION</th>-->
+  <!--        <th class="table-header">AMOUNT</th>-->
+  <!--        <th class="table-header">CATEGORY</th>-->
+  <!--        <th class="table-header">ACCOUNT</th>-->
+  <!--      </tr>-->
+  <!--      </thead>-->
+  <!--      <tbody *ngFor="let day of daysArray">-->
+  <!--      <tr *ngIf="day.hasRegister">-->
+  <!--        <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+  <!--        <td class="font-weight-bold">Paycheck</td>-->
+  <!--        <td class="text-success">$2365.06</td>-->
+  <!--        <td></td>-->
+  <!--        <td>CHASE DEBIT</td>-->
+  <!--      </tr>-->
+  <!--      <tr>-->
+  <!--        <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+  <!--        <td class="font-weight-bold">Headphones</td>-->
+  <!--        <td class="text-danger">$36.06</td>-->
+  <!--        <td>FOOD AND HEALTH</td>-->
+  <!--        <td>CHASE DEBIT</td>-->
+  <!--      </tr>-->
+  <!--      </tbody>-->
+  <!--    </table>-->
+  <!--  </div>-->
+
+  <!--  <div class="row">-->
+  <!--    &lt;!&ndash;categories, needs to be ordered by category, only expenses! &ndash;&gt;-->
+  <!--    <table class="table custom-table">-->
+  <!--      <tbody *ngFor="let day of daysArray">-->
+  <!--      <tr>-->
+  <!--        <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+  <!--        <td class="font-weight-bold">Gas station</td>-->
+  <!--        <td class="text-danger">$365.06</td>-->
+  <!--        <td>FOOD AND HEALTH</td>-->
+  <!--        <td></td>-->
+  <!--      </tr>-->
+  <!--      </tbody>-->
+  <!--    </table>-->
+  <!--  </div>-->
+
+  <!--  <div class="row">-->
+  <!--    &lt;!&ndash;accounts, needs to be order by accounts, needs to have income or expense ind , needs to have an account of&ndash;&gt;-->
+  <!--    <table class="table custom-table">-->
+  <!--      <tbody *ngFor="let day of daysArray">-->
+  <!--      <tr>-->
+  <!--        <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+  <!--        <td class="font-weight-bold">Paycheck</td>-->
+  <!--        <td class="text-success">$2365.06</td>-->
+  <!--        <td></td>-->
+  <!--        <td>CHASE DEBIT</td>-->
+  <!--      </tr>-->
+  <!--      <tr>-->
+  <!--        <td class="font-weight-bold">June, {{day.day}}th, 2020</td>-->
+  <!--        <td class="font-weight-bold">Headphones</td>-->
+  <!--        <td class="text-danger">$36.06</td>-->
+  <!--        <td>FOOD AND HEALTH</td>-->
+  <!--        <td>CHASE DEBIT</td>-->
+  <!--      </tr>-->
+  <!--      </tbody>-->
+  <!--    </table>-->
+  <!--  </div>-->
+
+
+</div>
+

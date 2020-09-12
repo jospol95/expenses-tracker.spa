@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ReportRequestModel} from '../../modules/investments/models/report-request.model';
+import {ReportRequestModel} from '../../modules/reports/models/report-request.model';
 import {ReportRequestFilterModel} from '../models/report-request-filter.model';
 import {type} from 'os';
 import {noop} from 'rxjs';
@@ -16,16 +16,17 @@ export class LocalStorageService {
 
   }
 
-  public getFilter(keyName: string) {
+  public getKey(keyName: string) {
     const savedFilter = localStorage.getItem(keyName);
     if (savedFilter != null) {
+      // console.log(JSON.parse(savedFilter));
       return JSON.parse(savedFilter);
     }
     return null;
   }
 
-  private saveFilterToLocalStorage(keyName: string, value: any | ReportRequestModel) {
-    localStorage.setItem(keyName, value);
+  public saveKey(keyName: string, value) {
+    localStorage.setItem(keyName, JSON.stringify(value));
   }
 
   // public getBudgetReportFilter(): ReportRequestModel {

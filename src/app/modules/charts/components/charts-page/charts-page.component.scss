@@ -1,0 +1,89 @@
+#reports-page {
+  width: 100%;
+  font-family: 'Roboto Condensed', serif;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  min-width: 600px;
+}
+
+.chart {
+  margin: 0;
+  padding: 0;
+  height: 500px;
+  //min-width: 500px;
+}
+
+.legend {
+  color: white;
+}
+
+.mini-chart {
+  height: 200px;
+}
+
+.dark-card {
+  background: #243447;
+}
+
+.left-side-section {
+  overflow-y: auto;
+  height: 90vh;
+  //todo use height:100% and overflow in parent (layout)
+}
+
+.side-section {
+  //float:left;
+  //width:1000px;
+  overflow-y: auto;
+  height: 90vh;
+}
+
+#report-table {
+  border-radius: 0.3em;
+  //background: whitesmoke;
+  color: white;
+
+  tbody tr.total-row {
+    //background: darkcyan;
+    //border-radius: 0 0 0.3em 0.3em;
+    font-size: 18px;
+  }
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.card-custom-header {
+  background: dodgerblue;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  //font-size: x-large;
+  color: black;
+}
+
+#faded-container {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 0px;
+  background: #243447;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  color: white;
+  //border-radius: 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif;;
+  padding: 0 !important;
+  margin: 5px !important;
+}
+
+.font-weight-bold{
+  font-weight: bold;
+}

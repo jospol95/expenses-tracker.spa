@@ -1,0 +1,16 @@
+.table-less-padding{
+  padding: 0.5em;
+}
+
+.table{
+  font-size: 13px !important;
+
+  thead{
+    tr th{
+      font-size: 13px !important;
+    }
+  }
+  th{
+    font-weight: bold;
+  }
+}

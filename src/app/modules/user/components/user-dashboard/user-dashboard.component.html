@@ -3,21 +3,33 @@
     <div class="col-md-3">
       <ul class="nav nav-pills nav-pills-primary flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#tab1" data-toggle="tab">
+          <a class="nav-link active"
+             href="#tab1"
+             data-toggle="tab"
+             [routerLink]="['profile']"
+          >
             <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>
             &nbsp;
             PROFILE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#tab2" data-toggle="tab">
+          <a class="nav-link"
+             href="#tab2"
+             data-toggle="tab"
+             >
             <mat-icon aria-hidden="false" aria-label="Example home icon">account_balance</mat-icon>
             &nbsp;
             ACCOUNTS</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="tab"
+             [routerLink]="['categories']">
           <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
           &nbsp;
-          CATEGORIES</a></li>
+          CATEGORIES
+          </a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">
           <mat-icon aria-hidden="false" aria-label="Example home icon">devices</mat-icon>
           &nbsp;
@@ -30,81 +42,82 @@
     </div>
     <div class="col-md-9">
       <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-          <div class="col col-md-10 col-centered">
+        <router-outlet></router-outlet>
+<!--        <div class="tab-pane active" id="tab1">-->
+<!--          <div class="col col-md-10 col-centered">-->
 
-            <div class="card">
-              <div class="card-header card-header-primary custom dogder-bg">
-                <h4 class="card-title">User profile</h4>
-                <p class="card-category">Edit your information</p>
-              </div>
-              <div class="card-body">
-                <form>
-                  <div class="row custom-row">
-                    <div class="col col-12">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                              <span class="input-group-text">
-                                  <i class="material-icons">group</i>
-                              </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Email address">
-                      </div>
-                      <!--              <input type="text" class="form-control light-color" placeholder="Email">-->
-                    </div>
-                    <div class="col col-6">
-                      <input type="text" class="form-control light-color" placeholder="First name">
-                      <small class="form-text muted-text">First Name</small>
+<!--            <div class="card">-->
+<!--              <div class="card-header card-header-primary custom dogder-bg">-->
+<!--                <h6 class="card-title">User profile</h6>-->
+<!--                <p class="card-category">Edit your information</p>-->
+<!--              </div>-->
+<!--              <div class="card-body">-->
+<!--                <form>-->
+<!--                  <div class="row custom-row">-->
+<!--                    <div class="col col-12">-->
+<!--                      <div class="input-group">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                              <span class="input-group-text">-->
+<!--                                  <i class="material-icons">group</i>-->
+<!--                              </span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="form-control" placeholder="Email address">-->
+<!--                      </div>-->
+<!--                      &lt;!&ndash;              <input type="text" class="form-control light-color" placeholder="Email">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="col col-6">-->
+<!--                      <input type="text" class="form-control light-color" placeholder="First name">-->
+<!--                      <small class="form-text muted-text">First Name</small>-->
 
-                    </div>
-                    <div class="col col-6">
-                      <input type="text" class="form-control light-color" placeholder="Last name">
-                      <small class="form-text muted-text">Last Name</small>
-                    </div>
-                    <div class="col col-8">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                              <span class="input-group-text">
-                                  (+1)
-                              </span>
-                        </div>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                               placeholder="Phone number">
-                        <small class="form-text muted-text">
-                          Your phone number allow us to remind you of your expenses by SMS.</small>
-                      </div>
-                    </div>
-                    <div class="col-12 text-right">
-                      <div class="col-md-12">
-                        <button class="btn dogder-bg btn-block pull-md-right">
-                          EDIT
-                        </button>
-                      </div>
+<!--                    </div>-->
+<!--                    <div class="col col-6">-->
+<!--                      <input type="text" class="form-control light-color" placeholder="Last name">-->
+<!--                      <small class="form-text muted-text">Last Name</small>-->
+<!--                    </div>-->
+<!--                    <div class="col col-8">-->
+<!--                      <div class="input-group">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                              <span class="input-group-text">-->
+<!--                                  (+1)-->
+<!--                              </span>-->
+<!--                        </div>-->
+<!--                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"-->
+<!--                               placeholder="Phone number">-->
+<!--                        <small class="form-text muted-text">-->
+<!--                          Your phone number allow us to remind you of your expenses by SMS.</small>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 text-right">-->
+<!--                      <div class="col-md-12">-->
+<!--                        <button class="btn dogder-bg btn-block pull-md-right">-->
+<!--                          EDIT-->
+<!--                        </button>-->
+<!--                      </div>-->
 
-                      <!--              <button class="btn btn-danger pull-md-right disabled">-->
-                      <!--                Cancel-->
-                      <!--              </button>-->
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+<!--                      &lt;!&ndash;              <button class="btn btn-danger pull-md-right disabled">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                Cancel&ndash;&gt;-->
+<!--                      &lt;!&ndash;              </button>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--              </div>-->
+<!--            </div>-->
 
-          </div>
-        </div>
-        <div class="tab-pane" id="tab2">
-          <div class="col col-md-10 col-centered">
-            <app-user-month-summary></app-user-month-summary>
-          </div>
-        </div>
-        <div class="tab-pane" id="tab3">
-          <div class="col col-md-10 col-centered">
-            <app-user-categories>
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="tab-pane" id="tab2">-->
+<!--          <div class="col col-md-10 col-centered">-->
+<!--            <app-user-month-summary></app-user-month-summary>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="tab-pane" id="tab3">-->
+<!--          <div class="col col-md-10 col-centered">-->
+<!--            <app-user-categories>-->
 
-            </app-user-categories>
-          </div>
+<!--            </app-user-categories>-->
+<!--          </div>-->
 
-        </div>
+<!--        </div>-->
       </div>
     </div>
   </div>

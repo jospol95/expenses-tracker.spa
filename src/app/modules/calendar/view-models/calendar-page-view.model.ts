@@ -1,5 +1,5 @@
 import {BudgetDayModel} from '../models/budget-day.model';
-import {FacadeModel} from '../../../shared/facade.model';
+import {FacadeModel} from '../../../shared/models/facade.model';
 
 export class CalendarPageViewModel {
   public budgetDays: BudgetDayModel[];

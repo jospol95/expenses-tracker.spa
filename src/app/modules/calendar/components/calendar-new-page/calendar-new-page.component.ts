@@ -6,6 +6,8 @@ import {CalendarService} from '../../calendar.service';
 import {BasePageComponent} from '../../../../shared/components/base-page/base-page.component';
 import swal from 'sweetalert2/dist/sweetalert2.js';
 import {CalendarNewPageViewModel} from '../../view-models/calendar-new-page-view.model';
+import {Observable, Subject} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 
 @Component({
@@ -17,6 +19,11 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
   public day: number;
   public month: number;
   public year: number;
+
+  public newExpense = new CalendarExpenseModel();
+  public newIncome = new CalendarIncomeModel();
+
+  public daySelectedSubject = new Subject<number>();
 
   private _monthName: string;
 
@@ -78,6 +85,7 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
         if (params.day && params.month && params.year) {
           // check if valid date
           this.day = parseInt(params.day, 10);
+          console.log('day', this.day);
           this.month = parseInt(params.month, 10);
           this.year = parseInt(params.year, 10);
 
@@ -85,6 +93,13 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
             console.log(pageData);
             this.pageData = pageData.data;
           });
+
+          // this.daySelectedSubject.pipe(
+          //   tap((daySelected) => {
+          //     this.day = daySelected;
+          //     this.__router.repla
+          //   })
+          // );
         }
       } else {
         // else redirect to 404
@@ -145,13 +160,15 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
       confirmButtonText: 'Add another'
     }).then((result) => {
       if (result.value) {
-        // add another clicked
+        // add another was clicked
+        this.newExpense = new CalendarExpenseModel();
+        this.newIncome = new CalendarIncomeModel();
         this.__router.navigate(
           ['calendar/new'],
           {queryParams: {day: this.day, month: this.month, year: this.year}}
         );
       } else {
-        // not now clicked
+        // not now was clicked
         this.__router.navigate(
           ['calendar']
         );
@@ -174,5 +191,12 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
       optionDayArray.push(dayOption);
     }
     return optionDayArray;
+  }
+
+  updateSelectedDay($event: any) {
+    this.day = 5;
+
+    // console.log($event);
+
   }
 }

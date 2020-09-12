@@ -17,8 +17,8 @@ export class CategoriesService {
   constructor(private readonly http: HttpClient) {
   }
 
-  public getCategories(userId: string): Observable<Array<FacadeModel>> {
-    return this.http.get<Array<FacadeModel>>(this.genericCategoryUrl + userId);
+  public getCategories(userId: string): Observable<Array<CategoryModel>> {
+    return this.http.get<Array<CategoryModel>>(this.genericCategoryUrl + userId);
   }
 
 

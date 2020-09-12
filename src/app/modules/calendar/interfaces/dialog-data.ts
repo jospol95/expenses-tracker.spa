@@ -1,5 +1,5 @@
 import {CalendarIncomeModel} from '../models/calendar-income.model';
-import {FacadeModel} from '../../../shared/facade.model';
+import {FacadeModel} from '../../../shared/models/facade.model';
 
 export interface EditEntryModalData {
   id: string;

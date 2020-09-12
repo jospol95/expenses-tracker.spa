@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserModuleRoutes} from '../../user-module.routes';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashboardComponent implements OnInit {
 
+  public tabRoutes = UserModuleRoutes.routes;
   constructor() { }
 
   ngOnInit() {

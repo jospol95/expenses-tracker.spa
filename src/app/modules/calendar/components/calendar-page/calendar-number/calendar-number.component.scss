@@ -2,7 +2,7 @@
 .calendar-day {
   //padding: 1em .1em 1em .1em;
   font-size: 16px;
-
+  opacity: 50%;
   span {
     border-radius: 50%;
     padding: .5em 1em .5em 1em;
@@ -10,6 +10,8 @@
 }
 
 .calendar-day.clicked {
+  color: white;
+  opacity: 100%;
   span {
     background: dodgerblue !important;
     box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black !important;
@@ -30,15 +32,16 @@
 }
 
 .calendar-day.day-has-expense {
-
+  opacity: 100%;
   span{
-    background: #243447;
-    color: white;
+    //background: #243447;
+    //color: white;
     font-weight: bold;
   }
 }
 .calendar-day-2{
   font-size: 16px;
+  opacity: 50%;
   > span {
     border-radius: 50%;
     //background: orangered;
@@ -49,15 +52,18 @@
   cursor: pointer;
 }
 .calendar-day-2.clicked {
+  color: white;
+  opacity: 100%;
   span {
     background: dodgerblue !important;
     box-shadow: 0 1px 3px dodgerblue, 0 1px 2px black !important;
   }
 }
 .calendar-day-2.day-has-expense {
+  opacity: 100%;
   span{
-    background: #243447;
-    color: white;
+    //background: #243447;
+    //color: white;
     font-weight: bold;
   }
 }

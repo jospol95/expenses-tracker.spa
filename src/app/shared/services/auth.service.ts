@@ -19,6 +19,10 @@ export class AuthorizationService {
     this._isLoggedIn = value;
   }
 
+  public getUserId(){
+    return '123';
+  }
+
   public tryLogin(loginModel: AuthLoginModel) {
     const username = 'lanjos26';
     const password = '2625';

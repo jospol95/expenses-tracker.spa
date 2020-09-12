@@ -1,31 +1,31 @@
 <div id="home-page">
-  <div class="row">
-    <div class="col col-12 text-center">
-      <div id="faded-container">
-<!--        DASHBOARD - A quick summary for the current month-->
-        <igx-input-group class="autocomplete">
-          <label igxLabel for="town">Town</label>
-          <input igxInput name="town" type="text"
-                 [igxAutocomplete]="townsPanel"
-                 [(ngModel)]="townSelected"/>
-        </igx-input-group>
-        <igx-drop-down #townsPanel maxHeight="300px">
-          <igx-drop-down-item *ngFor="let town of towns" [value]="town">
-            {{town}}
-          </igx-drop-down-item>
-        </igx-drop-down>
-
-
-      </div>
+  <div id="faded-container" class="row">
+    <div class="col col-3"></div>
+    <div class="col col-6 text-center">
+      <!--        DASHBOARD - A quick summary for the current month-->
+      <igx-input-group class="autocomplete">
+        <label igxLabel for="quicksearch">Quick search</label>
+        <input igxInput name="quicksearch" type="text"
+               class="no-padding-input white-text"
+               [igxAutocomplete]="townsPanel"
+               (ngModelChange)="filterBudgetList($event)"
+               [(ngModel)]="descriptionSelected"/>
+      </igx-input-group>
+      <igx-drop-down #townsPanel maxHeight="300px">
+        <igx-drop-down-item *ngFor="let desc of descriptionsArray | startsWith:descriptionSelected" [value]="desc">
+          {{desc}}
+        </igx-drop-down-item>
+      </igx-drop-down>
+      <div class="col col-3"></div>
     </div>
   </div>
   <div class="row">
     <div id="days-container" class="col col-7">
-      <div *ngFor="let day of budgetDays" class="row">
+      <div *ngFor="let day of filteredBudgetList" class="row">
         <div *ngIf="hasDayIncomeOrExpense(day)" class="card col col-12">
           <div class="card-header card-header-text card-header-primary">
             <div class="card-text">
-              <h4 class="card-title">July {{day.day}}, {{day.year}}</h4>
+              <span class="title-h4 font-weight-bold">July {{day.day}}, {{day.year}}</span>
             </div>
           </div>
           <!--          <div class="card-header card-header-primary">-->
@@ -78,18 +78,34 @@
             <div class="col col-12 text-center">
               TOTAL SPENT TO DATE
             </div>
+            <div class="col col-12 text-center d-flex justify-content-center">
+              <igx-pie-chart [dataSource]="budgetDataChart"
+                             width="300px"
+                             height="200px"
+                             labelMemberPath="label"
+                             allowSliceExplosion="true"
+                             [brushes]="['greed','red']"
+                             valueMemberPath="value">
+              </igx-pie-chart>
+            </div>
             <div class="col col-12 text-center amount-container">
-              <span class="text-success">$ {{this.totalIncome | number}}</span> - <span class="text-danger">$ {{this.totalExp | number}}</span> = <span
+              <span class="text-success">$ {{this.totalIncome | number}}</span> - <span
+              class="text-danger">$ {{this.totalExp | number}}</span> = <span
               class="text-primary">{{ (this.totalIncome - this.totalExp) | number }}</span>
             </div>
           </div>
         </div>
         <br>
+        <app-category-budget-expense
+          [model]="categoryBudgetExpenseList"
+        >
+
+        </app-category-budget-expense>
       </div>
 
       <div class="card">
         <div class="card-header card-header-success font-weight-bold">
-          Incomes
+          Income
         </div>
         <div class="card-body">
           <div class="row">
@@ -109,52 +125,38 @@
           Expenses
         </div>
         <div class="card-body">
-          <h4 class="card-title">$ 1,534.00 this month</h4>
+          <div class="row">
+            <div class="col col-12 text-center">
+              ACTIVITY FOR MONTH
+            </div>
+            <div class="col col-12 text-center amount-container">
+              <span class="text-danger">$ {{this.totalExp | number }}</span>
+            </div>
+          </div>
           <br>
-          <div class="row">
-            <div class="col col-12">
-              <h5>Top 3 expenses</h5>
-              <hr>
-            </div>
-            <table class="table card-table">
-              <tr>
-                <td>Expense 1</td>
-                <td>$567.233</td>
-                <td>Date</td>
-              </tr>
-              <tr>
-                <td>Expense 2</td>
-                <td>$467.233</td>
-                <td>Date</td>
-              </tr>
-              <tr>
-                <td>Expense 3</td>
-                <td>123.233</td>
-                <td>Date</td>
-              </tr>
-            </table>
-          </div>
-          <div class="row">
-            <div class="col col-12">
-              <h5>Top 3 categories</h5>
-              <hr>
-
-            </div>
-            <table class="table card-table">
-              <tr>
-                <td>Expense 1</td>
-                <td>$567.233</td>
-              </tr>
-              <tr>
-                <td>Expense 2</td>
-                <td>$467.233</td>
-              </tr>
-              <tr>
-                <td>Expense 3</td>
-                <td>123.233</td>
-              </tr>
-            </table>
-          </div>
+<!--          <div class="row">-->
+<!--            <div class="col col-12">-->
+<!--              <h5>Top 3 expenses</h5>-->
+<!--              <hr>-->
+<!--            </div>-->
+<!--            <table class="table card-table">-->
+<!--              <tr>-->
+<!--                <td>Expense 1</td>-->
+<!--                <td>$567.233</td>-->
+<!--                <td>Date</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>Expense 2</td>-->
+<!--                <td>$467.233</td>-->
+<!--                <td>Date</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>Expense 3</td>-->
+<!--                <td>123.233</td>-->
+<!--                <td>Date</td>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
         </div>
 
 

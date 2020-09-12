@@ -6,10 +6,14 @@ import {HomePageResolver} from './resolvers/home-page.resolver';
 import {MatIconModule} from '@angular/material/icon';
 import {IgxAutocompleteModule, IgxDropDownModule, IgxInputGroupModule, IgxProgressBarModule} from 'igniteui-angular';
 import {FormsModule} from '@angular/forms';
+import {AppModule} from '../../app.module';
+import {CustomPipesModule} from '../../shared/pipes/custom-pipes.module';
+import {IgxPieChartCoreModule} from 'igniteui-angular-charts';
+import { CategoryBudgetExpenseComponent } from './components/category-budget-expense/category-budget-expense.component';
 
 
 @NgModule({
-  declarations: [LandingPageComponent],
+  declarations: [LandingPageComponent, CategoryBudgetExpenseComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -18,6 +22,8 @@ import {FormsModule} from '@angular/forms';
     IgxDropDownModule,
     IgxInputGroupModule,
     FormsModule,
+    CustomPipesModule,
+    IgxPieChartCoreModule
   ],
   providers: [
     CalendarService

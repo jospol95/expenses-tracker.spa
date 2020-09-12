@@ -1,8 +1,13 @@
 
 .summary-card-container {
   //todo make with vertical align
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 2px;
+}
+
+.scrollable-body{
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .dark-grey-bg {
@@ -10,12 +15,13 @@
 }
 
 .summary-card {
-  height: 500px;
+  height: 560px;
 }
 .inner-padding{
   padding-left: 10px !important;
 }
 .no-padding-inner{
+  margin-top: 0px !important;
   padding-left: 5px !important;
   padding-right: 0px !important;
 }
@@ -64,10 +70,29 @@
 }
 
 .action-icon{
-  font-size: 19px;
+  font-size: 19px !important;
 }
 
 .action-icon:hover{
   cursor: pointer;
 }
 
+h1,h2,h3,h4,h5,h6{
+  font-family: inherit;
+  padding: 0 !important;
+  margin: 5px !important;
+}
+
+.font-weight-bold{
+  font-weight: bold;
+}
+
+.custom-card-header{
+  background: #243447 !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin-bottom: 0px !important;
+  span{
+    font-size: 16px !important;
+  }
+}

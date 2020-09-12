@@ -1,5 +1,5 @@
 .action-icon {
-  font-size: 19px;
+  font-size: 19px !important;
 }
 
 .action-icon:hover{
@@ -12,4 +12,10 @@
 
 .delete-icon {
   color: red;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif;;
+  padding: 0 !important;
+  margin: 5px !important;
 }

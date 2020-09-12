@@ -1,15 +1,30 @@
-.action-icon {
-  font-size: 19px;
+//.action-icon {
+//  font-size: 19px !important;
+//}
+//
+//.action-icon:hover{
+//  cursor: pointer;
+//}
+//
+//.info-icon {
+//  color: dodgerblue;
+//}
+//
+//.delete-icon {
+//  color: red;
+//}
+
+.categories-card{
+  height: 75vh;
 }
 
-.action-icon:hover{
-  cursor: pointer;
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', serif;;
+  padding: 0 !important;
+  margin: 5px !important;
 }
 
-.info-icon {
-  color: dodgerblue;
-}
-
-.delete-icon {
-  color: red;
+.scrollable-body{
+  overflow-x: hidden;
+  overflow-y: auto;
 }

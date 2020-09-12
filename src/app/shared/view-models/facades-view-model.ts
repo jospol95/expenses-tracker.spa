@@ -1,6 +1,6 @@
 import {FacadeModel} from '../models/facade.model';
 
-export class FacadesPageViewModel {
+export class FacadesViewModel {
   public categories: Array<FacadeModel>;
   public accounts: Array<FacadeModel>;
 
