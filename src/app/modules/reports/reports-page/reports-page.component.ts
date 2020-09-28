@@ -62,17 +62,17 @@ export class ReportsPageComponent implements OnInit {
   ngOnInit() {
     // look for cookie params to initializa reportRequest
     this.__route.data.subscribe((r) => {
-      console.log(r);
       const data: FacadesViewModel = r.data;
       this.accounts = [...data.accounts];
       this.categories = [...data.categories];
 
       // this.reportRequest = new ReportRequestModel();
-      const reportRequest = this._localStorage.getKey(this._localStorage.budgetReportFilterName);
+      let reportRequest = this._localStorage.getKey(this._localStorage.budgetReportFilterName);
       console.log(reportRequest);
-      console.log(this._localStorage.getKey(this._localStorage.budgetReportFilterName));
+      // console.log());
 
-      this.reportRequest = reportRequest != null ? reportRequest :  new ReportRequestModel();
+      this.reportRequest = reportRequest != null ?
+        reportRequest : new ReportRequestModel();
       // if(reportRequestFilterFromLS) != null
       this.initializeDatePickers();
       this.initializeDropDowns();
@@ -83,12 +83,12 @@ export class ReportsPageComponent implements OnInit {
   }
 
   public performReportSearch() {
-    this.reportRequest.startDate = this.startDateReport;
-    this.reportRequest.endDate = this.endDateReport;
-    console.log(this.reportRequest);
+    this.saveRequestParams();
+    console.log('request accounts: ' + this.reportRequest.selectedAccounts);
     this._localStorage.saveKey(this._localStorage.budgetReportFilterName, this.reportRequest);
     this.getReport({...this.reportRequest});
   }
+
 
   public getAccountName(accountId: number) {
     if (this.accounts.find((a) => a.id === accountId) != null) {
@@ -98,19 +98,22 @@ export class ReportsPageComponent implements OnInit {
   }
 
   public getCategoryName(categoryId: number) {
-    if (this.categories.find((c) => c.id === categoryId) != null ) {
+    if (this.categories.find((c) => c.id === categoryId) != null) {
       return this.categories.find((c) => c.id === categoryId).name;
     }
     return '';
   }
 
-  // initialize date pickers to firstDateOfMonth - currentDate
+  private saveRequestParams() {
+    // other props are saved by the ngModel in the mat-components
+    this.reportRequest.startDate = this.startDateReport;
+    this.reportRequest.endDate = this.endDateReport;
+  }
+
   private initializeDatePickers() {
+    // initialize date pickers to firstDateOfMonth - currentDate
     this.startDateReport = this.reportRequest.startDate;
     this.endDateReport = this.reportRequest.endDate;
-    // const dt = new Date();
-    // this.startDateReport = new Date(dt.getFullYear(), dt.getMonth(), 1);
-    // this.endDateReport = dt;
   }
 
   public isIncome(day: ReportModel) {
@@ -121,19 +124,15 @@ export class ReportsPageComponent implements OnInit {
     return day.budgetRecordType === BudgetRecordTypeEnum.Expense;
   }
 
-  // resolve
-
-  // end resolve
-
   private getReport(request: ReportRequestModel) {
-    this._reportsService.getReport(request).subscribe((r) => {
-      this.reportData = r;
+    this._reportsService.getReport(request).subscribe((reportResult) => {
+      this.reportData = reportResult;
     });
   }
 
   private initializeDropDowns() {
-    this.accounts.forEach((a) => this.reportRequest.selectedAccounts.push(a.id));
-    this.categories.forEach((c) => this.reportRequest.selectedCategories.push(c.id));
+    this.accounts.forEach((account) => this.reportRequest.selectedAccounts.push(account.id));
+    this.categories.forEach((category) => this.reportRequest.selectedCategories.push(category.id));
   }
 
 

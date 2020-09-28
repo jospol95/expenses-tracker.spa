@@ -5,6 +5,7 @@ export class ReportRequestModel {
   public endDate: Date;
   public selectedCategories: number[];
   public selectedAccounts: number[];
+  public includeIncome: boolean;
 
   constructor() {
     const currentDate = new Date();
@@ -12,5 +13,6 @@ export class ReportRequestModel {
     this.endDate = currentDate;
     this.selectedAccounts = new Array<number>();
     this.selectedCategories = new Array<number>();
+    this.includeIncome = true;
   }
 }

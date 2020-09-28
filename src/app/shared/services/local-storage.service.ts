@@ -18,6 +18,7 @@ export class LocalStorageService {
 
   public getKey(keyName: string) {
     const savedFilter = localStorage.getItem(keyName);
+    console.log(savedFilter);
     if (savedFilter != null) {
       // console.log(JSON.parse(savedFilter));
       return JSON.parse(savedFilter);
