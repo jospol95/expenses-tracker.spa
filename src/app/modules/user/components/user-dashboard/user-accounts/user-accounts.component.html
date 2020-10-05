@@ -1,0 +1,39 @@
+<div class="card accounts-card">
+  <div class="card-header card-header-primary">
+    <h6 class="card-title">Accounts</h6>
+    <a class="card-category clickable" (click)="addNewAccount()">Add a new account
+<!--      <button-->
+<!--        (click)="addNewAccount()"-->
+<!--        class="btn btn-danger">-->
+<!--        ADD NEW-->
+<!--      </button>-->
+    </a>
+
+  </div>
+
+  <div class="card-body scrollable-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th  class="font-weight-bold">Name</th>
+        <th class="">Description</th>
+<!--        <th class="">Budget assigned</th>-->
+        <th class="text-right">Actions</th>
+        <!--        <th class="text-right">Outcome</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr app-user-account-item
+          *ngFor="let account of accounts; index as index"
+          [model]="account"
+          [index]="index"
+          (createEvent)=createAccount($event)
+          (updateEvent)="updateAccount($event)"
+          (deleteEvent)="deleteAccount($event)"
+      >
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

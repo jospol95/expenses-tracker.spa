@@ -1,0 +1,52 @@
+<!--edit mode-->
+<td style="width:120px;" *ngIf="!isEditMode" class="font-weight-bold">{{model.name}}</td>
+<td style="width:380px" *ngIf="!isEditMode" class="">{{model.description}}</td>
+<!--<td style="width:120px;" *ngIf="!isEditMode"  class="font-weight-bold">{{model.budgetAssigned | currency}}</td>-->
+
+<td style="width:80px" *ngIf="!isEditMode" class="text-right last-td">
+  <mat-icon
+    (click)="saveState()"
+    aria-hidden="false" class="info-icon action-icon" aria-label="Example home icon">edit
+  </mat-icon>
+  <mat-icon
+    (click)="deleteEvent.emit([model,index])"
+    aria-hidden="false" class="delete-icon action-icon" aria-label="Example home icon">delete
+  </mat-icon>
+</td>
+<!--end edit mode-->
+
+
+<td style="width:120px;" *ngIf="isEditMode" class="">
+  <!--    {{model.name}}-->
+  <input class="form-control font-weight-bold" name="name" [(ngModel)]="model.name">
+</td>
+<td style="width:380px" *ngIf="isEditMode" class="">
+  <!--    {{model.description}}-->
+  <input class="form-control" name="description" [(ngModel)]="model.description">
+
+</td>
+
+<!--<td style="width:120px" *ngIf="isEditMode" class="">-->
+  <!--    {{model.description}}-->
+<!--  <input class="form-control" type="number" name="description" [(ngModel)]="model.budgetAssigned">-->
+
+<!--</td>-->
+<td style="width:80px" *ngIf="isEditMode" class="text-right last-td">
+  <mat-icon
+    (click)="doSaveOrUpdate()"
+    aria-hidden="false" class="save-icon action-icon" aria-label="Example home icon">save
+  </mat-icon>
+  <mat-icon
+    (click)="resetModel()"
+    aria-hidden="false" class="default-icon action-icon" aria-label="Example home icon">close
+  </mat-icon>
+</td>
+
+
+<!--[swal]="{-->
+<!--icon: 'warning',-->
+<!--text: 'Are you sure that you want to delete this category?' +-->
+<!--'Linked records to this category will be set to empty.',-->
+<!--confirmButtonText: 'Yes, delete it',-->
+<!--showCancelButton: true}"-->
+<!--(confirm)="deleteEvent.emit(model)"-->
