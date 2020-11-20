@@ -3,12 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {BudgetReportRequest} from '../models/budget-report-request.model';
 import {Observable} from 'rxjs';
 import {BudgetReportModel} from '../models/budget-report.model';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportsService {
-  private genericBudgetUrl = 'https://localhost:5001/api/v1/Budget/';
+  private genericBudgetUrl = environment.BUDGET_API + '/v1/Budget/';
 
   constructor(private readonly http: HttpClient) {
 
