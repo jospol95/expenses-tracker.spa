@@ -9,6 +9,10 @@
   //todo use height:100% and overflow in parent (layout)
 }
 
+#days-container div.card{
+  margin-bottom: 12px;
+}
+
 #cards-container{
   overflow-y: auto;
   height: 90vh;

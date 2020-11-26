@@ -12,7 +12,9 @@
                [(ngModel)]="descriptionSelected"/>
       </igx-input-group>
       <igx-drop-down #townsPanel maxHeight="300px">
-        <igx-drop-down-item *ngFor="let desc of descriptionsArray | startsWith:descriptionSelected" [value]="desc">
+        <igx-drop-down-item
+          *ngFor="let desc of descriptionsArray |
+          startsWith:descriptionSelected" [value]="desc">
           {{desc}}
         </igx-drop-down-item>
       </igx-drop-down>
@@ -20,47 +22,32 @@
     </div>
   </div>
   <div class="row">
+    <div class="col col-12">
+      <span>To add more entries, go to the
+        <a routerLink="/calendar">Calendar</a> .
+      </span>
+    </div>
     <div id="days-container" class="col col-7">
       <div *ngFor="let day of filteredBudgetList" class="row">
-        <div *ngIf="hasDayIncomeOrExpense(day)" class="card col col-12">
-          <div class="card-header card-header-text card-header-primary">
+        <div *ngIf="hasDayIncomeOrExpense(day)" class="card col col-12 ">
+          <div class="card-header card-header-text card-header-primary ">
             <div class="card-text">
-              <span class="title-h4 font-weight-bold">July {{day.day}}, {{day.year}}</span>
+              <span class="title-h4 font-weight-bold">{{getMonthName(day.month)}} {{day.day}}, {{day.year}}</span>
             </div>
           </div>
-          <!--          <div class="card-header card-header-primary">-->
-          <!--            <div class="row">-->
-          <!--              <div class="col">-->
-          <!--                <div class="card-text">-->
-          <!--                  <h4 class="card-title">July {{day.day}}, {{day.year}}</h4>-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--              <div class="col ">-->
-          <!--                <div class="float-right">-->
-          <!--                  <button class="btn btn-info custom-btn">-->
-          <!--                    <mat-icon>launch</mat-icon>-->
-          <!--                  </button>-->
-          <!--                  &nbsp;-->
-          <!--                  <button class="btn btn-success custom-btn">-->
-          <!--                    <mat-icon>add</mat-icon>-->
-          <!--                  </button>-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
           <table class="table">
             <tbody>
             <tr *ngFor="let income of day.incomes">
-              <td class="font-weight-bold">{{income.title}}</td>
-              <td class="text-success font-weight-bold">${{income.amount}}</td>
-              <td></td>
-              <td>{{getAccountNameUpper(income.accountId)}}</td>
+              <td style="width:120px;" class="font-weight-bold">{{income.title}}</td>
+              <td style="width:80px;" class="text-success font-weight-bold">${{income.amount}}</td>
+              <td style="width:120px;"></td>
+              <td style="width:120px;">{{getAccountNameUpper(income.accountId)}}</td>
             </tr>
             <tr *ngFor="let expense of day.expenses">
-              <td class="font-weight-bold">{{expense.title}}</td>
-              <td class="text-danger font-weight-bold">${{expense.amount}}</td>
-              <td>{{getCategoryNameUpper(expense.categoryId)}}</td>
-              <td>{{getAccountNameUpper(expense.accountId)}}</td>
+              <td style="width:120px;" class="font-weight-bold">{{expense.title}}</td>
+              <td style="width:80px;" class="text-danger font-weight-bold">${{expense.amount}}</td>
+              <td style="width:120px;">{{getCategoryNameUpper(expense.categoryId)}}</td>
+              <td style="width:120px;">{{getAccountNameUpper(expense.accountId)}}</td>
             </tr>
             </tbody>
           </table>
@@ -68,102 +55,73 @@
       </div>
 
     </div>
-    <div id="cards-container" class="col col-5">
-      <div class="card">
-        <div class="card-header card-header-primary font-weight-bold">
-          Budget
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col col-12 text-center">
-              TOTAL SPENT TO DATE
-            </div>
-            <div class="col col-12 text-center d-flex justify-content-center">
-              <igx-pie-chart [dataSource]="budgetDataChart"
-                             width="300px"
-                             height="200px"
-                             labelMemberPath="label"
-                             allowSliceExplosion="true"
-                             [brushes]="['greed','red']"
-                             valueMemberPath="value">
-              </igx-pie-chart>
-            </div>
-            <div class="col col-12 text-center amount-container">
-              <span class="text-success">$ {{this.totalIncome | number}}</span> - <span
-              class="text-danger">$ {{this.totalExp | number}}</span> = <span
-              class="text-primary">{{ (this.totalIncome - this.totalExp) | number }}</span>
-            </div>
-          </div>
-        </div>
-        <br>
-        <app-category-budget-expense
-          [model]="categoryBudgetExpenseList"
-        >
+    <div id="cards-container" class="col-5">
+      <app-budget-home
+        [model]="categoryBudgetExpenseList"
+        [categories]="categories"
+        [expensesTotal]="totalExp"
+                >
 
-        </app-category-budget-expense>
-      </div>
-
-      <div class="card">
-        <div class="card-header card-header-success font-weight-bold">
-          Income
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col col-12 text-center">
-              ACTIVITY FOR MONTH
-            </div>
-            <div class="col col-12 text-center amount-container">
-              <span class="text-success">$ {{this.totalIncome | number }}</span>
-            </div>
-          </div>
-        </div>
-        <br>
-      </div>
-
-      <div class="card">
-        <div class="card-header card-header-danger font-weight-bold">
-          Expenses
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col col-12 text-center">
-              ACTIVITY FOR MONTH
-            </div>
-            <div class="col col-12 text-center amount-container">
-              <span class="text-danger">$ {{this.totalExp | number }}</span>
-            </div>
-          </div>
-          <br>
+      </app-budget-home>
+<!--      <div class="card">-->
+<!--        <div class="card-header card-header-primary font-weight-bold">-->
+<!--          Budget-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <div class="row">-->
+<!--            <div class="col col-12 text-center font-weight-bold">-->
+<!--              BUDGET FOR MONTH-->
+<!--            </div>-->
+<!--            &lt;!&ndash; TODO add linear gauge&ndash;&gt;-->
+<!--            <div class="col col-12 text-center amount-container">-->
+<!--              <span class="">{{this.getCategoriesBudgetTotal() | currency}}</span> - <span-->
+<!--              class="text-danger">{{this.totalExp | currency}}</span> = <span-->
+<!--              class="text-primary">{{ (this.getCategoriesBudgetTotal() - this.totalExp) | currency }}</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <br>-->
 <!--          <div class="row">-->
 <!--            <div class="col col-12">-->
-<!--              <h5>Top 3 expenses</h5>-->
-<!--              <hr>-->
+<!--              <app-category-budget-expense-->
+<!--                [model]="categoryBudgetExpenseList"-->
+<!--              >-->
+
+<!--              </app-category-budget-expense>-->
 <!--            </div>-->
-<!--            <table class="table card-table">-->
-<!--              <tr>-->
-<!--                <td>Expense 1</td>-->
-<!--                <td>$567.233</td>-->
-<!--                <td>Date</td>-->
-<!--              </tr>-->
-<!--              <tr>-->
-<!--                <td>Expense 2</td>-->
-<!--                <td>$467.233</td>-->
-<!--                <td>Date</td>-->
-<!--              </tr>-->
-<!--              <tr>-->
-<!--                <td>Expense 3</td>-->
-<!--                <td>123.233</td>-->
-<!--                <td>Date</td>-->
-<!--              </tr>-->
-<!--            </table>-->
 <!--          </div>-->
-        </div>
+<!--        </div>-->
 
+<!--      </div>-->
 
-      </div>
+      <app-income-home [model]="incomes"
+                       [accounts]="accounts">
+
+      </app-income-home>
+
+      <app-expenses-home [model]="expenses"
+                          [categories]="categories"
+                          [expensesTotal]="totalExp"
+          >
+
+      </app-expenses-home>
+<!--      <div class="card">-->
+<!--        <div class="card-header card-header-danger font-weight-bold">-->
+<!--          Expenses-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <div class="row">-->
+<!--            <div class="col col-12 text-center">-->
+<!--              ACTIVITY FOR MONTH-->
+<!--            </div>-->
+<!--            <div class="col col-12 text-center amount-container">-->
+<!--              <span class="text-danger">$ {{this.totalExp | number }}</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <br>-->
+<!--        </div>-->
+<!--      </div>-->
+
     </div>
-
-
   </div>
 </div>
 

@@ -1,16 +1,18 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {HomePageViewModel} from '../../view-models/home-page-view.model';
 import {BudgetDayModel} from '../../../calendar/models/budget-day.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FacadeModel} from '../../../../shared/models/facade.model';
 import {CurrencyPipe, DecimalPipe} from '@angular/common';
-import {AutocompletePipeStartsWith} from '../../../../shared/pipes/auto-complete-pipe';
 import {ChartDataModel} from '../../../../shared/models/chart-data.model';
-import {filter} from 'rxjs/operators';
 import {CategoryBudgetExpenseViewModel} from '../../view-models/category-budget-expense-view.model';
 import {CategoryModel} from '../../../../shared/models/category.model';
 import {CalendarExpenseModel} from '../../../calendar/models/calendar-expense.model';
-import {Extractor} from '@angular/compiler';
+import {CalendarMonth} from '../../../calendar/enums/calendar-month.enum';
+import swal from 'sweetalert2/dist/sweetalert2.js';
+import {CalendarIncomeModel} from '../../../calendar/models/calendar-income.model';
+import {noop} from 'rxjs';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -23,35 +25,19 @@ export class LandingPageComponent implements OnInit {
 
   public data: HomePageViewModel;
   public categoryBudgetExpenseList = new Array<CategoryBudgetExpenseViewModel>();
-  // public __budgetDays: BudgetDayModel[];
-  // public __categories: CategoryModel[];
-  // public __accounts: FacadeModel[];
   public _filteredBudgetList: BudgetDayModel[] = new Array<BudgetDayModel>();
-  public totalIncome = 0;
+  // public totalIncome = 0;
   public totalExp = 0;
   public budgetDataChart: ChartDataModel[];
   public descriptionsArray = [];
   public descriptionSelected = '';
-  // public topIncomes = new Array<BudgetDayModel>(3);
-  // public topExp = new Array<BudgetDayModel>(3);
-  //
-  // public daysArray = [
-  //   {day: 1, hasRegister: true, register: 'Gas station', money: 43, category: 'Transportation', account: 'Chase Debit', income: false},
-  //   {day: 2, hasRegister: true, register: 'Headphones XM1', money: 50, category: 'Entertainment', account: 'Chase Debit', income: false},
-  //   {day: 3, hasRegister: true, register: 'Paycheck', money: 2500, account: 'Chase Debit', income: true},
-  //   {day: 8, hasRegister: false, register: 'Whole Foods', category: 'Food', account: 'Chase Freedom', income: false},
-  //   {day: 5, hasRegister: false},
-  //   {day: 6, hasRegister: true},
-  //   {day: 7, hasRegister: false},
-  //   {day: 8, hasRegister: false},
-  // ];
+  public hasCategoriesAndAccounts = false;
 
+  // for the quick search input
   public get filteredBudgetList(): BudgetDayModel[] {
-    // this._filteredBudgetList =
     if (this.descriptionSelected) {
       this._filteredBudgetList = new Array<BudgetDayModel>();
       for (const day of this.budgetDays) {
-        // const day = ;
         const filteredDay = {...day};
         filteredDay.expenses = day.expenses
           .filter((e) => e.title.includes(this.descriptionSelected));
@@ -60,7 +46,6 @@ export class LandingPageComponent implements OnInit {
         this._filteredBudgetList.push(filteredDay);
       }
     } else {
-      // console.table(this.budgetDays);
       this._filteredBudgetList = [...this.budgetDays];
     }
     return this._filteredBudgetList;
@@ -71,15 +56,15 @@ export class LandingPageComponent implements OnInit {
   }
 
   public get budgetDays(): BudgetDayModel[] {
-    // this.__budgetDays = this.data.budgetDays;
-    // return this.__budgetDays;
     return this.data.budgetDays;
   }
 
   public get categories(): CategoryModel[] {
-    // this.__categories = this.data.categories;
-    // return this.__categories;
     return this.data.categories;
+  }
+
+  public get accounts(): FacadeModel[] {
+    return this.data.accounts;
   }
 
   public get expenses(): CalendarExpenseModel[] {
@@ -90,19 +75,23 @@ export class LandingPageComponent implements OnInit {
     return expenses;
   }
 
-  public get accounts(): FacadeModel[] {
-    // this.__accounts = this.data.accounts;
-    // return this.__accounts;
-    return this.data.accounts;
+  public get incomes(): CalendarIncomeModel[] {
+    const incomes = new Array<CalendarIncomeModel>();
+    this.budgetDays.forEach((d) => {
+      d.incomes.forEach((i) => incomes.push(i));
+    });
+    return incomes;
   }
+
 
   // public set budgetDays(value) {
   //
   // }
 
 
-
-  constructor(private readonly _route: ActivatedRoute) {
+  constructor(private readonly _route: ActivatedRoute,
+              private readonly _router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -112,12 +101,36 @@ export class LandingPageComponent implements OnInit {
       this.calculateAmounts();
       this.calculateTopData();
       this.buildStringOfDescriptions();
-      this.buildChartsData();
+      // this.buildChartsData();
       this.buildExpenseForCategory();
       this.filteredBudgetList = [...this.budgetDays];
-      console.table(this.expenses);
+      this.hasCategoriesAndAccounts = (this.categories.length > 0 && this.accounts.length > 0);
+      if (!this.hasCategoriesAndAccounts) {
+        this.fireEmptyCategoriesAccountPrompt();
+      }
     });
   }
+
+  private fireEmptyCategoriesAccountPrompt() {
+    swal.fire({
+      title: 'Wait a second!',
+      text: 'We noticed you don\'t have any accounts or categories. You can add those in the profile page, ' +
+        'would you like to add them now?',
+      icon: 'warning',
+      reverseButtons: true,
+      showCancelButton: true,
+      cancelButtonText: 'Maybe later',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: 'grey',
+      confirmButtonText: 'Add them now'
+    }).then((result) => {
+      if (result.value) {
+        // add another was clicked
+        this._router.navigate(['user/accounts']).then(() => noop());
+      }
+    });
+  }
+
 
   public hasDayIncomeOrExpense(day: BudgetDayModel) {
     return day.expenses.length > 0 || day.incomes.length > 0;
@@ -136,6 +149,16 @@ export class LandingPageComponent implements OnInit {
     }
     return this.categories.find((c) => c.id === categoryId).name.toUpperCase();
 
+  }
+
+  public getCategoriesBudgetTotal() {
+    let total = 0;
+    this.categories.forEach((cat) => total += cat.budgetAssigned);
+    return total;
+  }
+
+  public getMonthName(monthNum) {
+    return CalendarMonth[monthNum - 1];
   }
 
   public filterBudgetList($event: any) {
@@ -160,7 +183,7 @@ export class LandingPageComponent implements OnInit {
 
   private calculateAmounts() {
     this.budgetDays.forEach((d) => {
-      d.incomes.forEach((i) => this.totalIncome += i.amount);
+      // d.incomes.forEach((i) => this.totalIncome += i.amount);
       d.expenses.forEach((e) => this.totalExp += e.amount);
     });
   }
@@ -176,14 +199,14 @@ export class LandingPageComponent implements OnInit {
   }
 
 
-  private buildChartsData() {
-    this.budgetDataChart = [];
-    // const incomesTotal = this.totalIncome;
-    // const expTotal = this.totalExp;
-    this.budgetDataChart.push(
-      {label: 'Income', value: this.totalIncome},
-      {label: 'Expenses', value: this.totalExp});
-  }
+  // private buildChartsData() {
+  //   this.budgetDataChart = [];
+  //   // const incomesTotal = this.totalIncome;
+  //   // const expTotal = this.totalExp;
+  //   this.budgetDataChart.push(
+  //     {label: 'Income', value: this.totalIncome},
+  //     {label: 'Expenses', value: this.totalExp});
+  // }
 
   private calculateTopData() {
     //TODO: get from Backend

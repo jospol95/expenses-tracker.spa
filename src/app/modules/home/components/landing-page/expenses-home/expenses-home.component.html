@@ -1,0 +1,30 @@
+<div class="card" id="expenses-card">
+  <div class="card-header card-header-danger font-weight-bold">
+    Expenses
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-12 text-center">
+        ACTIVITY FOR MONTH
+      </div>
+      <div class="col col-12 text-center amount-container">
+        <span class="text-danger">$ {{this.expensesTotal | number }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12 chart">
+        <ngx-charts-pie-chart
+          [scheme]="'vivid'"
+          [legend]="false"
+          [doughnut]="false"
+          [legendTitle]="'Accounts'"
+          [legendPosition]="'below'"
+          [gradient]="false"
+          [results]="chartData"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+  </div>
+
+</div>

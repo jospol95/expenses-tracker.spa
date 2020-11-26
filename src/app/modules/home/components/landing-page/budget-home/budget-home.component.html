@@ -1,0 +1,28 @@
+<div id="expenses-card" class="card">
+  <div class="card-header card-header-primary font-weight-bold">
+    Budget
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-12 text-center font-weight-bold">
+        BUDGET FOR MONTH
+      </div>
+      <div class="col col-12 text-center amount-container">
+        <span class="">{{this.categoriesTotal | currency}}</span> - <span
+        class="text-danger">{{this.expensesTotal | currency}}</span> = <span
+        class="text-primary">{{ (this.categoriesTotal - this.expensesTotal) | currency }}</span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col col-12">
+        <app-category-budget-expense
+          [model]="model"
+        >
+
+        </app-category-budget-expense>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div class="card" id="incomes-home-card">
+  <div class="card-header card-header-success font-weight-bold">
+    Income
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-12 text-center">
+        ACTIVITY FOR MONTH
+      </div>
+      <div class="col col-12 text-center amount-container">
+        <span class="text-success">$ {{this.totalIncome | number }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12 chart">
+        <ngx-charts-pie-chart
+        [legend]="true"
+        [doughnut]="true"
+        [legendTitle]="'Accounts'"
+        [legendPosition]="'below'"
+        [gradient]="false"
+        [scheme]="'vivid'"
+        [results]="chartData"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>

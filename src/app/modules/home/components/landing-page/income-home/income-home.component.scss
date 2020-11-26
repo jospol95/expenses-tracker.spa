@@ -1,0 +1,18 @@
+#incomes-home-card{
+  font-family: 'Roboto Condensed', serif;
+  //background: black;
+  height: 400px;
+  //background: #243447;
+  //color: white;
+}
+
+#incomes-home-card div.amount-container{
+  font-size: 26px;
+}
+
+#incomes-home-card  div.chart{
+  width: 100%;
+  position: relative;
+  height: 200px;
+  left: -10px;
+}
