@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, Injector, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,10 +20,7 @@ import {CustomPipesModule} from './shared/pipes/custom-pipes.module';
 import { AuthPageComponent } from './modules/auth/auth-page/auth-page.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {SharedComponentsModule} from './shared/components/shared-components.module';
-import { AuthRegisterComponent } from './modules/auth/auth-register/auth-register.component';
-import { AuthLoginComponent } from './modules/auth/auth-login/auth-login.component';
-import { FacebookBtnComponent } from './modules/auth/facebook-btn/facebook-btn.component';
-import { GoogleBtnComponent } from './modules/auth/google-btn/google-btn.component';
+
 import {FormsModule} from '@angular/forms';
 import {AuthGuardService} from './shared/guards/auth-guard.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -33,10 +30,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   declarations: [
     AppComponent,
     AuthPageComponent,
-    AuthRegisterComponent,
-    AuthLoginComponent,
-    FacebookBtnComponent,
-    GoogleBtnComponent
   ],
   imports: [
     BrowserModule,
@@ -62,5 +55,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
+
 }

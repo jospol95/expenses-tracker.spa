@@ -8,14 +8,14 @@ import {environment} from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ReportsService {
+export class BudgetChartService {
   private genericBudgetUrl = environment.BUDGET_API + '/v1/Budget/';
 
   constructor(private readonly http: HttpClient) {
 
   }
 
-  public getBudgetReport(request: BudgetReportRequest): Observable<Array<BudgetReportModel>> {
+  public getBudgetChartReport(request: BudgetReportRequest): Observable<Array<BudgetReportModel>> {
     return this.http.post<Array<BudgetReportModel>>(this.genericBudgetUrl + 'getBudgetReport', request);
   }
 }

@@ -23,4 +23,10 @@ export class CategoryBudgetExpenseComponent implements OnInit {
     return this.getTotalForCategory(categoryBudgetExpense) >= 0;
   }
 
+  public getCategoriesBudgetTotal(){
+    let total = 0;
+    this.model.forEach((cat) => total += cat.category.budgetAssigned);
+    return total;
+  }
+
 }

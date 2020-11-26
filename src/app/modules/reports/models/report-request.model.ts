@@ -1,6 +1,7 @@
 import {ReportTypeEnum} from '../enums/report-type.enum';
 
 export class ReportRequestModel {
+  public userId: string;
   public startDate: Date;
   public endDate: Date;
   public selectedCategories: number[];

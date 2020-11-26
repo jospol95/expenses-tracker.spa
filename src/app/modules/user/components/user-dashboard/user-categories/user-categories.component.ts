@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Injector, OnDestroy, OnInit} from '@angular/core';
 import {AuthorizationService} from '../../../../../shared/services/auth.service';
 import {CategoriesService} from '../../../../../shared/services/categories.service';
 import {CategoryModel} from '../../../../../shared/models/category.model';
 import {FacadeModel} from '../../../../../shared/models/facade.model';
 import swal from 'sweetalert2/dist/sweetalert2.js';
+import {ServiceInjector} from '../../../../../shared/services/service-injector.service';
+import {BasePageComponent} from '../../../../../shared/components/base-page/base-page.component';
 
 
 @Component({
@@ -11,20 +13,17 @@ import swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './user-categories.component.html',
   styleUrls: ['./user-categories.component.scss']
 })
-export class UserCategoriesComponent implements OnInit, OnDestroy {
+export class UserCategoriesComponent extends BasePageComponent implements OnInit, OnDestroy {
 
   public categories = new Array<CategoryModel>();
   public userId: string;
 
   // private subscriptions =  new SubSink();
 
-  constructor(private readonly _authService: AuthorizationService,
-              private readonly _categoryService: CategoriesService) {
-  }
 
   public ngOnInit() {
-    this.userId = this._authService.getLoggedUserModel().userId;
-    this._categoryService.getCategories(this.userId).subscribe(
+    this.userId = this._authService.getUserId();
+    this._categoriesService.getCategories(this.userId).subscribe(
       (categories) => {
         this.categories = [...categories];
       });
@@ -49,7 +48,7 @@ export class UserCategoriesComponent implements OnInit, OnDestroy {
   public createCategory($event: [CategoryModel, number]) {
     const [newCategory, index] = $event;
     newCategory.userId = this._authService.getUserId();
-    this._categoryService.createAccount(newCategory).subscribe(
+    this._categoriesService.createAccount(newCategory).subscribe(
       (result) => {
         this.categories[index].id = result;
       },
@@ -61,7 +60,7 @@ export class UserCategoriesComponent implements OnInit, OnDestroy {
 
   public updateCategory($event: [CategoryModel, number, CategoryModel]) {
     const [updatedCategory, index, categoryState] = $event;
-    this._categoryService.updateAccount(updatedCategory).subscribe(
+    this._categoriesService.updateAccount(updatedCategory).subscribe(
       (result) => {
         this.categories[index] = updatedCategory;
       },
@@ -83,7 +82,7 @@ export class UserCategoriesComponent implements OnInit, OnDestroy {
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it',
       }).then((response) => {
-        this._categoryService.deleteAccount(deletedCategory.id).subscribe(
+        this._categoriesService.deleteAccount(deletedCategory.id).subscribe(
           (result) => {
             this.categories.splice(index, 1);
           },

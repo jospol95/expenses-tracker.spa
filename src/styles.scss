@@ -2,12 +2,51 @@
 @import '~minireset.css/minireset';
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
-.font-weight-bold{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-weight-bold {
   font-weight: bold;
 }
+
+.material-bg {
+  background: #243447 !important;
+  color: white;
+}
+
+table.dark-table {
+  td {
+    border-color: #607D8B !important;
+  }
+
+  thead {
+    tr th {
+      border-color: #455A64 !important;
+    }
+  }
+
+  th {
+    border-color: #607D8B !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed', serif;;
+  padding: 0 !important;
+  margin: 5px !important;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+
 
 @import "~igniteui-angular/lib/core/styles/themes/index";
 // Uncomment the following lines if you want to add a custom palette:

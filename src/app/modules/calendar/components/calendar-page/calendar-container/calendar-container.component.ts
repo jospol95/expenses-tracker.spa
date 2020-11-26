@@ -3,6 +3,7 @@ import {CalendarModel} from '../../../models/calendar.model';
 import {CalendarMonth} from '../../../enums/calendar-month.enum';
 import {CalendarArrayModel} from '../../../models/calendar-array.model';
 import {BudgetDayModel} from '../../../models/budget-day.model';
+import {MonthName} from '../../../../../shared/enums/month-name.enum';
 
 @Component({
   selector: 'app-calendar-container',
@@ -23,6 +24,7 @@ export class CalendarContainerComponent implements OnInit {
   public monthSelected: CalendarMonth;
   public yearSelected: number;
   public model: Array<Array<CalendarArrayModel>>;
+  public selectedMonth: any;
 
   private _selectedDateNumberArray: [CalendarMonth, number, number];
 
@@ -113,6 +115,10 @@ export class CalendarContainerComponent implements OnInit {
   public addNewClickedEventHandler($event) {
     // todo -> event should be of type request: income/expense, then navigate to income/expense accodingly
 
+  }
+
+  public getMonthName(){
+    return CalendarMonth[this.monthSelected];
   }
 
   public handleDateSelection() {

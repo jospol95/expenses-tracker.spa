@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -36,20 +37,21 @@ import {MatIconModule} from '@angular/material/icon';
     CalendarEditEntryModalComponent,
     CalendarEditExpenseModalComponent
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    RouterModule,
-    MatTabsModule,
-    FormsModule,
-    SharedComponentsModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatIconModule,
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        RouterModule,
+        MatTabsModule,
+        FormsModule,
+        SharedComponentsModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatIconModule,
+        MatCheckboxModule,
+    ]
 })
 export class CalendarComponentsModule {
 }

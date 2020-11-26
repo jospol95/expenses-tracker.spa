@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {CategoryModel} from '../../../../../shared/models/category.model';
 import {AuthorizationService} from '../../../../../shared/services/auth.service';
 import {AccountService} from '../../../../../shared/services/accounts.service';
@@ -18,22 +18,14 @@ export class UserAccountsComponent extends BasePageComponent implements OnInit {
 
   // private subscriptions =  new SubSink();
 
-  constructor(private readonly _authService: AuthorizationService,
-              private readonly _accountsService: AccountService) {
-    super();
-  }
-
   public ngOnInit() {
-    this.userId = this._authService.getLoggedUserModel().userId;
+    this.userId = this._authService.getUserId();
     this._accountsService.getAccounts(this.userId).subscribe(
       (accounts) => {
         this.accounts = [...accounts];
       });
   }
 
-  public ngOnDestroy() {
-    // unsubscribe
-  }
 
   // adds to the list
   public addNewAccount() {

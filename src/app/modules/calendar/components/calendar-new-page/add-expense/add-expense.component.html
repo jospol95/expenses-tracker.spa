@@ -60,12 +60,21 @@
         </div>
       </div>
       <div class="form-row margin-10">
-        <div class="col-10">
+        <div class="col-8">
           <input type="text"
                  name="description"
                  autocomplete="off"
                  [(ngModel)]="model.description"
                  class="form-control" placeholder="Notes">
+        </div>
+        <div class="col-4">
+          <mat-checkbox
+            color="primary" class="mat-checkbox"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="model.isConcurrent"
+          >
+            Make this concurrent
+          </mat-checkbox>
         </div>
       </div>
       <br/>

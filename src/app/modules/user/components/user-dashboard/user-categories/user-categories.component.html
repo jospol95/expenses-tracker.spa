@@ -1,14 +1,7 @@
 <div class="card categories-card">
-  <div class="card-header  card-header-danger">
+  <div class="card-header  card-header-primary">
     <h6 class="card-title">Categories</h6>
-    <p class="card-category">Add, edit or remove categories
-      <button
-        (click)="addNewCategory()"
-        class="btn btn-danger">
-        ADD NEW
-      </button>
-    </p>
-
+    <a class="card-category clickable" (click)="addNewCategory()">Add a new category</a>
   </div>
 
   <div class="card-body scrollable-body">

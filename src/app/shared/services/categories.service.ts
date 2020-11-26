@@ -4,13 +4,14 @@ import {AccountModel} from '../models/account.model';
 import {Observable} from 'rxjs';
 import {CategoryModel} from '../models/category.model';
 import {FacadeModel} from '../models/facade.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CategoriesService {
-  private genericCategoryUrl = 'https://localhost:5001/api/v1/Categories/';
+  private genericCategoryUrl = environment.BUDGET_API + '/v1/Categories/';
 
   private addCategoryUrl = this.genericCategoryUrl + 'create';
 
@@ -21,10 +22,6 @@ export class CategoriesService {
     return this.http.get<Array<CategoryModel>>(this.genericCategoryUrl + userId);
   }
 
-
-  public getAccounts(userId: string, mapToModel: boolean): Observable<Array<FacadeModel>> {
-    return this.http.get<Array<FacadeModel>>(this.genericCategoryUrl + userId);
-  }
 
   public createAccount(category: CategoryModel): Observable<number>{
     return this.http.post<number>(this.addCategoryUrl, category);

@@ -7,24 +7,27 @@ import {CalendarIncomeModel} from './models/calendar-income.model';
 import {Observable} from 'rxjs';
 import {FacadeModel} from '../../shared/models/facade.model';
 import {CategoryModel} from '../../shared/models/category.model';
+import {environment} from '../../../environments/environment';
+import {AccountService} from '../../shared/services/accounts.service';
+import {CategoriesService} from '../../shared/services/categories.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CalendarService {
-  private getCalendarUrl = 'https://localhost:5001/api/v1/Budget/get';
-  private addIncomeUrl = 'https://localhost:5001/api/v1/Income/create';
-  private addExpenseUrl = 'https://localhost:5001/api/v1/Expenses/create';
-  private genericIncomeUrl = 'https://localhost:5001/api/v1/Income/';
-  private genericExpenseUrl = 'https://localhost:5001/api/v1/Expenses/';
-  private genericCategoryUrl = 'https://localhost:5001/api/v1/Categories/';
-  private genericAccountUrl = 'https://localhost:5001/api/v1/Account/';
+  private getCalendarUrl = environment.BUDGET_API + '/v1/Budget/get';
+  private addIncomeUrl = environment.BUDGET_API + '/v1/Income/create';
+  private addExpenseUrl =  environment.BUDGET_API + '/v1/Expenses/create';
+  private genericIncomeUrl = environment.BUDGET_API + '/v1/Income/';
+  private genericExpenseUrl = environment.BUDGET_API + '/v1/Expenses/';
 
-  constructor(private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient,
+              private readonly _categoriesService: CategoriesService,
+              private readonly _accountService: AccountService) {
 
   }
 
-  public getBudgetDays(month: CalendarMonth, year: number, userId: number): Observable<BudgetDayModel[]> {
+  public getBudgetDays(month: CalendarMonth, year: number, userId: string): Observable<BudgetDayModel[]> {
     const params = new HttpParams()
       .set('month', month.toString())
       .set('year', year.toString())
@@ -66,11 +69,11 @@ export class CalendarService {
   }
 
   public getCategories(userId: string): Observable<Array<CategoryModel>> {
-    return this.http.get<Array<CategoryModel>>(this.genericCategoryUrl + userId);
+    return this._categoriesService.getCategories(userId);
   }
 
   public getAccounts(userId: string): Observable<Array<FacadeModel>> {
-    return this.http.get<Array<FacadeModel>>(this.genericAccountUrl + userId);
+    return this._accountService.getAccounts(userId);
   }
 
 }

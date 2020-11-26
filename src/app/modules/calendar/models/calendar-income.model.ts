@@ -6,4 +6,5 @@ export class CalendarIncomeModel {
   public amount: number;
   public userId: string;
   public accountId?: number;
+  public isConcurrent = false;
 }

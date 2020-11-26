@@ -5,15 +5,15 @@
       <mat-select [(value)]="monthSelected"
                   (selectionChange)="handleDateSelection()"
       >
-        <mat-option *ngFor="let food of months"
-                    [value]="food.value">
-          {{food.viewValue}}
+        <mat-option *ngFor="let month of months"
+                    [value]="month.value">
+          {{month.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div class="col col-4 text-center">
-    J&nbsp;U&nbsp;N&nbsp;E&nbsp; , &nbsp;2&nbsp;0&nbsp;2&nbsp;0
+    {{getMonthName() | uppercase}} , 2020
   </div>
   <div class="col col-4 text-right date-picker">
     <mat-form-field>

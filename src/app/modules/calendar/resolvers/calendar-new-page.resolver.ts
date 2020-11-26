@@ -3,24 +3,25 @@ import {CalendarNewPageViewModel} from '../view-models/calendar-new-page-view.mo
 import {CalendarService} from '../calendar.service';
 import {EMPTY, Observable, of, zip} from 'rxjs';
 import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
+import {ServiceInjector} from '../../../shared/services/service-injector.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CalendarNewPageResolver implements Resolve<CalendarNewPageViewModel> {
+export class CalendarNewPageResolver extends ServiceInjector implements Resolve<CalendarNewPageViewModel> {
   public data: CalendarNewPageViewModel = new CalendarNewPageViewModel();
-  public userId = '123';
+  public userId = this._authService.getUserId();
 
-  constructor(private readonly _service: CalendarService) {
-    // authService_getUserid;
+  constructor(private readonly injector: Injector) {
+    super(injector);
   }
 
   public resolve(route: ActivatedRouteSnapshot): Observable<any> | Observable<never> {
     return zip(
-      this._service.getCategories(this.userId),
-      this._service.getAccounts(this.userId),
+      this._categoriesService.getCategories(this.userId),
+      this._accountsService.getAccounts(this.userId),
     ).pipe(
       catchError((err) => {
         return EMPTY;

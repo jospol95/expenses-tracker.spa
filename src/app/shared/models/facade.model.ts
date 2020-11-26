@@ -6,3 +6,4 @@ export class FacadeModel {
   public value?: number;
 
 }
+

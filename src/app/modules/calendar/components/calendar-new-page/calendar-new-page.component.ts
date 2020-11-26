@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CalendarIncomeModel} from '../../models/calendar-income.model';
 import {CalendarExpenseModel} from '../../models/calendar-expense.model';
@@ -8,6 +8,7 @@ import swal from 'sweetalert2/dist/sweetalert2.js';
 import {CalendarNewPageViewModel} from '../../view-models/calendar-new-page-view.model';
 import {Observable, Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {ServiceInjector} from '../../../../shared/services/service-injector.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {tap} from 'rxjs/operators';
   templateUrl: './calendar-new-page.component.html',
   styleUrls: ['./calendar-new-page.component.scss']
 })
-export class CalendarNewPageComponent extends BasePageComponent implements OnInit {
+export class CalendarNewPageComponent extends ServiceInjector implements OnInit {
   public day: number;
   public month: number;
   public year: number;
@@ -29,8 +30,11 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
 
   public pageData: CalendarNewPageViewModel = new CalendarNewPageViewModel();
 
-  constructor(private readonly __route: ActivatedRoute, private readonly __router: Router, private readonly __service: CalendarService) {
-    super();
+  constructor(private readonly __route: ActivatedRoute,
+              private readonly __router: Router,
+              private readonly injector: Injector,
+              private readonly __service: CalendarService) {
+    super(injector);
   }
 
   get monthName(): string {
@@ -113,7 +117,7 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
     // this.handleBadResponse();
     const income = $event;
     income.date = new Date(this.year, this.month, this.day);
-    income.userId = '123';
+    income.userId = this._authService.getUserId();
     this.__service.addIncome(income).subscribe((id) => {
         if (id) {
           this.handleGoodResponse();
@@ -127,7 +131,7 @@ export class CalendarNewPageComponent extends BasePageComponent implements OnIni
   public saveExpenseEventHandler($event: CalendarExpenseModel) {
     const expense = $event;
     expense.date = new Date(this.year, this.month, this.day);
-    expense.userId = '123';
+    expense.userId = this._authService.getUserId();
 
     this.__service.addExpense(expense).subscribe((id) => {
         if (id) {

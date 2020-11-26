@@ -12,6 +12,10 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 import {UserCategoriesListItemComponent} from './user-dashboard/user-categories/user-categories-list-item/user-categories-list-item.component';
 import {SharedComponentsModule} from '../../../shared/components/shared-components.module';
 import {RouterModule} from '@angular/router';
+import { UserAccountTabComponent } from './user-dashboard/user-account-tab/user-account-tab.component';
+import { AboutTabComponent } from './user-dashboard/about-tab/about-tab.component';
+import { UserAccountsComponent } from './user-dashboard/user-accounts/user-accounts.component';
+import { UserAccountItemComponent } from './user-dashboard/user-accounts/user-account-item/user-account-item.component';
 
 
 @NgModule({
@@ -20,7 +24,7 @@ import {RouterModule} from '@angular/router';
     UserLoginComponent,
     UserRegisterComponent,
     UserDashboardComponent,
-    UserMonthSummaryComponent, UserCategoriesComponent, UserCategoriesListItemComponent],
+    UserMonthSummaryComponent, UserCategoriesComponent, UserCategoriesListItemComponent, UserAccountTabComponent, AboutTabComponent, UserAccountsComponent, UserAccountItemComponent],
   imports: [
     CommonModule,
     FormsModule,

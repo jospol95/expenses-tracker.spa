@@ -3,23 +3,25 @@ import {FacadesViewModel} from '../view-models/facades-view-model';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {EMPTY, Observable, of, zip} from 'rxjs';
 import {catchError, switchMap, tap} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
+import {ServiceInjector} from '../services/service-injector.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class FacadesResolver implements Resolve<FacadesViewModel> {
+export class FacadesResolver extends ServiceInjector implements Resolve<FacadesViewModel> {
   public data: FacadesViewModel = new FacadesViewModel();
-  public userId = '123';
+  public userId = this._authService.getUserId();
 
-  constructor(private readonly _service: CalendarService) {
+  constructor(private readonly _injector: Injector) {
+    super(_injector);
   }
 
   public resolve(route: ActivatedRouteSnapshot): Observable<any> | Observable<never>{
     return zip(
-      this._service.getCategories(this.userId),
-      this._service.getAccounts(this.userId),
+      this._categoriesService.getCategories(this.userId),
+      this._accountsService.getAccounts(this.userId),
     ).pipe(
       catchError(() => {
         return EMPTY;

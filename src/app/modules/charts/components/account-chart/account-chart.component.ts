@@ -30,6 +30,7 @@ export class AccountChartComponent implements OnInit {
   public _income = new BudgetReportModel();
   public _accounts = new Array<BudgetReportModel>();
   public totalAmountAccounts = 0;
+  view: any = [1000, 500];
 
 
   constructor() {
@@ -87,9 +88,9 @@ export class AccountChartComponent implements OnInit {
         //   Value: reportData[i].total
         // };
         dataArray.push({
-          Label: reportData[i].name,
+          name: reportData[i].name,
           // Idea is to have always a match-value of 100
-          Value: Math.abs((reportData[i].total / accountReportTotal))
+          value: reportData[i].total,
         });
       }
       this.chartData = [...dataArray];

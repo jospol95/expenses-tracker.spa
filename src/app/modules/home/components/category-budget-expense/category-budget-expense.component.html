@@ -2,16 +2,16 @@
 <table class="table table-less-padding">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Budget assigned</th>
-      <th>Currently spent</th>
-      <th>Remaining</th>
+      <th>CATEGORY</th>
+      <th>BUDGET ASSIGNED</th>
+      <th>CURRENT SPENT</th>
+      <th>REMAINING</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody >
     <tr *ngFor="let category of model">
-      <th>{{category.category.name}}</th>
-      <th>{{category.category.budgetAssigned | currency}}</th>
+      <td>{{category.category.name}}</td>
+      <td class="">{{category.category.budgetAssigned | currency}}</td>
       <td class="text-danger">{{category.totalExpenseForCategory | currency}}</td>
       <td [ngClass]="{'text-danger': !isPositiveCategoryBalance(category), 'text-success': isPositiveCategoryBalance((category)) }">
         {{this.getTotalForCategory(category) | currency}}</td>

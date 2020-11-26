@@ -3,22 +3,22 @@ import {FacadeModel} from '../models/facade.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AccountModel} from '../models/account.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AccountService {
-  private genericAccountUrl = 'https://localhost:5001/api/v1/Account/';
+  private genericAccountUrl = environment.BUDGET_API + '/v1/Account/';
   private addAccountUrl = this.genericAccountUrl + 'create';
 
   constructor(private readonly http: HttpClient) {
   }
 
-  public getAccounts(userId: string): Observable<Array<FacadeModel>> {
-    return this.http.get<Array<FacadeModel>>(this.genericAccountUrl + userId);
+  public getAccounts(userId: string): Observable<Array<AccountModel>> {
+    return this.http.get<Array<AccountModel>>(this.genericAccountUrl + userId);
   }
-
 
   public createAccount(account: AccountModel): Observable<number>{
     return this.http.post<number>(this.addAccountUrl, account);

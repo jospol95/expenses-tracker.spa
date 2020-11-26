@@ -10,21 +10,27 @@ import {AppModule} from '../../app.module';
 import {CustomPipesModule} from '../../shared/pipes/custom-pipes.module';
 import {IgxPieChartCoreModule} from 'igniteui-angular-charts';
 import { CategoryBudgetExpenseComponent } from './components/category-budget-expense/category-budget-expense.component';
+import {RouterModule} from '@angular/router';
+import { IncomeHomeComponent } from './components/landing-page/income-home/income-home.component';
+import { ExpensesHomeComponent } from './components/landing-page/expenses-home/expenses-home.component';
+import { BudgetHomeComponent } from './components/landing-page/budget-home/budget-home.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 
 @NgModule({
-  declarations: [LandingPageComponent, CategoryBudgetExpenseComponent],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    IgxProgressBarModule,
-    IgxAutocompleteModule,
-    IgxDropDownModule,
-    IgxInputGroupModule,
-    FormsModule,
-    CustomPipesModule,
-    IgxPieChartCoreModule
-  ],
+  declarations: [LandingPageComponent, CategoryBudgetExpenseComponent, IncomeHomeComponent, ExpensesHomeComponent, BudgetHomeComponent],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        IgxProgressBarModule,
+        IgxAutocompleteModule,
+        IgxDropDownModule,
+        IgxInputGroupModule,
+        FormsModule,
+        CustomPipesModule,
+        RouterModule,
+        NgxChartsModule
+    ],
   providers: [
     CalendarService
   ]

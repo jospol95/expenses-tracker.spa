@@ -16,6 +16,7 @@
           <a class="nav-link"
              href="#tab2"
              data-toggle="tab"
+             [routerLink]="['accounts']"
              >
             <mat-icon aria-hidden="false" aria-label="Example home icon">account_balance</mat-icon>
             &nbsp;
@@ -29,12 +30,14 @@
           &nbsp;
           CATEGORIES
           </a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">devices</mat-icon>
-          &nbsp;
-          DEVICES</a></li>
-        <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">
+<!--        </li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">-->
+<!--          <mat-icon aria-hidden="false" aria-label="Example home icon">devices</mat-icon>-->
+<!--          &nbsp;-->
+<!--          DEVICES</a></li>-->
+        <li class="nav-item"><a class="nav-link" href="#tab3"
+                                [routerLink]="['about']"
+                                data-toggle="tab">
           <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
           &nbsp;
           ABOUT</a></li>

@@ -7,7 +7,7 @@ import {AuthPageComponent} from './modules/auth/auth-page/auth-page.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'auth',
     component: AuthPageComponent
   },
   {

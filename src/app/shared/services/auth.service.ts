@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AuthLoginModel} from '../models/auth-login.model';
 import {AuthorizedUserModel} from '../models/auth-user-model';
+import {LocalStorageService} from './local-storage.service';
+import {GlobalConstants} from '../components/global-constants';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Environment} from 'igniteui-angular-core';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,46 +13,42 @@ import {AuthorizedUserModel} from '../models/auth-user-model';
 
 export class AuthorizationService {
   // tslint:disable-next-line:variable-name
-  private _isLoggedIn = false;
   private tokenKey = 'login_token';
 
+  constructor(private readonly _localStorage: LocalStorageService) {
+
+  }
+
   public get isLoggedIn(): boolean {
-    return this._isLoggedIn || this.getToken() != null;
+    // TODO check exp date, if expired, logout
+    return this.tokenExists();
   }
 
-  public set isLoggedIn(value) {
-    this._isLoggedIn = value;
+  public tokenExists(){
+    const token = this._localStorage.getKey(GlobalConstants.AUTH_TOKEN_NAME);
+    return token != null;
   }
 
-  public getUserId(){
-    return '123';
+  public getUserId() {
+    const decodedToken = this.getTokenDetails();
+    return decodedToken.sid;
   }
 
-  public tryLogin(loginModel: AuthLoginModel) {
-    const username = 'lanjos26';
-    const password = '2625';
-
-    if (loginModel.username === username && loginModel.password === password) {
-      const authorizedUserModel: AuthorizedUserModel = {
-        userId: '123',
-        username: loginModel.username,
-        firstName: 'Jose',
-        lastName: 'Polanco'
-      };
-      this.saveToken(authorizedUserModel);
-      this.isLoggedIn = true;
-    }
+  public saveAuthToken(authToken: string) {
+    this._localStorage.saveValueWithKey(authToken, GlobalConstants.AUTH_TOKEN_NAME);
   }
 
-  public getLoggedUserModel(): AuthorizedUserModel {
-    return JSON.parse(this.getToken());
+  public killSession(){
+    this._localStorage.removeItem(GlobalConstants.AUTH_TOKEN_NAME);
+    window.location.href = environment.auth_spa_url + 'logout';
   }
 
-  private saveToken(authorizedUserModel: AuthorizedUserModel) {
-    localStorage.setItem(this.tokenKey, JSON.stringify(authorizedUserModel));
+  private getTokenDetails() {
+    const helper = new JwtHelperService();
+    const token = this._localStorage.getKey(GlobalConstants.AUTH_TOKEN_NAME);
+    return helper.decodeToken(token);
   }
 
-  private getToken() {
-    return localStorage.getItem(this.tokenKey);
-  }
+
+
 }

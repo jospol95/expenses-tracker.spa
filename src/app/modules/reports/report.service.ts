@@ -4,6 +4,7 @@ import {ReportRequestModel} from './models/report-request.model';
 import {BudgetReportModel} from '../charts/models/budget-report.model';
 import {Observable} from 'rxjs';
 import {ReportModel} from './models/report-model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import {ReportModel} from './models/report-model';
 
 export class ReportsService {
 
-  private reportsUrl = 'https://localhost:5001/api/v1/Reports/';
+  private reportsUrl = environment.BUDGET_API + '/v1/Reports/';
 
   constructor(private readonly _http: HttpClient) {
 

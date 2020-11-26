@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {ReportTypeEnum} from '../enums/report-type.enum';
 import {ReportRequestModel} from '../models/report-request.model';
 import {ReportsService} from '../report.service';
@@ -11,13 +11,15 @@ import {MatSelectChange} from '@angular/material/select';
 import {BudgetReportModel} from '../../charts/models/budget-report.model';
 import {BudgetRecordTypeEnum} from '../enums/budget-record-type';
 import {LocalStorageService} from '../../../shared/services/local-storage.service';
+import {LocalStorageKeysNameEnum} from '../../../shared/enums/local-storage-keys-name.enum';
+import {BasePageComponent} from '../../../shared/components/base-page/base-page.component';
 
 @Component({
   selector: 'app-reports-page',
   templateUrl: './reports-page.component.html',
   styleUrls: ['./reports-page.component.scss']
 })
-export class ReportsPageComponent implements OnInit {
+export class ReportsPageComponent extends BasePageComponent implements OnInit {
 
   public reportRequest: ReportRequestModel;
   public reportData: ReportModel[];
@@ -54,9 +56,10 @@ export class ReportsPageComponent implements OnInit {
   }
 
   constructor(private readonly __route: ActivatedRoute,
+              private readonly _injector: Injector,
               private readonly _localStorage: LocalStorageService,
-              private readonly _reportsService: ReportsService,
-              private readonly _calendarService: CalendarService) {
+              private readonly _reportsService: ReportsService) {
+    super(_injector);
   }
 
   ngOnInit() {
@@ -66,26 +69,17 @@ export class ReportsPageComponent implements OnInit {
       this.accounts = [...data.accounts];
       this.categories = [...data.categories];
 
-      // this.reportRequest = new ReportRequestModel();
-      let reportRequest = this._localStorage.getKey(this._localStorage.budgetReportFilterName);
-      console.log(reportRequest);
-      // console.log());
+      const localStorageReportRequest = this._localStorage.getKey(LocalStorageKeysNameEnum.budgetReportKey);
+      this.reportRequest = localStorageReportRequest != null ?
+        localStorageReportRequest : this.initializeAndGetNewReportRequest();
 
-      this.reportRequest = reportRequest != null ?
-        reportRequest : new ReportRequestModel();
-      // if(reportRequestFilterFromLS) != null
       this.initializeDatePickers();
-      this.initializeDropDowns();
-      // this.getCategories();
-      // this.getAccounts();
       this.getReport({...this.reportRequest});
     });
   }
 
   public performReportSearch() {
     this.saveRequestParams();
-    console.log('request accounts: ' + this.reportRequest.selectedAccounts);
-    this._localStorage.saveKey(this._localStorage.budgetReportFilterName, this.reportRequest);
     this.getReport({...this.reportRequest});
   }
 
@@ -108,10 +102,20 @@ export class ReportsPageComponent implements OnInit {
     // other props are saved by the ngModel in the mat-components
     this.reportRequest.startDate = this.startDateReport;
     this.reportRequest.endDate = this.endDateReport;
+    this._localStorage.saveValueWithKey(this.reportRequest, LocalStorageKeysNameEnum.budgetReportKey);
+
   }
 
-  private initializeDatePickers() {
-    // initialize date pickers to firstDateOfMonth - currentDate
+  private initializeAndGetNewReportRequest() {
+    const newReportRequest = new ReportRequestModel();
+    this.accounts.forEach(
+      (account) => newReportRequest.selectedAccounts.push(account.id));
+    this.categories.forEach(
+      (category) => newReportRequest.selectedCategories.push(category.id));
+    return {...newReportRequest};
+  }
+
+  private initializeDatePickers(){
     this.startDateReport = this.reportRequest.startDate;
     this.endDateReport = this.reportRequest.endDate;
   }
@@ -125,15 +129,9 @@ export class ReportsPageComponent implements OnInit {
   }
 
   private getReport(request: ReportRequestModel) {
+    request.userId = this._authService.getUserId();
     this._reportsService.getReport(request).subscribe((reportResult) => {
       this.reportData = reportResult;
     });
   }
-
-  private initializeDropDowns() {
-    this.accounts.forEach((account) => this.reportRequest.selectedAccounts.push(account.id));
-    this.categories.forEach((category) => this.reportRequest.selectedCategories.push(category.id));
-  }
-
-
 }

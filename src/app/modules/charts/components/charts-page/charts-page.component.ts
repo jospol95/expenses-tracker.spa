@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, Injector, OnInit} from '@angular/core';
 import {CalendarMonth} from '../../../calendar/enums/calendar-month.enum';
-import {ReportsService} from '../../services/reports.service';
+import {BudgetChartService} from '../../services/budget-chart.service';
 import {BudgetReportRequest} from '../../models/budget-report-request.model';
 import {BudgetReportType} from '../../enums/budget-report-type.enum';
 import {BudgetReportModel} from '../../models/budget-report.model';
 import {DecimalPipe} from '@angular/common';
+import {ConstantsVariables} from '../../../../shared/constants/constants-variables';
+import {BasePageComponent} from '../../../../shared/components/base-page/base-page.component';
 
 @Component({
   selector: 'app-reports-page',
@@ -12,10 +14,11 @@ import {DecimalPipe} from '@angular/common';
   styleUrls: ['./charts-page.component.scss'],
   providers: [DecimalPipe]
 })
-export class ChartsPageComponent implements OnInit {
+export class ChartsPageComponent extends BasePageComponent implements OnInit {
   public data: any;
   public monthSelected: CalendarMonth;
   public yearSelected: number;
+  public breakOptions: any;
   public months: any;
   public years: any;
   public reportRequest: BudgetReportRequest;
@@ -27,15 +30,8 @@ export class ChartsPageComponent implements OnInit {
   public _categories = new Array<BudgetReportModel>();
   public _totalAmountCategories: number;
 
-  constructor(private readonly __reportsService: ReportsService) {
-    // this.data = [
-    //   {Label: 'Administration', Value: 2},
-    //   {Label: 'Income', Value: 8},
-    //   {Label: 'IT', Value: 3},
-    //   {Label: 'Marketing', Value: 8},
-    //   {Label: 'Development', Value: 4},
-    //   {Label: 'Customer Support', Value: 6}
-    // ];
+  constructor(private readonly budgetChartService: BudgetChartService, private readonly _injector: Injector) {
+    super(_injector);
   }
 
   get income(): BudgetReportModel {
@@ -65,27 +61,27 @@ export class ChartsPageComponent implements OnInit {
 
   public getReport(budgetReportRequest: BudgetReportRequest) {
     const request = {...budgetReportRequest};
-    this.__reportsService.getBudgetReport(request).subscribe(
+    this.budgetChartService.getBudgetChartReport(request).subscribe(
       (result) => {
         this.reportData = result;
         this.mapReportDataToChartData([...this.reportData]);
         // console.log(this.reportData);
       },
       (error) => {
-        console.log('Something bad occurred');
+        this.showErrorPrompt('An error occurred when trying to load the data');
       }
     );
   }
 
   public getAccountsReport(accountRequest: BudgetReportRequest) {
-    this.__reportsService.getBudgetReport(accountRequest).subscribe(
+    this.budgetChartService.getBudgetChartReport(accountRequest).subscribe(
       (result) => {
         this.accountsData = result;
         // this.mapReportDataToChartData([...this.accountsData]);
         // console.log(this.reportData);
       },
       (error) => {
-        console.log('Something bad occurred');
+        this.showErrorPrompt('An error occurred when trying to load the data');
       }
     );
   }
@@ -98,13 +94,13 @@ export class ChartsPageComponent implements OnInit {
     this.reportRequest = {
       month: this.monthSelected,
       year: this.yearSelected,
-      userId: '123',
+      userId: this.userId,
       reportType: BudgetReportType.CategoriesReport
     };
     this.accountsReportRequest = {
       month: this.monthSelected,
       year: this.yearSelected,
-      userId: '123',
+      userId: this.userId,
       reportType: BudgetReportType.AccountsReport
     };
   }
@@ -113,25 +109,11 @@ export class ChartsPageComponent implements OnInit {
     const currentDayArray = this.getCurrentMonthAndDate();
     this.monthSelected = currentDayArray[0];
     this.yearSelected = currentDayArray[1];
-
-    this.months = [
-      {value: 0, viewValue: 'January'},
-      {value: 1, viewValue: 'February'},
-      {value: 2, viewValue: 'March'},
-      {value: 3, viewValue: 'April'},
-      {value: 4, viewValue: 'May'},
-      {value: 5, viewValue: 'June'},
-      {value: 6, viewValue: 'July'},
-      {value: 7, viewValue: 'August'},
-      {value: 8, viewValue: 'September'},
-      {value: 9, viewValue: 'October'},
-      {value: 10, viewValue: 'November'},
-      {value: 11, viewValue: 'December'},
-    ];
-
-    this.years = [
-      {value: 2019, viewValue: '2019'},
-      {value: 2020, viewValue: '2020'},
+    this.months = ConstantsVariables.getMonthsArray();
+    this.years = ConstantsVariables.getYearsArray();
+    this.breakOptions = [
+      {value: 1, viewValue: 'Category'},
+      {value: 2, viewValue: 'Account'}
     ];
   }
 
@@ -154,17 +136,16 @@ export class ChartsPageComponent implements OnInit {
       // };
       if (reportData[i].id !== 0) {
         dataArray.push({
-          Label: reportData[i].name,
-          // Idea is to have always a match-value of 100
-          Value: Math.abs((reportData[i].total / budgetReportTotal))
+          name: reportData[i].name,
+          value: reportData[i].total,
         });
       }
 
     }
     this.data = [...dataArray];
 
-    console.log(dataArray);
-    console.log(this.data);
+    // console.log(dataArray);
+    // console.log(this.data);
   }
 
 

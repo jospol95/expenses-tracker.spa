@@ -8,7 +8,6 @@ import {noop} from 'rxjs';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public budgetReportFilter = new ReportRequestFilterModel('budget-report-filter', new ReportRequestModel());
   public budgetReportFilterName = 'budget-report-filter';
   // public budgetReportFilter: ReportRequestModel;
 
@@ -16,7 +15,12 @@ export class LocalStorageService {
 
   }
 
+  public removeItem(valueKey: string) {
+    localStorage.removeItem(valueKey);
+  }
+
   public getKey(keyName: string) {
+    // returns parsed object
     const savedFilter = localStorage.getItem(keyName);
     console.log(savedFilter);
     if (savedFilter != null) {
@@ -26,7 +30,7 @@ export class LocalStorageService {
     return null;
   }
 
-  public saveKey(keyName: string, value) {
+  public saveValueWithKey( value, keyName: string) {
     localStorage.setItem(keyName, JSON.stringify(value));
   }
 

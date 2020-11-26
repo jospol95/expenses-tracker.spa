@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CalendarMonth} from '../../enums/calendar-month.enum';
 import {$e} from 'codelyzer/angular/styles/chars';
@@ -17,13 +17,14 @@ import {CalendarArrayModel} from '../../models/calendar-array.model';
 import {CalendarModel} from '../../models/calendar.model';
 import {CalendarDateModel} from '../../models/calendar-date.model';
 import {MatDialog} from '@angular/material/dialog';
+import {BasePageComponent} from '../../../../shared/components/base-page/base-page.component';
 
 @Component({
   selector: 'app-calendar-page',
   templateUrl: './calendar-page.component.html',
   styleUrls: ['./calendar-page.component.scss']
 })
-export class CalendarPageComponent implements OnInit {
+export class CalendarPageComponent extends BasePageComponent implements OnInit {
   public pageData = new CalendarPageViewModel();
   // Month, Day, Year
   public dateModel: CalendarDateModel = new CalendarDateModel();
@@ -34,9 +35,11 @@ export class CalendarPageComponent implements OnInit {
   public calendarDaySelected: number;
 
   constructor(public dialog: MatDialog,
+              private injectorC: Injector,
               private readonly route: ActivatedRoute,
               private readonly router: Router,
               private readonly service: CalendarService) {
+    super(injectorC);
   }
 
 // TODO: SET CLICKED DEFAULT TO TODAYS DATE, CHECK LOWER COMPO
@@ -58,17 +61,17 @@ export class CalendarPageComponent implements OnInit {
     // this.getBudgetDays();
   }
 
-  public getBudgetDays() {
-    const currentDate = new Date();
-    const currentMonth: CalendarMonth = currentDate.getMonth();
-    const currentYear: number = currentDate.getFullYear();
-    this.service.getBudgetDays(currentMonth, currentYear, 123).subscribe(
-      (response) => {
-        this.budgetDays = response;
-      }
-    );
-
-  }
+  // public getBudgetDays() {
+  //   const currentDate = new Date();
+  //   const currentMonth: CalendarMonth = currentDate.getMonth();
+  //   const currentYear: number = currentDate.getFullYear();
+  //   this.service.getBudgetDays(currentMonth, currentYear, 123).subscribe(
+  //     (response) => {
+  //       this.budgetDays = response;
+  //     }
+  //   );
+  //
+  // }
 
   public addNewEventHandler($event) {
     this.router.navigate(
@@ -87,7 +90,7 @@ export class CalendarPageComponent implements OnInit {
     // this.budgetDaySelected = null;
 
     // get budgetDays
-    this.service.getBudgetDays(this.dateModel.month, this.dateModel.year, 123).subscribe(
+    this.service.getBudgetDays(this.dateModel.month, this.dateModel.year, this._authService.getUserId()).subscribe(
       (response) => {
         this.budgetDays = [...response];
 

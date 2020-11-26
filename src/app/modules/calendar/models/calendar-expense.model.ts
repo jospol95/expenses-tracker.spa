@@ -7,4 +7,5 @@ export class CalendarExpenseModel {
   public userId: string;
   public categoryId?: number;
   public accountId?: number;
+  public isConcurrent = false;
 }

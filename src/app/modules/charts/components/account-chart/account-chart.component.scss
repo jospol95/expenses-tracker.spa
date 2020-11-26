@@ -1,24 +1,35 @@
-.chart {
-  margin:0;
-  padding: 0;
+.chart-account {
+  margin-top: 30px;
   height: 500px;
-  //min-width: 500px;
+  text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-left: 4%;
 }
 
-.left-side-section{
+.dark-card {
+  background: #243447;
+  color: white;
+}
+
+
+.left-side-section {
   overflow-y: auto;
   height: 90vh;
   //todo use height:100% and overflow in parent (layout)
 }
 
-.side-section{
+.side-section {
   //float:left;
   //width:1000px;
   overflow-y: auto;
   height: 90vh;
 }
 
-#report-table thead tr th{
+#report-table thead tr th {
+  color: white;
 
 }
 

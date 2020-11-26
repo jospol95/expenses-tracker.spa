@@ -1,1 +1,17 @@
-<p>user-account-tab works!</p>
+<div class="card account-card">
+  <div class="card-header card-header-primary">
+    <h6 class="card-title">My profile</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6 col-centered">
+        Hi Jose!
+        <br>
+        To change information about your account <a class="text-primary clickable" (click)="goToAuthAccount()">Click here.</a>
+      </div>
+    </div>
+  </div>
+  <div class="sign-out-ctainer">
+    <a  class="text-primary clickable" (click)="killSessionAndLogOut()">Sign out</a>
+  </div>
+</div>
