@@ -29,7 +29,7 @@ export class AccountService {
   }
 
   public deleteAccount(id: number): Observable<any>{
-    return this.http.delete(this.addAccountUrl + id);
+    return this.http.delete(this.genericAccountUrl + id);
   }
 
 }
