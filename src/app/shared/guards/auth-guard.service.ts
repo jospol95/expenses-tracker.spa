@@ -15,6 +15,9 @@ export class AuthGuardService implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    // if (environment.production === false) {
+    //   window.location.href =
+    // }
     if (!this._authenticationService.isLoggedIn) {
       // this.__router.navigate(['login']).then(r => noop());
       window.location.href = environment.auth_spa_url + 'auth/login';
