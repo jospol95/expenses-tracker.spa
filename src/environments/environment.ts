@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   auth_spa_url: 'http://localhost:4401/',
-  BUDGET_API: 'http://localhost:4200/'
+  BUDGET_API: 'https://localhost:5001/api'
 };
 
 /*
