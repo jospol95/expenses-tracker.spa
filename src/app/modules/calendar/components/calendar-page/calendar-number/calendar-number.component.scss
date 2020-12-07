@@ -3,7 +3,7 @@
   //padding: 1em .1em 1em .1em;
   font-size: 16px;
   //opacity: 100%;
-  color: darkslategrey ;
+  color: grey ;
   span {
     border-radius: 50%;
     padding: .5em 1em .5em 1em;
@@ -35,12 +35,13 @@
   span{
     //background: #243447;
     //color: white;
+    color: black;
     font-weight: bold;
   }
 }
 .calendar-day-2{
   font-size: 16px;
-  color: darkslategrey ;
+  color: grey ;
   > span {
     border-radius: 50%;
     //background: orangered;
@@ -61,6 +62,7 @@
   span{
     //background: #243447;
     //color: white;
+    color: black;
     font-weight: bold;
   }
 }
