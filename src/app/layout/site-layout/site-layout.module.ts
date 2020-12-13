@@ -8,22 +8,24 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {CustomPipesModule} from '../../shared/pipes/custom-pipes.module';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule({
   declarations: [
     SiteLayoutComponent,
   ],
-  imports: [
-    SiteLayoutRoutingModule,
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSelectModule,
-    SharedComponentsModule,
-    CustomPipesModule
-  ],
+    imports: [
+        SiteLayoutRoutingModule,
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSelectModule,
+        SharedComponentsModule,
+        CustomPipesModule,
+        NgxSpinnerModule
+    ],
   exports: [CustomPipesModule, SharedComponentsModule]
 })
 export class SiteLayoutModule { }

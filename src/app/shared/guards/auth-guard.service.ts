@@ -17,8 +17,8 @@ export class AuthGuardService implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this._authenticationService.isLoggedIn) {
       if (environment.production === false) {
-        const loginToken = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiZHVtbXkiLCJmYW1pbHlfbmFtZSI6InVzZXIiLCJzaWQiOiI3NTJhMzJkYS1iZGE3LTQyZDMtYTA3NC0xMGE1NDUzZWIzM2MiLCJuYmYiOjE2MDcyOTU5NTgsImV4cCI6MTYwNzkwMDc1OCwiaWF0IjoxNjA3Mjk1OTU4LCJpc3MiOiJodHRwOi8vd3d3dy5sb2NhbGhvc3Q6NjAwMS8ifQ.nfhMEJaThw0NcFKscjwHAdTNvtPovo_1oHkXLk_rpxPlwoyxCfcZRY4R_LB-E5qoUCbd04e-VBrfIvc1lyuchw';
-        this._router.navigate(['/auth'], { queryParams: { 'auth-token': loginToken} }).then();
+        const loginToken = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1bXlAZXhhbXBsZS5jb20iLCJnaXZlbl9uYW1lIjoiZHVtbXkiLCJmYW1pbHlfbmFtZSI6InVzZXIiLCJzaWQiOiI1NzNjNDQ2NC01ODM0LTRhMWItYmRhOS00M2I5MTAxYTVhNWIiLCJuYmYiOjE2MDc2NjMzMTQsImV4cCI6MTYwODI2ODExNCwiaWF0IjoxNjA3NjYzMzE0LCJpc3MiOiJodHRwOi8vd3d3dy5sb2NhbGhvc3Q6NjAwMS8ifQ.FDYpOfL4Y1hQbnQE5uMdryK3QxxwDhYXRrYTti5Cu_K4Io9FprrQJwdunw8nhvWCZOiWjlltQ3EsN_IUh_g0cQ';
+        this._router.navigate(['/auth'], {queryParams: {'auth-token': loginToken}}).then();
         return true;
       }
       // this.__router.navigate(['login']).then(r => noop());

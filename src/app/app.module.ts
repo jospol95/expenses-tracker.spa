@@ -13,7 +13,7 @@ import { CalendarNumberComponent } from './modules/calendar/components/calendar-
 import { CalendarNewPageComponent } from './modules/calendar/components/calendar-new-page/calendar-new-page.component';
 import { AddExpenseComponent } from './modules/calendar/components/calendar-new-page/add-expense/add-expense.component';
 import { AddIncomeComponent } from './modules/calendar/components/calendar-new-page/add-income/add-income.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import {AutocompletePipeStartsWith} from './shared/pipes/auto-complete-pipe';
 import {CustomPipesModule} from './shared/pipes/custom-pipes.module';
@@ -24,6 +24,8 @@ import {SharedComponentsModule} from './shared/components/shared-components.modu
 import {FormsModule} from '@angular/forms';
 import {AuthGuardService} from './shared/guards/auth-guard.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {NgxSpinnerInterceptor} from './shared/http-interceptors/ngx-spinner.interceptor';
 
 
 @NgModule({
@@ -51,7 +53,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HttpClient,
     CurrencyPipe,
     DecimalPipe,
-    AuthGuardService
+    AuthGuardService,
+    NgxSpinnerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgxSpinnerInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
