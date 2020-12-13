@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   auth_spa_url: 'http://localhost:4401/',
+  // BUDGET_API: 'https://budget-me-api-net-core.herokuapp.com/api'
   BUDGET_API: 'https://localhost:5001/api'
 };
 
