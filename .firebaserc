@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "budgetapp-79c45": {
+      "hosting": {
+        "expense-tracker-app": [
+          "budgetapp-79c45"
+        ]
+      }
+    }
+  }
+}
