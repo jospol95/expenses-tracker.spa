@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CalendarExpenseModel} from '../../../models/calendar-expense.model';
 import {FacadeModel} from '../../../../../shared/models/facade.model';
+import {CalendarBudgetEntryType} from '../../../enums/calendar-budget-entry.enum';
+import {CalendarIncomeModel} from '../../../models/calendar-income.model';
 
 @Component({
   selector: 'app-add-expense',
@@ -12,7 +14,7 @@ export class AddExpenseComponent implements OnInit {
   @Input() public accounts: Array<FacadeModel>;
   @Input() public model: CalendarExpenseModel;
 
-  @Output() public saveEvent = new EventEmitter<CalendarExpenseModel>();
+  @Output() public saveEvent = new EventEmitter<[CalendarIncomeModel, CalendarBudgetEntryType]>();
   @Output() public cancelEvent = new EventEmitter();
 
   // public model: CalendarExpenseModel;
@@ -30,7 +32,7 @@ export class AddExpenseComponent implements OnInit {
   }
 
   public save() {
-    this.saveEvent.emit(this.model);
+    this.saveEvent.emit([this.model, CalendarBudgetEntryType.Expense]);
   }
 
 }
