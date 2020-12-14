@@ -1,8 +1,13 @@
 <div class="card">
   <div class="card-header card-header-danger">
-    <h5>Add an expense</h5>
-    <ng-content></ng-content>
-    <!--    <p class="card-category">Complete your profile</p>-->
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Add an Expense</h5>
+      </div>
+      <div class="col-md-6 text-right">
+        <ng-content></ng-content>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <form>

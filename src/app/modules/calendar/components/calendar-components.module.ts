@@ -9,7 +9,7 @@ import {CalendarDayExpenseComponent} from './calendar-page/calendar-day-expense/
 import {CalendarNumberComponent} from './calendar-page/calendar-number/calendar-number.component';
 import {CalendarLayoutComponent} from './calendar-layout/calendar-layout.component';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedComponentsModule} from '../../../shared/components/shared-components.module';
 import { CalendarEditEntryModalComponent } from './modals/calendar-edit-entry-modal/calendar-edit-entry-modal.component';
 import { CalendarEditExpenseModalComponent } from './modals/calendar-edit-expense-modal/calendar-edit-expense-modal.component';
@@ -19,6 +19,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -37,21 +39,24 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CalendarEditEntryModalComponent,
     CalendarEditExpenseModalComponent
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        RouterModule,
-        MatTabsModule,
-        FormsModule,
-        SharedComponentsModule,
-        MatTabsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatIconModule,
-        MatCheckboxModule,
-    ]
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    RouterModule,
+    MatTabsModule,
+    FormsModule,
+    SharedComponentsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatInputModule,
+  ]
 })
 export class CalendarComponentsModule {
 }

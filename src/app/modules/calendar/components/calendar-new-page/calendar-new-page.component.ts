@@ -3,12 +3,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CalendarIncomeModel} from '../../models/calendar-income.model';
 import {CalendarExpenseModel} from '../../models/calendar-expense.model';
 import {CalendarService} from '../../calendar.service';
-import {BasePageComponent} from '../../../../shared/components/base-page/base-page.component';
 import swal from 'sweetalert2/dist/sweetalert2.js';
 import {CalendarNewPageViewModel} from '../../view-models/calendar-new-page-view.model';
-import {Observable, Subject} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import {ServiceInjector} from '../../../../shared/services/service-injector.service';
+import {FormControl} from '@angular/forms';
+import * as moment from 'moment';
+import {CalendarBudgetEntryModel} from '../../models/calendar-budget-entry.model';
+import {CalendarBudgetEntryType} from '../../enums/calendar-budget-entry.enum';
 
 
 @Component({
@@ -17,108 +19,62 @@ import {ServiceInjector} from '../../../../shared/services/service-injector.serv
   styleUrls: ['./calendar-new-page.component.scss']
 })
 export class CalendarNewPageComponent extends ServiceInjector implements OnInit {
-  public day: number;
-  public month: number;
-  public year: number;
 
-  public newExpense = new CalendarExpenseModel();
-  public newIncome = new CalendarIncomeModel();
-
-  public daySelectedSubject = new Subject<number>();
-
-  private _monthName: string;
-
+  // public newExpense = new CalendarExpenseModel();
+  // public newIncome = new CalendarIncomeModel();
+  public model = new CalendarBudgetEntryModel();
   public pageData: CalendarNewPageViewModel = new CalendarNewPageViewModel();
+  public dateSelected = new FormControl('');
 
-  constructor(private readonly __route: ActivatedRoute,
-              private readonly __router: Router,
+  constructor(private readonly _route: ActivatedRoute,
+              private readonly _router: Router,
               private readonly injector: Injector,
-              private readonly __service: CalendarService) {
+              private readonly _service: CalendarService) {
     super(injector);
   }
 
-  get monthName(): string {
-    switch (this.month) {
-      case 0:
-        this._monthName = 'January';
-        break;
-      case 1:
-        this._monthName = 'February';
-        break;
-      case 2:
-        this._monthName = 'March';
-        break;
-      case 3:
-        this._monthName = 'April';
-        break;
-      case 4:
-        this._monthName = 'May';
-        break;
-      case 5:
-        this._monthName = 'June';
-        break;
-      case 6:
-        this._monthName = 'July';
-        break;
-      case 7:
-        this._monthName = 'August';
-        break;
-      case 8:
-        this._monthName = 'September';
-        break;
-      case 9:
-        this._monthName = 'October';
-        break;
-      case 10:
-        this._monthName = 'November';
-        break;
-      case 11:
-        this._monthName = 'December';
-        break;
-      default:
-        this._monthName = '';
-        break;
-    }
-
-    return this._monthName;
-  }
-
   public ngOnInit() {
-    this.__route.queryParams.subscribe((params) => {
+    this._route.queryParams.subscribe((params) => {
       if (params) {
         if (params.day && params.month && params.year) {
-          // check if valid date
-          this.day = parseInt(params.day, 10);
-          console.log('day', this.day);
-          this.month = parseInt(params.month, 10);
-          this.year = parseInt(params.year, 10);
-
-          this.__route.data.subscribe((pageData) => {
-            console.log(pageData);
+          // TODO: Validate params
+          this.buildDateFromQueryParams(params.day, params.month, params.year);
+          this._route.data.subscribe((pageData) => {
             this.pageData = pageData.data;
           });
-
-          // this.daySelectedSubject.pipe(
-          //   tap((daySelected) => {
-          //     this.day = daySelected;
-          //     this.__router.repla
-          //   })
-          // );
         }
       } else {
         // else redirect to 404
         console.log('404');
       }
-
     });
   }
 
-  public saveIncomeEventHandler($event: CalendarIncomeModel) {
-    // this.handleBadResponse();
-    const income = $event;
-    income.date = new Date(this.year, this.month, this.day);
-    income.userId = this._authService.getUserId();
-    this.__service.addIncome(income).subscribe((id) => {
+  private buildDateFromQueryParams(dayParam: string, monthParam: string, yearParam: string) {
+    const day = parseInt(dayParam, 10);
+    const month = parseInt(monthParam, 10);
+    const year = parseInt(yearParam, 10);
+    this.dateSelected = new FormControl(new Date(year, month, day));
+  }
+
+
+  public saveCalendarBudgetingEntry($event: [CalendarBudgetEntryModel, CalendarBudgetEntryType]) {
+    const [entry, type] = $event;
+    entry.date = this.dateSelected.value;
+    entry.userId = this._authService.getUserId();
+
+    switch (type) {
+      case CalendarBudgetEntryType.Income :
+        this.addIncome(entry);
+        break;
+      case CalendarBudgetEntryType.Expense :
+        this.addExpense(entry);
+        break;
+    }
+  }
+
+  private addIncome(income: any) {
+    this._service.addIncome(income).subscribe((id) => {
         if (id) {
           this.handleGoodResponse();
         }
@@ -128,12 +84,8 @@ export class CalendarNewPageComponent extends ServiceInjector implements OnInit 
     );
   }
 
-  public saveExpenseEventHandler($event: CalendarExpenseModel) {
-    const expense = $event;
-    expense.date = new Date(this.year, this.month, this.day);
-    expense.userId = this._authService.getUserId();
-
-    this.__service.addExpense(expense).subscribe((id) => {
+  private addExpense(expense: any) {
+    this._service.addExpense(expense).subscribe((id) => {
         if (id) {
           this.handleGoodResponse();
         }
@@ -142,6 +94,7 @@ export class CalendarNewPageComponent extends ServiceInjector implements OnInit 
       }
     );
   }
+
 
   private handleBadResponse() {
     swal.fire({
@@ -165,42 +118,19 @@ export class CalendarNewPageComponent extends ServiceInjector implements OnInit 
     }).then((result) => {
       if (result.value) {
         // add another was clicked
-        this.newExpense = new CalendarExpenseModel();
-        this.newIncome = new CalendarIncomeModel();
-        this.__router.navigate(
+        this.model = new CalendarBudgetEntryModel();
+        const date: Date = this.dateSelected.value;
+        this._router.navigate(
           ['calendar/new'],
-          {queryParams: {day: this.day, month: this.month, year: this.year}}
+          {queryParams: {month: date.getMonth(), day: date.getDate() , year: date.getFullYear()}}
         );
       } else {
         // not now was clicked
-        this.__router.navigate(
+        this._router.navigate(
           ['calendar']
         );
       }
     });
-
-  }
-
-  public getDayArrayForDate() {
-    // date: 0 means the last day for previous month
-    const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-    const optionDayArray = [];
-    const dateSelected = this.day;
-    for (let i = 1; i <= daysInMonth; i++) {
-      const dayOption = {
-        value: i,
-        isSelected: i === dateSelected,
-        title: i
-      };
-      optionDayArray.push(dayOption);
-    }
-    return optionDayArray;
-  }
-
-  updateSelectedDay($event: any) {
-    this.day = 5;
-
-    // console.log($event);
 
   }
 }

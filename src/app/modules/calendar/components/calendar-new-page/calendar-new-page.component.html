@@ -11,23 +11,14 @@
         <div class="col col-md-6 col-lg-7 centered-column">
           <app-add-income
             [accounts]="pageData.accounts"
-            [model]="newIncome"
-            (saveEvent)="saveIncomeEventHandler($event)">
-            You're adding a new entry for
-            <select
-              name="day-selected"
-              (ngModelChange)="updateSelectedDay($event)"
-              [(ngModel)]="this.day"
-              class=" btn-select btn-mini btn-success">
-              <option *ngFor="let opt of getDayArrayForDate()"
-                      [selected]="opt.isSelected"
-                      [ngValue]="opt.value">
-                {{opt.title}}
-              </option>
-            </select>
-            <span class="caret"></span>
-            &nbsp;{{this.monthName}} of
-            {{this.year}}
+            [model]="model"
+            (saveEvent)="saveCalendarBudgetingEntry($event)">
+            <mat-form-field appearance="fill">
+              <mat-label>You have selected</mat-label>
+              <input matInput [matDatepicker]="dp" [formControl]="dateSelected">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
           </app-add-income>
         </div>
       </mat-tab>
@@ -38,23 +29,14 @@
           <app-add-expense
             [categories]="pageData.categories"
             [accounts]="pageData.accounts"
-            [model]="newExpense"
-            (saveEvent)="saveExpenseEventHandler($event)" >
-            You're adding a new entry for
-            <select
-              name="day"
-              (ngModelChange)="updateSelectedDay($event)"
-              [(ngModel)]="this.day"
-              class=" btn-select btn-mini btn-danger">
-              <option *ngFor="let opt of getDayArrayForDate()"
-                      [selected]="opt.isSelected"
-                      [ngValue]="opt.value">
-                {{opt.title}}
-              </option>
-            </select>
-            <span class="caret"></span>
-            &nbsp;{{this.monthName}} of
-            {{this.year}}
+            [model]="model"
+            (saveEvent)="saveCalendarBudgetingEntry($event)" >
+            <mat-form-field appearance="fill">
+              <mat-label>You have selected</mat-label>
+              <input matInput [matDatepicker]="dp2" [formControl]="dateSelected">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp2></mat-datepicker>
+            </mat-form-field>
           </app-add-expense>
         </div>
       </mat-tab>
