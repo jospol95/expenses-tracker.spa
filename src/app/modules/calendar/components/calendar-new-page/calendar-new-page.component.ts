@@ -59,7 +59,6 @@ export class CalendarNewPageComponent extends ServiceInjector implements OnInit 
 
 
   public saveCalendarBudgetingEntry($event: [CalendarBudgetEntryModel, CalendarBudgetEntryType]) {
-    // this.handleBadResponse();
     const [entry, type] = $event;
     entry.date = this.dateSelected.value;
     entry.userId = this._authService.getUserId();
