@@ -40,6 +40,7 @@
             name="category"
             [(ngModel)]="model.accountId"
             class="form-control selectpicker" data-style="btn btn-link">
+            <option disabled selected value=undefined>Select an account</option>
             <option *ngFor="let account of accounts"
                     [ngValue]="account.id"
             >
