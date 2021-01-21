@@ -31,7 +31,8 @@ export class CalendarContainerComponent implements OnInit {
   @Input() set budgetDays(value: Array<BudgetDayModel>) {
     this._budgetDays = [...value];
     // Convert calendar to inner model when budgetDay changes
-    if (this.budgetDays && this.monthSelected && this.yearSelected) {
+    // if (this.budgetDays && this.monthSelected && this.yearSelected) { not sure what was my intention here
+    if (this.budgetDays ) {
       this.calculateCalendar(this.monthSelected, this.yearSelected);
     }
   }
@@ -71,9 +72,11 @@ export class CalendarContainerComponent implements OnInit {
       {value: 10, viewValue: 'November'},
       {value: 11, viewValue: 'December'},
     ];
+    //TODO fix
     this.years = [
       {value: 2019, viewValue: '2019'},
       {value: 2020, viewValue: '2020'},
+      {value: 2021, viewValue: '2021'},
     ];
     this.dayHeaders = [
       {name: 'SUN', isActive: false},
@@ -87,10 +90,7 @@ export class CalendarContainerComponent implements OnInit {
     const currentDate: [CalendarMonth, number] = CalendarContainerComponent.getCurrentMonthAndDate();
     this.monthSelected = currentDate[0];
     this.yearSelected = currentDate[1];
-    // console.log(this.model);
-    // console.log(this.model[0]);
     // calculate inner array for linear calendar
-    console.log('init');
     this.calculateCalendar(this.monthSelected, this.yearSelected);
 
     // sets todays date (if theres) to clicked
