@@ -21,6 +21,10 @@ export class UserAccountTabComponent implements OnInit {
     window.location.href = environment.auth_spa_url + 'account';
   }
 
+  public getUserName(){
+    return this.authService.getUserName();
+  }
+
   public killSessionAndLogOut(){
     this.authService.killSession();
   }

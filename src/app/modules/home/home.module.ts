@@ -15,22 +15,26 @@ import { IncomeHomeComponent } from './components/landing-page/income-home/incom
 import { ExpensesHomeComponent } from './components/landing-page/expenses-home/expenses-home.component';
 import { BudgetHomeComponent } from './components/landing-page/budget-home/budget-home.component';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
   declarations: [LandingPageComponent, CategoryBudgetExpenseComponent, IncomeHomeComponent, ExpensesHomeComponent, BudgetHomeComponent],
-    imports: [
-        CommonModule,
-        MatIconModule,
-        IgxProgressBarModule,
-        IgxAutocompleteModule,
-        IgxDropDownModule,
-        IgxInputGroupModule,
-        FormsModule,
-        CustomPipesModule,
-        RouterModule,
-        NgxChartsModule
-    ],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    IgxProgressBarModule,
+    IgxAutocompleteModule,
+    IgxDropDownModule,
+    IgxInputGroupModule,
+    FormsModule,
+    CustomPipesModule,
+    RouterModule,
+    NgxChartsModule,
+    MatFormFieldModule,
+    MatSelectModule
+  ],
   providers: [
     CalendarService
   ]

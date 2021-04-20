@@ -12,6 +12,11 @@ body {
   color: black;
 }
 
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
 .font-weight-bold {
   font-weight: bold;
 }
@@ -49,6 +54,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .clickable:hover {
   cursor: pointer;
+}
+
+.rounded-b3{
+  border-radius: 0.3em;
 }
 
 

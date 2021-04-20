@@ -34,6 +34,11 @@ export class AuthorizationService {
     return decodedToken.sid;
   }
 
+  public getUserName() {
+    const decodedToken = this.getTokenDetails();
+    return decodedToken.given_name;
+  }
+
   public saveAuthToken(authToken: string) {
     this._localStorage.saveValueWithKey(authToken, GlobalConstants.AUTH_TOKEN_NAME);
   }

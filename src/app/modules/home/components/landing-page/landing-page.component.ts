@@ -12,6 +12,10 @@ import {CalendarMonth} from '../../../calendar/enums/calendar-month.enum';
 import swal from 'sweetalert2/dist/sweetalert2.js';
 import {CalendarIncomeModel} from '../../../calendar/models/calendar-income.model';
 import {noop} from 'rxjs';
+import {ConstantsVariables} from '../../../../shared/constants/constants-variables';
+import {LocalStorageKeysNameEnum} from '../../../../shared/enums/local-storage-keys-name.enum';
+import {LocalStorageService} from '../../../../shared/services/local-storage.service';
+import {HomePageService} from '../../services/home-page.service';
 
 
 @Component({
@@ -32,6 +36,10 @@ export class LandingPageComponent implements OnInit {
   public descriptionsArray = [];
   public descriptionSelected = '';
   public hasCategoriesAndAccounts = false;
+  public yearSelected: number;
+  public monthSelected: number;
+  public months: any;
+  public homeMonthSelectorKeyName: string;
 
   // for the quick search input
   public get filteredBudgetList(): BudgetDayModel[] {
@@ -90,8 +98,11 @@ export class LandingPageComponent implements OnInit {
 
 
   constructor(private readonly _route: ActivatedRoute,
+              private readonly _localStorageService: LocalStorageService,
+              private readonly _service: HomePageService,
               private readonly _router: Router
   ) {
+    this.homeMonthSelectorKeyName = LocalStorageKeysNameEnum.homeMonthSelector;
   }
 
   ngOnInit() {
@@ -108,6 +119,8 @@ export class LandingPageComponent implements OnInit {
       if (!this.hasCategoriesAndAccounts) {
         this.fireEmptyCategoriesAccountPrompt();
       }
+      this.months = ConstantsVariables.getMonthsArray();
+      this.setMonthForMonthPicker();
     });
   }
 
@@ -159,6 +172,25 @@ export class LandingPageComponent implements OnInit {
 
   public getMonthName(monthNum) {
     return CalendarMonth[monthNum - 1];
+  }
+
+
+  public handleDateSelection() {
+    this._localStorageService.saveValueWithKey(this.monthSelected, this.homeMonthSelectorKeyName);
+    this._service.getBudgetSummary(this.monthSelected, new Date().getFullYear())
+      .subscribe((budgetDays) => {
+        this.data.budgetDays = budgetDays;
+        debugger;
+        this.calculateAmounts();
+        this.calculateTopData();
+        this.buildStringOfDescriptions();
+        // this.buildChartsData();
+        this.buildExpenseForCategory();
+        this.filteredBudgetList = [...this.budgetDays];
+
+      }, (err) => {
+
+      });
   }
 
   public filterBudgetList($event: any) {
@@ -230,4 +262,14 @@ export class LandingPageComponent implements OnInit {
       .forEach((categoryExpense) => total += categoryExpense.amount);
     return total;
   }
+
+  private setMonthForMonthPicker() {
+    this.monthSelected = this._localStorageService.getKey(this.homeMonthSelectorKeyName);
+    if (this.monthSelected == null) {
+      const date = new Date();
+      this.monthSelected = date.getMonth();
+    }
+    this._localStorageService.saveValueWithKey(this.monthSelected, this.homeMonthSelectorKeyName);
+  }
+
 }

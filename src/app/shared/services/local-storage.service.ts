@@ -8,7 +8,8 @@ import {noop} from 'rxjs';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public budgetReportFilterName = 'budget-report-filter';
+  // public budgetReportFilterName = 'budget-report-filter';
+  // public homeMonthSelector = 'home-month-selector';
   // public budgetReportFilter: ReportRequestModel;
 
   constructor() {
