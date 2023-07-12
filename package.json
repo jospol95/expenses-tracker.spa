@@ -30,7 +30,7 @@
     "igniteui-angular": "^10.0.4",
     "igniteui-angular-charts": "^9.1.2",
     "igniteui-angular-core": "9.1.2",
-    "jszip": "^3.3.0",
+    "jszip": "^3.8.0",
     "minireset.css": "~0.0.4",
     "ngx-progressbar": "^6.0.3",
     "ngx-spinner": "^10.0.1",
